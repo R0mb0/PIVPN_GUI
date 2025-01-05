@@ -1,17 +1,21 @@
+import 'dart:io';
+
 import 'User.dart';
+import 'dart:convert';
 
 class Database {
 
   // Fields 
   var database = Map<String, User>();
+  var myDatabaseFile = File('database.txt');
   
   // Using singleton pattern 
   Database._privateConstructor();
-  static final Database myDAtabase = Database._privateConstructor();
+  static final Database myDatabase = Database._privateConstructor();
   // Static method 
   static Database get instance
   {
-    return myDAtabase;
+    return myDatabase;
   }
 
   // Not adding tests here because checking every interaction is heavy
@@ -34,7 +38,7 @@ class Database {
   }
 
   // Get all users
-  List GetAllUsers()
+  Set<User> GetAllUsers()
   {
     var temp = <User>{};
     this.database.forEach((name, user){
@@ -43,5 +47,19 @@ class Database {
 
     return temp;
   }
+
+
+ // Method to write informations from database into a file 
+ void SaveDatabase()
+ {
+  this.myDatabaseFile.writeAsString(json.encode(this.database));
+ }
+
+  // Method to load informations from database file
+ void LoadDatabase()
+ {
+
+  this.database = json.decode(myDatabaseFile.readAsString() as String);
+ }
 
 }
