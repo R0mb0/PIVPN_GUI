@@ -1,3 +1,5 @@
+import 'dart:io';
+
 class CliAdapater 
 {
   
@@ -5,31 +7,44 @@ class CliAdapater
   // Methods
 
   // Add user 
-  void AddUser(String name){
-
+  Future<String> AddUser(String name)
+  async {
+    var result = await Process.run('pivpn', ['-a', '-n', name]);
+    return result.stdout;
   }
 
   // Remove user
-  void RemoveUser(String name)
-  {
-    
+  Future<String> RemoveUser(String name)
+  async {
+    var result = await Process.run('pivpn', ['-r', '-n', name]);
+    return result.stdout;
   }
 
   // Get All Users
-  void GetAllUsers()
-  {
-
+  Future<String> GetAllUsers()
+  async {
+    var result = await Process.run('pivpn', ['-l']);
+    return result.stdout;
   }
 
   // Enable user 
-  void EnableUser(String name)
-  {
-
+  Future<String> EnableUser(String name)
+  async {
+    var result = await Process.run('pivpn', ['-on', '-n', name]);
+    return result.stdout;
   }
 
   // Disable user 
-  void DisableUser(String name)
-  {
+  Future<String> DisableUser(String name)
+  async {
+    var result = await Process.run('pivpn', ['-off', '-n', name]);
+    return result.stdout;
+  }
 
+  // Update Client
+  Future<String> Update(String name)
+  async {
+    var result = await Process.run('pivpn', ['-up']);
+    return result.stdout;
   }
 }
