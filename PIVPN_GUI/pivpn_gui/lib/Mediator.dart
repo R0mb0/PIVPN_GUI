@@ -55,4 +55,10 @@ class Mediator {
         this.myDatabase.AddUser(name, temp);
     }
 
+    // Save database
+    void SaveDatabase()
+    {
+      this.myDatabase.SaveDatabase();
+    }
+
 }
