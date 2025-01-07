@@ -1,13 +1,15 @@
+import 'dart:ffi';
+
 class User {
 
   // Fields 
   // Using var type for consistency 
-  var name; 
-  var subName; 
-  var startDate; 
-  var endDate; 
-  var isDisabled;
-  var isAlwaysAllowed; 
+  String name; 
+  String subName; 
+  DateTime startDate; 
+  DateTime endDate; 
+  Bool isDisabled;
+  Bool isAlwaysAllowed; 
 
   // Constructor
   User(this.name, this.subName, this.startDate, this.endDate, this.isDisabled, this.isAlwaysAllowed);
@@ -52,6 +54,26 @@ class User {
   void SetEndDate(DateTime endDate)
   {
     this.endDate = endDate;
+  }
+
+  Bool GetIsDisabled()
+  {
+    return this.isDisabled;
+  }
+
+  void SetIsDisabled(Bool isDisabled)
+  {
+    this.isDisabled = isDisabled;
+  }
+
+  Bool GetIsAlwaysAllowed()
+  {
+    return this.isAlwaysAllowed;
+  }
+
+  void SetIsAlwaysAllowed(Bool isAlwaysAllowed)
+  {
+    this.isAlwaysAllowed = isAlwaysAllowed;
   }
 
   // Methods

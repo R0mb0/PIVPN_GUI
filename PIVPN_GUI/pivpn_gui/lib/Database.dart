@@ -5,7 +5,7 @@ import 'dart:convert';
 class Database {
 
   // Fields 
-  var database = Map<String, User>();
+  var database = Map<String, User?>();
   var myDatabaseFile = File('database.txt');
   
   // Using singleton pattern 
@@ -19,7 +19,7 @@ class Database {
 
   // Not adding tests here because checking every interaction is heavy
   // Add a user into database
-  void AddUser(String name, User user)
+  void AddUser(String name, User? user)
   {
     this.database[name] = user;
   }

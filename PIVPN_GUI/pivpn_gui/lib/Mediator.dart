@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'Database.dart';
 import 'User.dart';
 
@@ -37,8 +39,20 @@ class Mediator {
 
     //Enable user 
     void EnableUser(String name)
-    {
-        this.myDatabase.AddUser(name, this.myDatabase.GetUser(name.))
+    { 
+      User? temp  = this.myDatabase.GetUser(name);
+      temp?.SetIsDisabled(false as Bool);
+
+        this.myDatabase.AddUser(name, temp);
+    }
+
+    //Disable user 
+    void DisableUser(String name)
+    { 
+      User? temp  = this.myDatabase.GetUser(name);
+      temp?.SetIsDisabled(true as Bool);
+
+        this.myDatabase.AddUser(name, temp);
     }
 
 }
