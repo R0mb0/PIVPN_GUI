@@ -41,7 +41,7 @@ class Database {
   {
     var temp = <User>{};
     this.database.forEach((name, user){
-      temp.add(user);
+      temp.add(user!);
     });
 
     return temp;

@@ -2,10 +2,12 @@ import 'dart:ffi';
 
 import 'Database.dart';
 import 'User.dart';
+import 'CLI_Adapter.dart';
 
 class Mediator {
     // Fields
     Database myDatabase = Database.instance;
+    CLI_Adapter cli_adapter = new CLI_Adapter();
 
     // Methods 
 
@@ -15,6 +17,7 @@ class Mediator {
         this.myDatabase.AddUser(name + "-" + subName, new User(name, subName, startDate, endDate, isDisabled, isAlwaysAllowed));
 
         // Here the part where add user to PIVPN CLI 
+        this.cli_adapter.AddUser(name);
     }
 
     // Remove User 
@@ -23,6 +26,7 @@ class Mediator {
         this.myDatabase.RemoveUser(name);
 
         // Here the part where reamove user to PIVPN CLI
+        this.cli_adapter.RemoveUser(name);
     }
 
     // Get User
@@ -44,6 +48,8 @@ class Mediator {
       temp?.SetIsDisabled(false as Bool);
 
         this.myDatabase.AddUser(name, temp);
+
+        this.cli_adapter.EnableUser(name);
     }
 
     //Disable user 
@@ -53,6 +59,8 @@ class Mediator {
       temp?.SetIsDisabled(true as Bool);
 
         this.myDatabase.AddUser(name, temp);
+
+        this.cli_adapter.DisableUser(name);
     }
 
     // Save database
