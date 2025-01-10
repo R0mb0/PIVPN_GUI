@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'Mediator.dart';
 
+// --------------------- MAIN ---------------------
 void main() {
   runApp(const MyApp());
 }
+// --------------------- MAIN ---------------------
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -11,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'PIVPN_GUI',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -28,10 +31,10 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.grey),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage                                                                                                                                                                                                                                                                                  (title: 'PIVPN_GUI'),
     );
   }
 }
@@ -55,6 +58,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  
+  Mediator mediator = new Mediator(); //<- here i can work with my mediator 
+
   int _counter = 0;
 
   void _incrementCounter() {

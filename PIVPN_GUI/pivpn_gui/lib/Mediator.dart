@@ -9,6 +9,9 @@ class Mediator {
     Database myDatabase = Database.instance;
     CLI_Adapter cli_adapter = new CLI_Adapter();
 
+    //Builder
+    Mediator();
+
     // Methods 
 
     // Add Users 
@@ -67,6 +70,12 @@ class Mediator {
     void SaveDatabase()
     {
       this.myDatabase.SaveDatabase();
+    }
+
+    // Load database
+    void LoadDatabase()
+    {
+      this.myDatabase.LoadDatabase();
     }
 
 }
