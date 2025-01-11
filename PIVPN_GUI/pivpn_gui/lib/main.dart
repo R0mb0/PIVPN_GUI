@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'Mediator.dart';
 
 // --------------------- MAIN ---------------------
@@ -85,17 +86,62 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: Row(
           children: [
-            Column(),
+            Column(
+              children: [
+
+                DataTable(
+                  columns: [
+                      DataColumn(label: Text('Nome')), 
+                      DataColumn(label: Text('Cognome')),
+                      DataColumn(label: Text('Data inizio')),
+                      DataColumn(label: Text('Data fine')),
+                      DataColumn(label: Text('Abilitato?')),
+                      DataColumn(label: Text('Sempre abilitato?')),
+                  ], 
+                  rows: [
+
+                  ],
+                  ),
+                  Row(
+                    children: [
+                      Text('Nome: '),
+                      TextField(
+                          decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          hintText: 'Enter a search term',
+                        ),
+                      ),
+                    ],
+                    
+                  ),
+              ],
+            ),
             Column(
               children: <Widget>[
 
                 OutlinedButton(
                   onPressed: () {},
-                  child: Text('Aggiungi utente'),
+                  child: Text('Aggiungi Utente'),
                 ),
                 OutlinedButton(
                   onPressed: () {},
-                  child: Text('Rimuovi utente'),
+                  child: Text('Rimuovi Utente'),
+                ),
+                OutlinedButton(
+                  onPressed: () {},
+                  child: Text('Abilita Utente'),
+                ),
+                OutlinedButton(
+                  onPressed: () {},
+                  child: Text('Disabilita Utente'),
+                ),
+                OutlinedButton(
+                  onPressed: () {},
+                  child: Text('Salva Database'),
+                ),
+                OutlinedButton(
+                  onPressed: () {},
+                  child: Text('Carica Database'),
                 ),
               ],
             ),
