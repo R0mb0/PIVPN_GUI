@@ -103,15 +103,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   ],
                   ),
                   Row(
-                    children: [
-                      Text('Nome: '),
-                      TextField(
-                          decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          hintText: 'Enter a search term',
-                        ),
-                      ),
-                    ],
                     
                   ),
               ],
@@ -148,7 +139,6 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      
     );
   }
 }

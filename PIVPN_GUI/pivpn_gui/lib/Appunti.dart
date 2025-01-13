@@ -151,3 +151,18 @@ body: Center(
     );
   }
 }
+
+
+
+children: [
+                      const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                      ),
+                      Text('Nome: '),
+                      TextField(
+                          decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          hintText: 'Enter a search term',
+                        ),
+                      ),
+                    ],
