@@ -77,69 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-
-      body: Center(
-        child: Row(
-          children: [
-            Column(
-              children: <Widget>[
-                DataTable(
-                  columns: [
-                      DataColumn(label: Text('Nome')), 
-                      DataColumn(label: Text('Cognome')),
-                      DataColumn(label: Text('Data inizio')),
-                      DataColumn(label: Text('Data fine')),
-                      DataColumn(label: Text('Abilitato?')),
-                      DataColumn(label: Text('Sempre abilitato?')),
-                  ], 
-                  rows: [
-
-                  ],
-                ), 
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: 'Enter a search term',
-                    ),
-                  ),
-                ),
-              ],
-
-            ),
-            Column(
-              children: <Widget>[
-
-                OutlinedButton(
-                  onPressed: () {},
-                  child: Text('Aggiungi Utente'),
-                ),
-                OutlinedButton(
-                  onPressed: () {},
-                  child: Text('Rimuovi Utente'),
-                ),
-                OutlinedButton(
-                  onPressed: () {},
-                  child: Text('Abilita Utente'),
-                ),
-                OutlinedButton(
-                  onPressed: () {},
-                  child: Text('Disabilita Utente'),
-                ),
-                OutlinedButton(
-                  onPressed: () {},
-                  child: Text('Salva Database'),
-                ),
-                OutlinedButton(
-                  onPressed: () {},
-                  child: Text('Carica Database'),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
+      
     );
   }
 }
