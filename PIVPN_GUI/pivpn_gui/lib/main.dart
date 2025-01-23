@@ -66,11 +66,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _incrementCounter() {
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
       _counter++;
     });
   }
@@ -87,8 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Row(
           children: [
             Column(
-              children: [
-
+              children: <Widget>[
                 DataTable(
                   columns: [
                       DataColumn(label: Text('Nome')), 
@@ -101,11 +95,18 @@ class _MyHomePageState extends State<MyHomePage> {
                   rows: [
 
                   ],
+                ), 
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                  child: TextField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'Enter a search term',
+                    ),
                   ),
-                  Row(
-                    
-                  ),
+                ),
               ],
+
             ),
             Column(
               children: <Widget>[
