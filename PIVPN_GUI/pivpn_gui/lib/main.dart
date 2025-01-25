@@ -61,6 +61,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   
   Mediator mediator = new Mediator(); //<- here i can work with my mediator 
+  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   int _counter = 0;
 
@@ -72,12 +73,544 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
+      child: Scaffold(
+        key: scaffoldKey,
+        body: SafeArea(
+          top: true,
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  SizedBox(
+                    height: 50,
+                    child: VerticalDivider(
+                      thickness: 2,
+                      color: Color(0x00E0E3E7),
+                    ),
+                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Text(
+                            'Nome ->',
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 50,
+                    child: VerticalDivider(
+                      thickness: 2,
+                      color: Color(0x00E0E3E7),
+                    ),
+                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Container(
+                        width: 200,
+                        child: Container(
+                          width: 200,
+                          child: TextFormField(
+                            autofocus: false,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              isDense: true,
+                              hintText: 'TextField',
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 1,
+                                ),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 1,
+                                ),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.red,
+                                  width: 1,
+                                ),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.red,
+                                  width: 1,
+                                ),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              filled: true,
+                              fillColor: Colors.white30,
+                            ),
+                            cursorColor:Colors.black38,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 50,
+                    child: VerticalDivider(
+                      thickness: 2,
+                      color: Color(0x00E0E3E7),
+                    ),
+                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        'Cognome -> ',
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 50,
+                    child: VerticalDivider(
+                      thickness: 2,
+                      color: Color(0x00E0E3E7),
+                    ),
+                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Container(
+                        width: 200,
+                        child: Container(
+                          width: 200,
+                          child: TextFormField(
+                            autofocus: false,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              isDense: true,
+                              hintText: 'TextField',
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 1,
+                                ),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 1,
+                                ),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.red,
+                                  width: 1,
+                                ),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.red,
+                                  width: 1,
+                                ),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              filled: true,
+                              fillColor: Colors.white30,
+                            ),
+                            cursorColor: Colors.black38,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 50,
+                    child: VerticalDivider(
+                      thickness: 2,
+                      color: Color(0x00E0E3E7),
+                    ),
+                  ),
+                  Text(
+                    'Data Inizio -> ',
+                  ),
+                  SizedBox(
+                    height: 50,
+                    child: VerticalDivider(
+                      thickness: 2,
+                      color: Color(0x00E0E3E7),
+                    ),
+                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Container(
+                        width: 200,
+                        child: Container(
+                          width: 200,
+                          child: TextFormField(
+                            autofocus: false,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              isDense: true,
+                              hintText: 'TextField',
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 1,
+                                ),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 1,
+                                ),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.red,
+                                  width: 1,
+                                ),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.red,
+                                  width: 1,
+                                ),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              filled: true,
+                              fillColor: Colors.white30,
+                            ),
+                            cursorColor: Colors.black38,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 50,
+                    child: VerticalDivider(
+                      thickness: 2,
+                      color: Color(0x00E0E3E7),
+                    ),
+                  ),
+                  Text(
+                    'Data Fine ->',
+                  ),
+                  SizedBox(
+                    height: 50,
+                    child: VerticalDivider(
+                      thickness: 2,
+                      color: Color(0x00E0E3E7),
+                    ),
+                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Container(
+                        width: 200,
+                        child: Container(
+                          width: 200,
+                          child: TextFormField(
+                            autofocus: false,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              isDense: true,
+                              hintText: 'TextField',
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 1,
+                                ),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 1,
+                                ),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.red,
+                                  width: 1,
+                                ),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.red,
+                                  width: 1,
+                                ),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              filled: true,
+                              fillColor: Colors.white30,
+                            ),
+                            cursorColor: Colors.black38
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 50,
+                    child: VerticalDivider(
+                      thickness: 2,
+                      color: Color(0x00E0E3E7),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  SizedBox(
+                    height: 50,
+                    child: VerticalDivider(
+                      thickness: 2,
+                      color: Color(0x00E0E3E7),
+                    ),
+                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Text(
+                        'È Abilitato? -> ',
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 50,
+                    child: VerticalDivider(
+                      thickness: 2,
+                      color: Color(0x00E0E3E7),
+                    ),
+                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Theme(
+                        data: ThemeData(
+                          checkboxTheme: CheckboxThemeData(
+                            visualDensity: VisualDensity.compact,
+                            materialTapTargetSize:
+                                MaterialTapTargetSize.shrinkWrap,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                          ),
+                          unselectedWidgetColor: Colors.white30,
+                        ),
+                        child: Checkbox(
+                          tristate: true, // Example with tristate
+                        value: false,
+                        onChanged: (bool? newValue) {
+                          setState(() {
+                        
+                          });
+                        },
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 50,
+                    child: VerticalDivider(
+                      thickness: 2,
+                      color: Color(0x00E0E3E7),
+                    ),
+                  ),
+                  Text(
+                    'È Abilitato Per Sempre? -> ',
+                  ),
+                  SizedBox(
+                    height: 50,
+                    child: VerticalDivider(
+                      thickness: 2,
+                      color: Color(0x00E0E3E7),
+                    ),
+                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Theme(
+                        data: ThemeData(
+                          checkboxTheme: CheckboxThemeData(
+                            visualDensity: VisualDensity.compact,
+                            materialTapTargetSize:
+                                MaterialTapTargetSize.shrinkWrap,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                          ),
+                          unselectedWidgetColor: Colors.white30,
+                        ),
+                        child: Checkbox(
+                          tristate: true, // Example with tristate
+                        value: false,
+                        onChanged: (bool? newValue) {
+                          setState(() {
+                  
+                          });
+                        },
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 50,
+                    child: VerticalDivider(
+                      thickness: 2,
+                      color: Color(0x00E0E3E7),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  SizedBox(
+                    height: 50,
+                    child: VerticalDivider(
+                      thickness: 2,
+                      color: Color(0x00E0E3E7),
+                    ),
+                  ),
+                  TextButton(
+                    style: ButtonStyle(
+                      foregroundColor: MaterialStateProperty.all<Color>(Colors.white30),
+                    ),
+                    onPressed: () {
+                      print('Button pressed ...');
+                    },
+                    child: Text('Aggiungi Utente'),
+                    
+                  ),
+                  SizedBox(
+                    height: 50,
+                    child: VerticalDivider(
+                      thickness: 2,
+                      color: Color(0x00E0E3E7),
+                    ),
+                  ),
+                  TextButton(
+                    style: ButtonStyle(
+                      foregroundColor: MaterialStateProperty.all<Color>(Colors.white30),
+                    ),
+                    onPressed: () {
+                      print('Button pressed ...');
+                    },
+                    child: Text('Rimuovi Utente'),
+                    
+                  ),
+                  SizedBox(
+                    height: 50,
+                    child: VerticalDivider(
+                      thickness: 2,
+                      color: Color(0x00E0E3E7),
+                    ),
+                  ),
+                  TextButton(
+                    style: ButtonStyle(
+                      foregroundColor: MaterialStateProperty.all<Color>(Colors.white30),
+                    ),
+                    onPressed: () {
+                      print('Button pressed ...');
+                    },
+                    child: Text('Abilita Utente'),
+                    
+                  ),
+                  SizedBox(
+                    height: 50,
+                    child: VerticalDivider(
+                      thickness: 2,
+                      color: Color(0x00E0E3E7),
+                    ),
+                  ),
+                  TextButton(
+                    style: ButtonStyle(
+                      foregroundColor: MaterialStateProperty.all<Color>(Colors.white30),
+                    ),
+                    onPressed: () {
+                      print('Button pressed ...');
+                    },
+                    child: Text('Disabilita Utente'),
+                    
+                  ),
+                  SizedBox(
+                    height: 50,
+                    child: VerticalDivider(
+                      thickness: 2,
+                      color: Color(0x00E0E3E7),
+                    ),
+                  ),
+                  TextButton(
+                    style: ButtonStyle(
+                      foregroundColor: MaterialStateProperty.all<Color>(Colors.white30),
+                    ),
+                    onPressed: () {
+                      print('Button pressed ...');
+                    },
+                    child: Text('Salva Database'),
+                    
+                  ),
+                  SizedBox(
+                    height: 50,
+                    child: VerticalDivider(
+                      thickness: 2,
+                      color: Color(0x00E0E3E7),
+                    ),
+                  ),
+                  TextButton(
+                    style: ButtonStyle(
+                      foregroundColor: MaterialStateProperty.all<Color>(Colors.white30),
+                    ),
+                    onPressed: () {
+                      print('Button pressed ...');
+                    },
+                    child: Text('carica Database'),
+                    
+                  ),
+                  SizedBox(
+                    height: 50,
+                    child: VerticalDivider(
+                      thickness: 2,
+                      color: Color(0x00E0E3E7),
+                    ),
+                  ),
+                ],
+              ),
+              Divider(
+                thickness: 2,
+                color: Color(0x00E0E3E7),
+              ),
+              Expanded(
+                child: // Inserire a questo punto la tabella
+              ),
+            ],
+          ),
+        ),
       ),
-      
     );
   }
 }
