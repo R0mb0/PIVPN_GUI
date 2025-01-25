@@ -605,7 +605,21 @@ class _MyHomePageState extends State<MyHomePage> {
                 color: Color(0x00E0E3E7),
               ),
               Expanded(
-                child: // Inserire a questo punto la tabella
+                child: Table(
+          border: TableBorder.all(color: Colors.black),
+          children: [
+            TableRow(children: [
+              Text('Cell 1'),
+              Text('Cell 2'),
+              Text('Cell 3'),
+            ]),
+            TableRow(children: [
+              Text('Cell 4'),
+              Text('Cell 5'),
+              Text('Cell 6'),
+            ])
+          ],
+        ),
               ),
             ],
           ),
