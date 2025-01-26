@@ -63,12 +63,39 @@ class _MyHomePageState extends State<MyHomePage> {
   Mediator mediator = new Mediator(); //<- here i can work with my mediator 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  int _counter = 0;
+  void aggiunti_utente()
+  {
+    mediator.AddUser(name, subName, startDate, endDate, isDisabled, isAlwaysAllowed);
+  }
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+  void rimuovi_utente()
+  {
+    mediator.RemoveUser(name);
+  }
+
+  void abilita_utente()
+  {
+    mediator.EnableUser(name);
+  }
+
+  void disabilita_utente()
+  {
+    mediator.DisableUser(name);
+  }
+
+  void salva_database()
+  {
+    mediator.SaveDatabase();
+  }
+
+  void carica_database()
+  {
+    mediator.LoadDatabase();
+  }
+
+  void aggiorna_tabella()
+  {
+
   }
 
   @override
@@ -127,7 +154,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             obscureText: false,
                             decoration: InputDecoration(
                               isDense: true,
-                              hintText: 'TextField',
+                              hintText: 'Inserisci nome',
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0x00000000),
@@ -157,7 +184,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               filled: true,
-                              fillColor: Colors.white30,
+                              fillColor: Colors.lime,
                             ),
                             cursorColor:Colors.black38,
                           ),
@@ -200,7 +227,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             obscureText: false,
                             decoration: InputDecoration(
                               isDense: true,
-                              hintText: 'TextField',
+                              hintText: 'Inserisci cognome',
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0x00000000),
@@ -230,7 +257,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               filled: true,
-                              fillColor: Colors.white30,
+                              fillColor: Colors.lime,
                             ),
                             cursorColor: Colors.black38,
                           ),
@@ -267,7 +294,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             obscureText: false,
                             decoration: InputDecoration(
                               isDense: true,
-                              hintText: 'TextField',
+                              hintText: 'Esempio data: ',
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0x00000000),
@@ -297,7 +324,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               filled: true,
-                              fillColor: Colors.white30,
+                              fillColor: Colors.lime,
                             ),
                             cursorColor: Colors.black38,
                           ),
@@ -334,7 +361,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             obscureText: false,
                             decoration: InputDecoration(
                               isDense: true,
-                              hintText: 'TextField',
+                              hintText: 'Esempio data: ',
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0x00000000),
@@ -364,7 +391,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               filled: true,
-                              fillColor: Colors.white30,
+                              fillColor: Colors.lime,
                             ),
                             cursorColor: Colors.black38
                           ),
@@ -496,14 +523,14 @@ class _MyHomePageState extends State<MyHomePage> {
                       color: Color(0x00E0E3E7),
                     ),
                   ),
-                  TextButton(
+                  TextButton( // <-------------------- Pulsante Aggiungi utente
                     style: ButtonStyle(
-                      foregroundColor: MaterialStateProperty.all<Color>(Colors.white30),
+                      foregroundColor: MaterialStateProperty.all<Color>(Colors.deepPurple),
                     ),
                     onPressed: () {
-                      print('Button pressed ...');
+                      aggiunti_utente();
                     },
-                    child: Text('Aggiungi Utente'),
+                    child: Text('AGGIUNGI UTENTE'),
                     
                   ),
                   SizedBox(
@@ -513,14 +540,14 @@ class _MyHomePageState extends State<MyHomePage> {
                       color: Color(0x00E0E3E7),
                     ),
                   ),
-                  TextButton(
+                  TextButton( // <-------------------- Pulsante Rimuovi Utente
                     style: ButtonStyle(
-                      foregroundColor: MaterialStateProperty.all<Color>(Colors.white30),
+                      foregroundColor: MaterialStateProperty.all<Color>(Colors.deepPurple),
                     ),
                     onPressed: () {
-                      print('Button pressed ...');
+                      rimuovi_utente();
                     },
-                    child: Text('Rimuovi Utente'),
+                    child: Text('RIMUOVI UTENTE'),
                     
                   ),
                   SizedBox(
@@ -530,14 +557,30 @@ class _MyHomePageState extends State<MyHomePage> {
                       color: Color(0x00E0E3E7),
                     ),
                   ),
-                  TextButton(
+                  TextButton( // <-------------------- Pulsante Abilita Utente
                     style: ButtonStyle(
-                      foregroundColor: MaterialStateProperty.all<Color>(Colors.white30),
+                      foregroundColor: MaterialStateProperty.all<Color>(Colors.deepPurple),
                     ),
                     onPressed: () {
-                      print('Button pressed ...');
+                      abilita_utente();
                     },
-                    child: Text('Abilita Utente'),
+                    child: Text('ABILITA UTENTE'),
+                  ),
+                  SizedBox(
+                    height: 50,
+                    child: VerticalDivider(
+                      thickness: 2,
+                      color: Color(0x00E0E3E7),
+                    ),
+                  ),
+                  TextButton( // <-------------------- Pulsante Disabilita utente
+                    style: ButtonStyle(
+                      foregroundColor: MaterialStateProperty.all<Color>(Colors.deepPurple),
+                    ),
+                    onPressed: () {
+                      disabilita_utente();
+                    },
+                    child: Text('DISABILITA UTENTE'),
                     
                   ),
                   SizedBox(
@@ -547,14 +590,14 @@ class _MyHomePageState extends State<MyHomePage> {
                       color: Color(0x00E0E3E7),
                     ),
                   ),
-                  TextButton(
+                  TextButton( // <-------------------- Pulsante Salva database
                     style: ButtonStyle(
-                      foregroundColor: MaterialStateProperty.all<Color>(Colors.white30),
+                      foregroundColor: MaterialStateProperty.all<Color>(Colors.deepPurple),
                     ),
                     onPressed: () {
-                      print('Button pressed ...');
+                      salva_database();
                     },
-                    child: Text('Disabilita Utente'),
+                    child: Text('SALVA DATABASE'),
                     
                   ),
                   SizedBox(
@@ -564,31 +607,14 @@ class _MyHomePageState extends State<MyHomePage> {
                       color: Color(0x00E0E3E7),
                     ),
                   ),
-                  TextButton(
+                  TextButton( // <-------------------- Pulsante carica database
                     style: ButtonStyle(
-                      foregroundColor: MaterialStateProperty.all<Color>(Colors.white30),
+                      foregroundColor: MaterialStateProperty.all<Color>(Colors.deepPurple),
                     ),
                     onPressed: () {
-                      print('Button pressed ...');
+                      carica_database();
                     },
-                    child: Text('Salva Database'),
-                    
-                  ),
-                  SizedBox(
-                    height: 50,
-                    child: VerticalDivider(
-                      thickness: 2,
-                      color: Color(0x00E0E3E7),
-                    ),
-                  ),
-                  TextButton(
-                    style: ButtonStyle(
-                      foregroundColor: MaterialStateProperty.all<Color>(Colors.white30),
-                    ),
-                    onPressed: () {
-                      print('Button pressed ...');
-                    },
-                    child: Text('carica Database'),
+                    child: Text('CARICA DATABASE'),
                     
                   ),
                   SizedBox(
@@ -605,21 +631,90 @@ class _MyHomePageState extends State<MyHomePage> {
                 color: Color(0x00E0E3E7),
               ),
               Expanded(
-                child: Table(
-          border: TableBorder.all(color: Colors.black),
-          children: [
-            TableRow(children: [
-              Text('Cell 1'),
-              Text('Cell 2'),
-              Text('Cell 3'),
-            ]),
-            TableRow(children: [
-              Text('Cell 4'),
-              Text('Cell 5'),
-              Text('Cell 6'),
-            ])
+                child: DataTable(
+      columns: const <DataColumn>[
+        DataColumn(
+          label: Expanded(
+            child: Text(
+              'Nome',
+              style: TextStyle(fontStyle: FontStyle.italic),
+            ),
+          ),
+        ),
+        DataColumn(
+          label: Expanded(
+            child: Text(
+              'Cognome',
+              style: TextStyle(fontStyle: FontStyle.italic),
+            ),
+          ),
+        ),
+        DataColumn(
+          label: Expanded(
+            child: Text(
+              'Data Inizio',
+              style: TextStyle(fontStyle: FontStyle.italic),
+            ),
+          ),
+        ),
+        DataColumn(
+          label: Expanded(
+            child: Text(
+              'Data Fine',
+              style: TextStyle(fontStyle: FontStyle.italic),
+            ),
+          ),
+        ),
+        DataColumn(
+          label: Expanded(
+            child: Text(
+              'È Abilitato?',
+              style: TextStyle(fontStyle: FontStyle.italic),
+            ),
+          ),
+        ),
+        DataColumn(
+          label: Expanded(
+            child: Text(
+              'È Abilitato per sempre?', // <----------------------------------------
+              style: TextStyle(fontStyle: FontStyle.italic),
+            ),
+          ),
+        ),
+      ],
+      rows: const <DataRow>[
+        DataRow(
+          cells: <DataCell>[
+            DataCell(Text('Utente 1')),
+            DataCell(Text('Utente 1')),
+            DataCell(Text('Esempio data')),
+            DataCell(Text('Esempio data')),
+            DataCell(Text('Si')),
+            DataCell(Text('SI')),
           ],
         ),
+        DataRow(
+          cells: <DataCell>[
+            DataCell(Text('Utente 1')),
+            DataCell(Text('Utente 1')),
+            DataCell(Text('Esempio data')),
+            DataCell(Text('Esempio data')),
+            DataCell(Text('Si')),
+            DataCell(Text('SI')),
+          ],
+        ),
+        DataRow(
+          cells: <DataCell>[
+            DataCell(Text('Utente 1')),
+            DataCell(Text('Utente 1')),
+            DataCell(Text('Esempio data')),
+            DataCell(Text('Esempio data')),
+            DataCell(Text('Si')),
+            DataCell(Text('SI')),
+          ],
+        ),
+      ],
+    )
               ),
             ],
           ),
