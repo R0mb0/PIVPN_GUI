@@ -20,7 +20,7 @@ class Mediator {
         this.myDatabase.AddUser(name, new User(name, startDate, endDate, isDisabled, isAlwaysAllowed));
 
         // Here the part where add user to PIVPN CLI 
-        this.cli_adapter.AddUser(name);
+        //this.cli_adapter.AddUser(name);
     }
 
     // Remove User 
@@ -29,7 +29,7 @@ class Mediator {
         this.myDatabase.RemoveUser(name);
 
         // Here the part where reamove user to PIVPN CLI
-        this.cli_adapter.RemoveUser(name);
+        //this.cli_adapter.RemoveUser(name);
     }
 
     // Get User
@@ -52,7 +52,7 @@ class Mediator {
 
         this.myDatabase.AddUser(name, temp);
 
-        this.cli_adapter.EnableUser(name);
+        //this.cli_adapter.EnableUser(name);
     }
 
     //Disable user 
@@ -63,7 +63,7 @@ class Mediator {
 
         this.myDatabase.AddUser(name, temp);
 
-        this.cli_adapter.DisableUser(name);
+        //this.cli_adapter.DisableUser(name);
     }
 
     // Save database

@@ -73,12 +73,10 @@ class _MyHomePageState extends State<MyHomePage> {
   bool isDisabled = false;
   bool isAlwaysAllowed = false;
 
-  bool isDisabledCheckBox = false;
-  bool isAlwaysAllowedCheckBox = false;
-
   void aggiunti_utente()
   {
-    mediator.AddUser(name, startDate, endDate, isDisabled, isAlwaysAllowed);
+    mediator.AddUser(name, DateTime.parse(startDate), DateTime.parse(endDate), isDisabled, isAlwaysAllowed);
+    mediator.GetAllUsers().forEach(print);
   }
 
   void rimuovi_utente()
@@ -242,7 +240,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             obscureText: false,
                             decoration: InputDecoration(
                               isDense: true,
-                              hintText: 'Esempio data: ',
+                              hintText: 'Esempio data: 10/28/2024',
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0x00000000),
@@ -313,7 +311,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             obscureText: false,
                             decoration: InputDecoration(
                               isDense: true,
-                              hintText: 'Esempio data: ',
+                              hintText: 'Esempio data: 10/28/2024',
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0x00000000),
