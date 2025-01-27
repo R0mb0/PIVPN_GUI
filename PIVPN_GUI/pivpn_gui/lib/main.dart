@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'Mediator.dart';
@@ -63,9 +65,20 @@ class _MyHomePageState extends State<MyHomePage> {
   Mediator mediator = new Mediator(); //<- here i can work with my mediator 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
+  // Declaration varaibles for internal functions
+
+  String name ="";
+  String startDate = "";
+  String endDate = "";
+  bool isDisabled = false;
+  bool isAlwaysAllowed = false;
+
+  bool isDisabledCheckBox = false;
+  bool isAlwaysAllowedCheckBox = false;
+
   void aggiunti_utente()
   {
-    mediator.AddUser(name, subName, startDate, endDate, isDisabled, isAlwaysAllowed);
+    mediator.AddUser(name, startDate, endDate, isDisabled, isAlwaysAllowed);
   }
 
   void rimuovi_utente()
@@ -150,6 +163,10 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: Container(
                           width: 200,
                           child: TextFormField(
+                            onChanged: (value) {
+                                print("The value entered is : $value");
+                                this.name = value;
+                            },
                             autofocus: false,
                             obscureText: false,
                             decoration: InputDecoration(
@@ -199,79 +216,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       color: Color(0x00E0E3E7),
                     ),
                   ),
-                  Column(
-                    mainAxisSize: MainAxisSize.max,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text(
-                        'Cognome -> ',
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 50,
-                    child: VerticalDivider(
-                      thickness: 2,
-                      color: Color(0x00E0E3E7),
-                    ),
-                  ),
-                  Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Container(
-                        width: 200,
-                        child: Container(
-                          width: 200,
-                          child: TextFormField(
-                            autofocus: false,
-                            obscureText: false,
-                            decoration: InputDecoration(
-                              isDense: true,
-                              hintText: 'Inserisci cognome',
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Color(0x00000000),
-                                  width: 1,
-                                ),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Color(0x00000000),
-                                  width: 1,
-                                ),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              errorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.red,
-                                  width: 1,
-                                ),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              focusedErrorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.red,
-                                  width: 1,
-                                ),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              filled: true,
-                              fillColor: Colors.lime,
-                            ),
-                            cursorColor: Colors.black38,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 50,
-                    child: VerticalDivider(
-                      thickness: 2,
-                      color: Color(0x00E0E3E7),
-                    ),
-                  ),
                   Text(
                     'Data Inizio -> ',
                   ),
@@ -290,6 +234,10 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: Container(
                           width: 200,
                           child: TextFormField(
+                            onChanged: (value) {
+                              print("The value entered is : $value");
+                              this.startDate = value;
+                            },
                             autofocus: false,
                             obscureText: false,
                             decoration: InputDecoration(
@@ -357,6 +305,10 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: Container(
                           width: 200,
                           child: TextFormField(
+                            onChanged: (value) {
+                              print("The value entered is : $value");
+                              this.endDate = value;
+                            },
                             autofocus: false,
                             obscureText: false,
                             decoration: InputDecoration(
@@ -450,10 +402,15 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                         child: Checkbox(
                           tristate: true, // Example with tristate
-                        value: false,
+                        value: this.isDisabled,
                         onChanged: (bool? newValue) {
                           setState(() {
-                        
+                            if(this.isDisabled)
+                            {
+                              this.isDisabled = false;
+                            } else{
+                              this.isDisabled = newValue!;
+                            }
                           });
                         },
                         ),
@@ -494,10 +451,15 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                         child: Checkbox(
                           tristate: true, // Example with tristate
-                        value: false,
+                        value:  this.isAlwaysAllowed,
                         onChanged: (bool? newValue) {
                           setState(() {
-                  
+                            if (this.isAlwaysAllowed)
+                            {
+                              this.isAlwaysAllowed = false;
+                            }else{
+                              this.isAlwaysAllowed = newValue!;
+                            }
                           });
                         },
                         ),
@@ -644,14 +606,6 @@ class _MyHomePageState extends State<MyHomePage> {
         DataColumn(
           label: Expanded(
             child: Text(
-              'Cognome',
-              style: TextStyle(fontStyle: FontStyle.italic),
-            ),
-          ),
-        ),
-        DataColumn(
-          label: Expanded(
-            child: Text(
               'Data Inizio',
               style: TextStyle(fontStyle: FontStyle.italic),
             ),
@@ -686,7 +640,6 @@ class _MyHomePageState extends State<MyHomePage> {
         DataRow(
           cells: <DataCell>[
             DataCell(Text('Utente 1')),
-            DataCell(Text('Utente 1')),
             DataCell(Text('Esempio data')),
             DataCell(Text('Esempio data')),
             DataCell(Text('Si')),
@@ -696,7 +649,6 @@ class _MyHomePageState extends State<MyHomePage> {
         DataRow(
           cells: <DataCell>[
             DataCell(Text('Utente 1')),
-            DataCell(Text('Utente 1')),
             DataCell(Text('Esempio data')),
             DataCell(Text('Esempio data')),
             DataCell(Text('Si')),
@@ -705,7 +657,6 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         DataRow(
           cells: <DataCell>[
-            DataCell(Text('Utente 1')),
             DataCell(Text('Utente 1')),
             DataCell(Text('Esempio data')),
             DataCell(Text('Esempio data')),

@@ -15,9 +15,9 @@ class Mediator {
     // Methods 
 
     // Add Users 
-    void AddUser(var name, var subName, var startDate, var endDate, var isDisabled, var isAlwaysAllowed)
+    void AddUser(var name, var startDate, var endDate, var isDisabled, var isAlwaysAllowed)
     {
-        this.myDatabase.AddUser(name + "-" + subName, new User(name, subName, startDate, endDate, isDisabled, isAlwaysAllowed));
+        this.myDatabase.AddUser(name, new User(name, startDate, endDate, isDisabled, isAlwaysAllowed));
 
         // Here the part where add user to PIVPN CLI 
         this.cli_adapter.AddUser(name);
