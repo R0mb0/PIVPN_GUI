@@ -48,7 +48,7 @@ class Mediator {
     void EnableUser(String name)
     { 
       User? temp  = this.myDatabase.GetUser(name);
-      temp?.SetIsDisabled(false as Bool);
+      temp?.SetIsDisabled(false as bool);
 
         this.myDatabase.AddUser(name, temp);
 
@@ -59,7 +59,7 @@ class Mediator {
     void DisableUser(String name)
     { 
       User? temp  = this.myDatabase.GetUser(name);
-      temp?.SetIsDisabled(true as Bool);
+      temp?.SetIsDisabled(true as bool);
 
         this.myDatabase.AddUser(name, temp);
 

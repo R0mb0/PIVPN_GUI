@@ -240,7 +240,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             obscureText: false,
                             decoration: InputDecoration(
                               isDense: true,
-                              hintText: 'Esempio data: 10/28/2024',
+                              hintText: 'Esempio data: 2024-10-18',
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0x00000000),
@@ -311,7 +311,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             obscureText: false,
                             decoration: InputDecoration(
                               isDense: true,
-                              hintText: 'Esempio data: 10/28/2024',
+                              hintText: 'Esempio data: 2024-10-18',
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0x00000000),
