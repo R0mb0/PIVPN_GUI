@@ -608,6 +608,20 @@ class _MyHomePageState extends State<MyHomePage> {
                 thickness: 2,
                 color: Color(0x00E0E3E7),
               ),
+              Text(
+                'Hello World',
+                style: TextStyle(
+                      fontFamily: 'Inter',
+                      color: Color(0xFFF40000),
+                      fontSize: 30,
+                      letterSpacing: 0.0,
+                      fontWeight: FontWeight.w800,
+                    ),
+              ),
+              Divider(
+                thickness: 2,
+                color: Color(0x00E0E3E7),
+              ),
               Expanded(
                 child: DataTable(
       columns: const <DataColumn>[
