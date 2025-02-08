@@ -66,8 +66,13 @@ class User {
   }
 
   // Methods
-  String toString(){
-    return "Name: ${this.name} Start Date: ${this.startDate} End Date ${this.endDate} Is Disabled? ${this.isDisabled} Is Always Allowed? ${this.isAlwaysAllowed}";
+  String toString()
+  {
+    return "Name: ${this.name} Start Date: ${this.startDate} End Date: ${this.endDate} Is Disabled? ${this.isDisabled} Is Always Allowed? ${this.isAlwaysAllowed}";
   }
    
+  String toFile()
+  {
+    return "${this.name} | ${this.startDate} | ${this.endDate} | ${this.isDisabled} | ${this.isAlwaysAllowed}";
+  }
 }

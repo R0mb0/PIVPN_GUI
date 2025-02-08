@@ -73,24 +73,42 @@ class _MyHomePageState extends State<MyHomePage> {
   bool isDisabled = false;
   bool isAlwaysAllowed = false;
 
+  String errorMessage = "Vaffanculo";
+
   void aggiunti_utente()
   {
+    if(name.isEmpty || startDate.isEmpty || endDate.isEmpty)
+    {
+
+    }
     mediator.AddUser(name, DateTime.parse(startDate), DateTime.parse(endDate), isDisabled, isAlwaysAllowed);
     mediator.GetAllUsers().forEach(print);
   }
 
   void rimuovi_utente()
   {
+    if(name.isEmpty)
+    {
+        
+    }
     mediator.RemoveUser(name);
   }
 
   void abilita_utente()
   {
+    if(name.isEmpty)
+    {
+        
+    }
     mediator.EnableUser(name);
   }
 
   void disabilita_utente()
   {
+    if(name.isEmpty)
+    {
+        
+    }
     mediator.DisableUser(name);
   }
 
@@ -233,14 +251,14 @@ class _MyHomePageState extends State<MyHomePage> {
                           width: 200,
                           child: TextFormField(
                             onChanged: (value) {
-                              print("The value entered is : $value");
+                              //print("The value entered is : $value");
                               this.startDate = value;
                             },
                             autofocus: false,
                             obscureText: false,
                             decoration: InputDecoration(
                               isDense: true,
-                              hintText: 'Esempio data: 2024-10-18',
+                              hintText: 'Ex 2024-10-18',
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0x00000000),
@@ -304,14 +322,14 @@ class _MyHomePageState extends State<MyHomePage> {
                           width: 200,
                           child: TextFormField(
                             onChanged: (value) {
-                              print("The value entered is : $value");
+                              //print("The value entered is : $value");
                               this.endDate = value;
                             },
                             autofocus: false,
                             obscureText: false,
                             decoration: InputDecoration(
                               isDense: true,
-                              hintText: 'Esempio data: 2024-10-18',
+                              hintText: 'Ex 2024-10-18',
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0x00000000),

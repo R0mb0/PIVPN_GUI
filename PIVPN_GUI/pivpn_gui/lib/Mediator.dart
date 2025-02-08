@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'Database.dart';
 import 'User.dart';
 import 'CLI_Adapter.dart';
