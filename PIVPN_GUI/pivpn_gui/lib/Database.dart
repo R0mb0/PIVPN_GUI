@@ -47,18 +47,24 @@ class Database {
     return temp;
   }
 
+ //-------------------------------------------------------------------------------------
+ //Functions to write a file 
+  
+ //
+ // -------------------------------------------------------------------------------------
 
  // Method to write informations from database into a file 
  void SaveDatabase()
  {
-  this.myDatabaseFile.writeAsString(json.encode(this.database));
+  this.myDatabaseFile.writeAsString("Ciao Stronzo");
+  print("Ho scritto nel database");
  }
 
   // Method to load informations from database file
- void LoadDatabase()
- {
-
-  this.database = json.decode(myDatabaseFile.readAsString() as String);
+ Future<void> LoadDatabase()
+ async {
+  //this.database = json.decode(myDatabaseFile.readAsString() as String);
+  print(await this.myDatabaseFile.readAsString());
  }
 
 }
