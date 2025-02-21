@@ -73,43 +73,72 @@ class _MyHomePageState extends State<MyHomePage> {
   bool isDisabled = false;
   bool isAlwaysAllowed = false;
 
-  String errorMessage = "Vaffanculo";
+  String errorMessage = "";
 
+  // Function to add an user 
   void aggiunti_utente()
   {
     if(name.isEmpty || startDate.isEmpty || endDate.isEmpty)
     {
-
+      setState(() {
+        errorMessage = "A field is empty!";
+      });
+    }else{
+      mediator.AddUser(name, DateTime.parse(startDate), DateTime.parse(endDate), isDisabled, isAlwaysAllowed);
+      mediator.GetAllUsers().forEach(print);
+      setState(() {
+        errorMessage = "";
+      });
     }
-    mediator.AddUser(name, DateTime.parse(startDate), DateTime.parse(endDate), isDisabled, isAlwaysAllowed);
-    mediator.GetAllUsers().forEach(print);
+
   }
 
+  // Function to remove an user
   void rimuovi_utente()
   {
     if(name.isEmpty)
     {
-        
+      setState(() {
+        errorMessage = "A field is empty!";
+      });
+    }else{
+      setState(() {
+        errorMessage = "";
+      });
+      mediator.RemoveUser(name);
     }
-    mediator.RemoveUser(name);
   }
 
+  // Function to enable an user 
   void abilita_utente()
   {
     if(name.isEmpty)
     {
-        
+      setState(() {
+        errorMessage = "A field is empty!";
+      });
+    }else{
+      setState(() {
+        errorMessage = "";
+      });
+      mediator.EnableUser(name);
     }
-    mediator.EnableUser(name);
   }
 
+  // Function to disabel an user 
   void disabilita_utente()
   {
     if(name.isEmpty)
     {
-        
+      setState(() {
+        errorMessage = "A field is empty!";
+      });
+    }else{
+      setState(() {
+        errorMessage = "";
+      });
+      mediator.DisableUser(name);
     }
-    mediator.DisableUser(name);
   }
 
   void salva_database()
@@ -180,7 +209,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           width: 200,
                           child: TextFormField(
                             onChanged: (value) {
-                                print("The value entered is : $value");
+                                //print("The value entered is : $value");
                                 this.name = value;
                             },
                             autofocus: false,
@@ -609,7 +638,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 color: Color(0x00E0E3E7),
               ),
               Text(
-                'Hello World',
+                errorMessage,
                 style: TextStyle(
                       fontFamily: 'Inter',
                       color: Color(0xFFF40000),
