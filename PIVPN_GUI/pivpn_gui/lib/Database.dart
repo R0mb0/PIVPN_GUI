@@ -62,7 +62,7 @@ class Database {
     this.myDatabaseFile.writeAsString("${i} ${value?.toDatabase()}\n");
     //print("${i} ${value?.toDatabase()}\n");
   });
-  return ("Wrote database");
+  return ("Wrote database!");
  }
 
   // Method to load informations from database file
@@ -75,7 +75,7 @@ class Database {
     this.database[data[0]] = new User(data[1], DateTime.parse(data[2]), DateTime.parse(data[4]), bool.parse(data[6]), bool.parse(data[7]));
   });
 
-  return ("Loaded database");
+  return ("Loaded database!");
  }
 
 }

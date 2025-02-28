@@ -66,7 +66,6 @@ class _MyHomePageState extends State<MyHomePage> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   // Declaration varaibles for internal functions
-
   String name ="";
   String startDate = "";
   String endDate = "";
@@ -74,21 +73,36 @@ class _MyHomePageState extends State<MyHomePage> {
   bool isAlwaysAllowed = false;
 
   String errorMessage = "";
+  Color colorMessage = Colors.red;
+
+  // Function to launch an allert
+  void launch_allert(String error, Color colore)
+  {
+    setState(() {
+      errorMessage = error;
+      colorMessage = colore;
+    });
+    Future.delayed(Duration(seconds: 3), () {
+      setState(() {
+        errorMessage = "";
+      });
+    });
+  }
+
+  // targhet field to write on table
+  late List<String> tableData;
+
+  // Function to create a messagge 
 
   // Function to add an user 
   void aggiunti_utente()
   {
     if(name.isEmpty || startDate.isEmpty || endDate.isEmpty)
     {
-      setState(() {
-        errorMessage = "A field is empty!";
-      });
+      launch_allert("A field is empty!", Colors.red);
     }else{
       mediator.AddUser(name, DateTime.parse(startDate), DateTime.parse(endDate), isDisabled, isAlwaysAllowed);
       mediator.GetAllUsers().forEach(print);
-      setState(() {
-        errorMessage = "";
-      });
     }
 
   }
@@ -98,13 +112,8 @@ class _MyHomePageState extends State<MyHomePage> {
   {
     if(name.isEmpty)
     {
-      setState(() {
-        errorMessage = "A field is empty!";
-      });
+      launch_allert("A field is empty!", Colors.red);
     }else{
-      setState(() {
-        errorMessage = "";
-      });
       mediator.RemoveUser(name);
     }
   }
@@ -114,41 +123,32 @@ class _MyHomePageState extends State<MyHomePage> {
   {
     if(name.isEmpty)
     {
-      setState(() {
-        errorMessage = "A field is empty!";
-      });
+      launch_allert("A field is empty!", Colors.red);
     }else{
-      setState(() {
-        errorMessage = "";
-      });
       mediator.EnableUser(name);
     }
   }
 
-  // Function to disabel an user 
+  // Function to disable an user 
   void disabilita_utente()
   {
     if(name.isEmpty)
     {
-      setState(() {
-        errorMessage = "A field is empty!";
-      });
+      launch_allert("A field is empty!", Colors.red);
     }else{
-      setState(() {
-        errorMessage = "";
-      });
       mediator.DisableUser(name);
     }
   }
 
   void salva_database()
   {
-    mediator.SaveDatabase();
+    launch_allert(mediator.SaveDatabase(), Colors.green);
   }
 
-  void carica_database()
-  {
-    mediator.LoadDatabase();
+  Future<void> carica_database()
+  async {
+    
+    launch_allert(await mediator.LoadDatabase(), Colors.green);
   }
 
   void aggiorna_tabella()
@@ -641,7 +641,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 errorMessage,
                 style: TextStyle(
                       fontFamily: 'Inter',
-                      color: Color(0xFFF40000),
+                      color: colorMessage,
                       fontSize: 30,
                       letterSpacing: 0.0,
                       fontWeight: FontWeight.w800,

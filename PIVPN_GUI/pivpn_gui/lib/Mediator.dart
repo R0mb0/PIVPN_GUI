@@ -65,15 +65,15 @@ class Mediator {
     }
 
     // Save database
-    void SaveDatabase()
+    String SaveDatabase()
     {
-      this.myDatabase.SaveDatabase();
+      return this.myDatabase.SaveDatabase();
     }
 
     // Load database
-    void LoadDatabase()
+    Future<String> LoadDatabase()
     {
-      this.myDatabase.LoadDatabase();
+      return this.myDatabase.LoadDatabase();
     }
 
 }
