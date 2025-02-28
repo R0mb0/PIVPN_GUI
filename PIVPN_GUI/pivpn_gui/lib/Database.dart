@@ -1,3 +1,4 @@
+import 'dart:ffi';
 import 'dart:io';
 import 'User.dart';
 import 'dart:convert';
@@ -59,10 +60,8 @@ class Database {
   //this.myDatabaseFile.writeAsString("Ciao Stronzo");
   this.database.forEach((i, value){
     this.myDatabaseFile.writeAsString("${i} ${value?.toDatabase()}\n");
-    print("${i} ${value?.toDatabase()}\n");
-  }
-
-  );
+    //print("${i} ${value?.toDatabase()}\n");
+  });
   return ("Wrote database");
  }
 
@@ -72,7 +71,8 @@ class Database {
   List<String> my_string_database = await this.myDatabaseFile.readAsLines();
 
   Future.forEach(my_string_database, (value){
-  print(value);
+    final List data = value.split(" ");
+    this.database[data[0]] = new User(data[1], DateTime.parse(data[2]), DateTime.parse(data[4]), bool.parse(data[6]), bool.parse(data[7]));
   });
 
   return ("Loaded database");
