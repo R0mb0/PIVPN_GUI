@@ -14,7 +14,7 @@ class User {
   User(this.name, this.startDate, this.endDate, this.isDisabled, this.isAlwaysAllowed);
 
   // Set and Get Methods 
-
+/*
   String GetName()
   {
     return this.name;
@@ -64,11 +64,17 @@ class User {
   {
     this.isAlwaysAllowed = isAlwaysAllowed;
   }
+*/
 
   // Methods
   String toString()
   {
     return "Name: ${this.name} Start Date: ${this.startDate} End Date: ${this.endDate} Is Disabled? ${this.isDisabled} Is Always Allowed? ${this.isAlwaysAllowed}";
+  }
+
+  String toDatabase()
+  {
+    return "${this.name} ${this.startDate} ${this.endDate} ${this.isDisabled} ${this.isAlwaysAllowed}";
   }
    
   String toFile()

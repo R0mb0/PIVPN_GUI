@@ -54,17 +54,28 @@ class Database {
  // -------------------------------------------------------------------------------------
 
  // Method to write informations from database into a file 
- void SaveDatabase()
+ String SaveDatabase()
  {
-  this.myDatabaseFile.writeAsString("Ciao Stronzo");
-  print("Ho scritto nel database");
+  //this.myDatabaseFile.writeAsString("Ciao Stronzo");
+  this.database.forEach((i, value){
+    this.myDatabaseFile.writeAsString("${i} ${value?.toDatabase()}\n");
+    print("${i} ${value?.toDatabase()}\n");
+  }
+
+  );
+  return ("Wrote database");
  }
 
   // Method to load informations from database file
- Future<void> LoadDatabase()
+ Future<String> LoadDatabase()
  async {
-  //this.database = json.decode(myDatabaseFile.readAsString() as String);
-  print(await this.myDatabaseFile.readAsString());
+  List<String> my_string_database = await this.myDatabaseFile.readAsLines();
+
+  Future.forEach(my_string_database, (value){
+  print(value);
+  });
+
+  return ("Loaded database");
  }
 
 }
