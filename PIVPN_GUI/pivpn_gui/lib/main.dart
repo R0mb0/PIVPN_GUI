@@ -75,6 +75,9 @@ class _MyHomePageState extends State<MyHomePage> {
   String errorMessage = "";
   Color colorMessage = Colors.red;
 
+  // targhet field to write on table
+  late List<Map<String, dynamic>> tableData;
+
   // Function to launch an allert
   void launch_allert(String error, Color colore)
   {
@@ -87,12 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
         errorMessage = "";
       });
     });
-  }
-
-  // targhet field to write on table
-  late List<String> tableData;
-
-  // Function to create a messagge 
+  } 
 
   // Function to add an user 
   void aggiunti_utente()
@@ -153,7 +151,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void aggiorna_tabella()
   {
-
+    setState(() {
+      tableData = mediator.
+    });
   }
 
   @override

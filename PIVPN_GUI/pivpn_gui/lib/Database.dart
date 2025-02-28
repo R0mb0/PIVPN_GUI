@@ -8,6 +8,7 @@ class Database {
   // Fields 
   var database = Map<String, User?>();
   var myDatabaseFile = File('database.txt');
+  late List<List<String>> myValue;
   
   // Using singleton pattern 
   Database._privateConstructor();
@@ -48,11 +49,13 @@ class Database {
     return temp;
   }
 
- //-------------------------------------------------------------------------------------
- //Functions to write a file 
-  
- //
- // -------------------------------------------------------------------------------------
+  List<List<String>> getDatabase()
+  {
+    this.database.forEach((i, value){
+      this.myValue.add({value!.name: value.startDate.toString(), value.endDate.toString(), value.isDisabled.toString(): value.isAlwaysAllowed.toString()});
+    });
+    return myValue;
+  }
 
  // Method to write informations from database into a file 
  String SaveDatabase()
