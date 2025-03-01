@@ -100,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
       launch_allert("A field is empty!", Colors.red);
     }else{
       mediator.AddUser(name, DateTime.parse(startDate), DateTime.parse(endDate), isDisabled, isAlwaysAllowed);
-      mediator.GetAllUsers().forEach(print);
+      aggiorna_tabella();
     }
 
   }
@@ -113,6 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
       launch_allert("A field is empty!", Colors.red);
     }else{
       mediator.RemoveUser(name);
+      aggiorna_tabella();
     }
   }
 
@@ -124,6 +125,7 @@ class _MyHomePageState extends State<MyHomePage> {
       launch_allert("A field is empty!", Colors.red);
     }else{
       mediator.EnableUser(name);
+      aggiorna_tabella();
     }
   }
 
@@ -135,6 +137,7 @@ class _MyHomePageState extends State<MyHomePage> {
       launch_allert("A field is empty!", Colors.red);
     }else{
       mediator.DisableUser(name);
+      aggiorna_tabella();
     }
   }
 
