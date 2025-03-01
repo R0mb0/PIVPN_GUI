@@ -10,7 +10,7 @@ class Database {
   // Fields 
   var database = Map<String, User?>();
   var myDatabaseFile = File('database.txt');
-  late List<DataRow> myValue;
+  List<DataRow> myValue = [DataRow(cells: [DataCell(Text("")), DataCell(Text("")), DataCell(Text("")), DataCell(Text("")), DataCell(Text(""))])];
   
   // Using singleton pattern 
   Database._privateConstructor();
@@ -55,7 +55,7 @@ class Database {
   List<DataRow> getDatabase()
   {
     this.database.forEach((i, value){
-      this.myValue.add(DataRow(cells: [DataCell(Text(value!.name)), DataCell(Text(value.startDate.toString())), DataCell(Text(value.endDate.toString())), DataCell(Text(value.isDisabled.toString())), DataCell(Text(value.isAlwaysAllowed.toString()))]));
+      this.myValue.add(DataRow(cells: [DataCell(Text(value!.name)), DataCell(Text(value.startDate.toString().split(" ")[0])), DataCell(Text(value.endDate.toString().split(" ")[0])), DataCell(Text(value.isDisabled.toString())), DataCell(Text(value.isAlwaysAllowed.toString()))]));
     });
     return myValue;
   }

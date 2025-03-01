@@ -76,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Color colorMessage = Colors.red;
 
   // targhet field to write on table
-  late List<DataRow> tableData;
+  List<DataRow> tableData = [DataRow(cells: [DataCell(Text("")), DataCell(Text("")), DataCell(Text("")), DataCell(Text("")), DataCell(Text(""))])];
 
   // Function to launch an allert
   void launch_allert(String error, Color colore)
