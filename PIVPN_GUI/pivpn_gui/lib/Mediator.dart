@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 import 'Database.dart';
 import 'User.dart';
 import 'CLI_Adapter.dart';
@@ -62,6 +64,12 @@ class Mediator {
         this.myDatabase.AddUser(name, temp);
 
         //this.cli_adapter.DisableUser(name);
+    }
+
+    // Function to geto database for the table
+    List<DataRow> getDatabase()
+    {
+      return this.myDatabase.getDatabase();
     }
 
     // Save database

@@ -76,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Color colorMessage = Colors.red;
 
   // targhet field to write on table
-  late List<Map<String, dynamic>> tableData;
+  late List<DataRow> tableData;
 
   // Function to launch an allert
   void launch_allert(String error, Color colore)
@@ -147,12 +147,13 @@ class _MyHomePageState extends State<MyHomePage> {
   async {
     
     launch_allert(await mediator.LoadDatabase(), Colors.green);
+    aggiorna_tabella();
   }
 
   void aggiorna_tabella()
   {
     setState(() {
-      tableData = mediator.
+      tableData = mediator.getDatabase();
     });
   }
 
@@ -695,35 +696,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
       ],
-      rows: const <DataRow>[
-        DataRow(
-          cells: <DataCell>[
-            DataCell(Text('Utente 1')),
-            DataCell(Text('Esempio data')),
-            DataCell(Text('Esempio data')),
-            DataCell(Text('Si')),
-            DataCell(Text('SI')),
-          ],
-        ),
-        DataRow(
-          cells: <DataCell>[
-            DataCell(Text('Utente 1')),
-            DataCell(Text('Esempio data')),
-            DataCell(Text('Esempio data')),
-            DataCell(Text('Si')),
-            DataCell(Text('SI')),
-          ],
-        ),
-        DataRow(
-          cells: <DataCell>[
-            DataCell(Text('Utente 1')),
-            DataCell(Text('Esempio data')),
-            DataCell(Text('Esempio data')),
-            DataCell(Text('Si')),
-            DataCell(Text('SI')),
-          ],
-        ),
-      ],
+      rows: tableData
     )
               ),
             ],

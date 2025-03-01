@@ -1,5 +1,7 @@
 import 'dart:ffi';
 import 'dart:io';
+import 'package:flutter/material.dart';
+
 import 'User.dart';
 import 'dart:convert';
 
@@ -8,7 +10,7 @@ class Database {
   // Fields 
   var database = Map<String, User?>();
   var myDatabaseFile = File('database.txt');
-  late List<List<String>> myValue;
+  late List<DataRow> myValue;
   
   // Using singleton pattern 
   Database._privateConstructor();
@@ -49,10 +51,11 @@ class Database {
     return temp;
   }
 
-  List<List<String>> getDatabase()
+  // Fucntion to add data to table 
+  List<DataRow> getDatabase()
   {
     this.database.forEach((i, value){
-      this.myValue.add({value!.name: value.startDate.toString(), value.endDate.toString(), value.isDisabled.toString(): value.isAlwaysAllowed.toString()});
+      this.myValue.add(DataRow(cells: [DataCell(Text(value!.name)), DataCell(Text(value.startDate.toString())), DataCell(Text(value.endDate.toString())), DataCell(Text(value.isDisabled.toString())), DataCell(Text(value.isAlwaysAllowed.toString()))]));
     });
     return myValue;
   }
