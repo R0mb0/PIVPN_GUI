@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'Mediator.dart';
 
+import 'dart:async';
+import 'dart:isolate';
+
 // --------------------- MAIN ---------------------
 void main() {
   runApp(const MyApp());
@@ -36,7 +39,7 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
   
   Mediator mediator = Mediator(); //<- here i can work with my mediator 
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -57,6 +60,60 @@ class _MyHomePageState extends State<MyHomePage> {
   // Functional fields when adding a user
   DateTime start = DateTime.utc(0);
   DateTime end = DateTime.utc(0);
+
+  // Fields to Manage Thread
+  final ThreadManager _threadManager = ThreadManager();
+  bool _isThreadRunning = false;
+
+  /****************************************************/
+  // Dispose function 
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    _threadManager.stopThread();
+    super.dispose();
+  }
+   /****************************************************/
+
+  /***********************************************************/
+  // Functions to Manage Thread
+  void _startThread() {
+    _threadManager.startThread();
+    setState(() {
+      _isThreadRunning = true;
+    });
+  }
+
+  void _stopThread() {
+    _threadManager.stopThread();
+    setState(() {
+      _isThreadRunning = false;
+    });
+  }
+  /***********************************************************/
+
+  /***********************************************************/
+  // Functions to manage the state of the app 
+   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.detached) {
+      _onWindowClose();
+    }
+  }
+
+  // Event on close
+  void _onWindowClose() {
+    _stopThread();
+    print('Window is closing...');
+  }
+  /***********************************************************/
+
 
   // Function to launch an alert
   void launch_allert(String error, Color colore) {
@@ -140,6 +197,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    /***********************/
+    // Start thread to manage users
+    _startThread();
+    /***********************/
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -656,5 +717,46 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
+  }
+}
+
+// ******************************************* Function to manage Threads *******************************************
+
+class ThreadManager {
+  bool _isRunning = false;
+  Isolate? _isolate;
+  ReceivePort? _receivePort;
+
+  void startThread() {
+    if (_isRunning) return;
+    _isRunning = true;
+    _receivePort = ReceivePort();
+    Isolate.spawn(_threadEntry, _receivePort!.sendPort);
+  }
+
+  void stopThread() {
+    if (!_isRunning) return;
+    _isRunning = false;
+    _isolate?.kill(priority: Isolate.immediate);
+    _receivePort?.close();
+  }
+
+  static void _threadEntry(SendPort sendPort) async {
+    bool isRunning = true;
+    ReceivePort receivePort = ReceivePort();
+    sendPort.send(receivePort.sendPort);
+
+    receivePort.listen((message) {
+      if (message == 'stop') {
+        isRunning = false;
+        receivePort.close();
+      }
+    });
+
+    while (isRunning) {
+      print('Thread is running...');
+      await Future.delayed(Duration(seconds: 1)); // Simulate work
+    }
+    print('Thread stopped.');
   }
 }
