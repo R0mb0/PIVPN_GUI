@@ -1,7 +1,4 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'Mediator.dart';
 
 import 'dart:async';
@@ -753,8 +750,8 @@ class ThreadManager {
     });
 
     while (isRunning) {
-      print('Thread is running...');
-      await Future.delayed(Duration(seconds: 1)); // Simulate work
+      mediator.
+      await Future.delayed(Duration(seconds: 86400)); // delaty for operations
     }
     print('Thread stopped.');
   }
