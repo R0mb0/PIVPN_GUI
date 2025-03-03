@@ -65,11 +65,11 @@ class Database {
  // Method to write informations from database into a file 
  String SaveDatabase()
  {
-  //this.myDatabaseFile.writeAsString("Ciao Stronzo");
+  String tempString = "";
   this.database.forEach((i, value){
-    this.myDatabaseFile.writeAsString("${i} ${value?.toDatabase()}\n");
-    //print("${i} ${value?.toDatabase()}\n");
+    tempString = tempString + "${i} ${value?.toDatabase()}\n";
   });
+  this.myDatabaseFile.writeAsString(tempString);
   return ("Wrote database!");
  }
 
