@@ -76,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Color colorMessage = Colors.red;
 
   // targhet field to write on table
-  List<DataRow> tableData = [DataRow(cells: [DataCell(Text("")), DataCell(Text("")), DataCell(Text("")), DataCell(Text("")), DataCell(Text(""))])];
+  List<DataRow> tableData = [];
 
   // Function to launch an allert
   void launch_allert(String error, Color colore)
@@ -155,7 +155,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void aggiorna_tabella()
   {
-    setState(() {
+    setState(() { //<---------------------------------------------------------------------------------------------------------------------------------------------
+      //tableData = [];
       tableData = mediator.getDatabase();
     });
   }
@@ -213,7 +214,6 @@ class _MyHomePageState extends State<MyHomePage> {
                           width: 200,
                           child: TextFormField(
                             onChanged: (value) {
-                                //print("The value entered is : $value");
                                 this.name = value;
                             },
                             autofocus: false,
@@ -284,7 +284,6 @@ class _MyHomePageState extends State<MyHomePage> {
                           width: 200,
                           child: TextFormField(
                             onChanged: (value) {
-                              //print("The value entered is : $value");
                               this.startDate = value;
                             },
                             autofocus: false,
@@ -355,7 +354,6 @@ class _MyHomePageState extends State<MyHomePage> {
                           width: 200,
                           child: TextFormField(
                             onChanged: (value) {
-                              //print("The value entered is : $value");
                               this.endDate = value;
                             },
                             autofocus: false,
