@@ -1,10 +1,7 @@
-import 'dart:ffi';
 import 'dart:io';
 import 'package:flutter/material.dart';
 
 import 'User.dart';
-import 'dart:convert';
-
 class Database {
 
   // Fields 
