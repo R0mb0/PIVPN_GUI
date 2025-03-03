@@ -33,3 +33,32 @@ class _MyHomePageState extends State<MyHomePage> {
       _rows = [];
     });
   }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Flutter DataTable Demo'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            DataTable(
+              columns: [
+                DataColumn(label: Text('Column 1')),
+                DataColumn(label: Text('Column 2')),
+              ],
+              rows: _rows,
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: _clearRows,
+              child: Text('Clear Rows'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
