@@ -69,7 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
   String name ="";
   String startDate = "";
   String endDate = "";
-  bool isDisabled = false;
+  bool isEnabled = false;
   bool isAlwaysAllowed = false;
 
   String errorMessage = "";
@@ -77,6 +77,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
   // targhet field to write on table
   List<DataRow> tableData = [];
+
+  // Functional fields when adding a user
+  DateTime start = DateTime.utc(0);
+  DateTime end = DateTime.utc(0);
 
   // Function to launch an allert
   void launch_allert(String error, Color colore)
@@ -99,7 +103,19 @@ class _MyHomePageState extends State<MyHomePage> {
     {
       launch_allert("A field is empty!", Colors.red);
     }else{
-      mediator.AddUser(name, DateTime.parse(startDate), DateTime.parse(endDate), isDisabled, isAlwaysAllowed);
+      try {
+        start = DateTime.parse(startDate);
+      }on Exception catch (e) {
+        launch_allert("Start time is not valid!", Colors.red);
+        return;
+      }
+      try {
+        end = DateTime.parse(endDate);
+      }on Exception catch (e) {
+        launch_allert("End time is not valid!", Colors.red);
+        return;
+      }
+      launch_allert(mediator.AddUser(name, start, end, isEnabled, isAlwaysAllowed), Colors.orange);
       aggiorna_tabella();
     }
 
@@ -112,7 +128,7 @@ class _MyHomePageState extends State<MyHomePage> {
     {
       launch_allert("A field is empty!", Colors.red);
     }else{
-      mediator.RemoveUser(name);
+      launch_allert(mediator.RemoveUser(name), Colors.orange);
       aggiorna_tabella();
     }
   }
@@ -124,7 +140,7 @@ class _MyHomePageState extends State<MyHomePage> {
     {
       launch_allert("A field is empty!", Colors.red);
     }else{
-      mediator.EnableUser(name);
+      launch_allert(mediator.EnableUser(name), Colors.orange);
       aggiorna_tabella();
     }
   }
@@ -136,7 +152,7 @@ class _MyHomePageState extends State<MyHomePage> {
     {
       launch_allert("A field is empty!", Colors.red);
     }else{
-      mediator.DisableUser(name);
+      launch_allert(mediator.DisableUser(name), Colors.orange);
       aggiorna_tabella();
     }
   }
@@ -449,14 +465,14 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                         child: Checkbox(
                           tristate: true, // Example with tristate
-                        value: this.isDisabled,
+                        value: this.isEnabled,
                         onChanged: (bool? newValue) {
                           setState(() {
-                            if(this.isDisabled)
+                            if(this.isEnabled)
                             {
-                              this.isDisabled = false;
+                              this.isEnabled = false;
                             } else{
-                              this.isDisabled = newValue!;
+                              this.isEnabled = newValue!;
                             }
                           });
                         },

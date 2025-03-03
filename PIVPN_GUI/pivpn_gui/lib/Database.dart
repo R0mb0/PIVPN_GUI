@@ -21,17 +21,28 @@ class Database {
     return myDatabase;
   }
 
-  // Not adding tests here because checking every interaction is heavy
   // Add a user into database
-  void AddUser(String name, User? user)
-  {
-    this.database[name] = user;
+  String AddUser(String name, User? user)
+  { 
+    if(this.database.containsKey(name))
+    {
+      return "The username has already been used!";
+    }else{
+      this.database[name] = user;
+      return "User added!";
+    }
   }
 
   // Remove user from database
-  void RemoveUser(String name)
+  String RemoveUser(String name)
   {
-    this.database.remove(name);
+    if(this.database.containsKey(name))
+    {
+      this.database.remove(name);
+      return "User removed!";
+    }else{
+      return "The user doesn't exist!";
+    }
   }
 
   // Get user 
@@ -57,7 +68,7 @@ class Database {
     int i = 0;
     this.myValue = []; // Reset last state 
     this.database.forEach((i, value){
-      this.myValue.add(DataRow(cells: [DataCell(Text(value!.name)), DataCell(Text(value.startDate.toString().split(" ")[0])), DataCell(Text(value.endDate.toString().split(" ")[0])), DataCell(Text(value.isDisabled.toString())), DataCell(Text(value.isAlwaysAllowed.toString()))]));
+      this.myValue.add(DataRow(cells: [DataCell(Text(value!.name)), DataCell(Text(value.startDate.toString().split(" ")[0])), DataCell(Text(value.endDate.toString().split(" ")[0])), DataCell(Text(value.isEnabled.toString())), DataCell(Text(value.isAlwaysAllowed.toString()))]));
     });
     return myValue;
   }
@@ -82,8 +93,6 @@ class Database {
     final List data = value.split(" ");
     this.database[data[0]] = new User(data[1], DateTime.parse(data[2]), DateTime.parse(data[4]), bool.parse(data[6]), bool.parse(data[7]));
   });
-
-  print(this.database.length);
 
   return ("Loaded database!");
  }

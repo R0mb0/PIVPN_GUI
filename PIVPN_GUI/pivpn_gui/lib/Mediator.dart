@@ -15,18 +15,18 @@ class Mediator {
     // Methods 
 
     // Add Users 
-    void AddUser(var name, var startDate, var endDate, var isDisabled, var isAlwaysAllowed)
+    String AddUser(var name, var startDate, var endDate, var isEnabled, var isAlwaysAllowed)
     {
-        this.myDatabase.AddUser(name, new User(name, startDate, endDate, isDisabled, isAlwaysAllowed));
+        return this.myDatabase.AddUser(name, new User(name, startDate, endDate, isEnabled, isAlwaysAllowed));
 
         // Here the part where add user to PIVPN CLI 
         //this.cli_adapter.AddUser(name);
     }
 
     // Remove User 
-    void RemoveUser(String name)
+    String RemoveUser(String name)
     {
-        this.myDatabase.RemoveUser(name);
+        return this.myDatabase.RemoveUser(name);
 
         // Here the part where reamove user to PIVPN CLI
         //this.cli_adapter.RemoveUser(name);
@@ -45,25 +45,27 @@ class Mediator {
     }
 
     //Enable user 
-    void EnableUser(String name)
+    String EnableUser(String name)
     { 
       User? temp  = this.myDatabase.GetUser(name);
-      temp?.isDisabled = false as bool;
+      temp?.isEnabled = true as bool;
 
-        this.myDatabase.AddUser(name, temp);
+      this.myDatabase.AddUser(name, temp);
+
+      return("User has been enabled!");
 
         //this.cli_adapter.EnableUser(name);
     }
 
     //Disable user 
-    void DisableUser(String name)
+    String DisableUser(String name)
     { 
       User? temp  = this.myDatabase.GetUser(name);
-      temp?.isDisabled = true as bool;
+      temp?.isEnabled = false as bool;
 
-        this.myDatabase.AddUser(name, temp);
+      this.myDatabase.AddUser(name, temp);
 
-        //this.cli_adapter.DisableUser(name);
+     return("User has been disabled!");
     }
 
     // Function to geto database for the table
