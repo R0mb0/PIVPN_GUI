@@ -102,7 +102,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (state == AppLifecycleState.detached) {
+    if (state == AppLifecycleState.paused || state == AppLifecycleState.inactive) {
       _onWindowClose();
     }
   }
@@ -110,7 +110,6 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
   // Event on close
   void _onWindowClose() {
     _stopThread();
-    print('Window is closing...');
   }
   /***********************************************************/
 
