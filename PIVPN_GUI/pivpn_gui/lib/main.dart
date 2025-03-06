@@ -738,6 +738,10 @@ class ThreadManager {
   }
 
   static void _threadEntry(SendPort sendPort) async {
+
+    // My field to work 
+    Mediator mediator = Mediator();
+
     bool isRunning = true;
     ReceivePort receivePort = ReceivePort();
     sendPort.send(receivePort.sendPort);
@@ -750,8 +754,15 @@ class ThreadManager {
     });
 
     while (isRunning) {
-      mediator.
-      await Future.delayed(Duration(seconds: 86400)); // delaty for operations
+      mediator.GetAllUsers().forEach((value){
+        if(!value.isAlwaysAllowed && value.isEnabled && DateTime.now().isAfter(value.endDate))
+        {
+          value.isEnabled = false; 
+        }
+      });
+      mediator.SaveDatabase();
+      
+      await Future.delayed(Duration(seconds: 86400)); // delay for operations
     }
     print('Thread stopped.');
   }
