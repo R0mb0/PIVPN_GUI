@@ -36,9 +36,9 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
-  
-  Mediator mediator = Mediator(); //<- here i can work with my mediator 
+class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
+
+  Mediator mediator = Mediator(); //<- here i can work with my mediator
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   // Declaration variables for internal functions
@@ -51,9 +51,6 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
   String errorMessage = "";
   Color colorMessage = Colors.red;
 
-  // target field to write on table
-  List<DataRow> tableData = [];
-
   // Functional fields when adding a user
   DateTime start = DateTime.utc(0);
   DateTime end = DateTime.utc(0);
@@ -63,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
   bool _isThreadRunning = false;
 
   /****************************************************/
-  // Dispose function 
+  // Dispose function
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
@@ -90,7 +87,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
   /***********************************************************/
 
   /***********************************************************/
-  // Functions to manage the state of the app 
+  // Functions to manage the state of the app
    @override
   void initState() {
     super.initState();
@@ -125,7 +122,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
     });
   }
 
-  // Function to add a user 
+  // Function to add a user
   void aggiunti_utente() {
     if (name.isEmpty || startDate.isEmpty || endDate.isEmpty) {
       launch_allert("A field is empty!", Colors.red);
@@ -143,7 +140,6 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
         return;
       }
       launch_allert(mediator.AddUser(name, start, end, isEnabled, isAlwaysAllowed), Colors.orange);
-      aggiorna_tabella();
     }
   }
 
@@ -153,27 +149,24 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
       launch_allert("A field is empty!", Colors.red);
     } else {
       launch_allert(mediator.RemoveUser(name), Colors.orange);
-      aggiorna_tabella();
     }
   }
 
-  // Function to enable a user 
+  // Function to enable a user
   void abilita_utente() {
     if (name.isEmpty) {
       launch_allert("A field is empty!", Colors.red);
     } else {
       launch_allert(mediator.EnableUser(name), Colors.orange);
-      aggiorna_tabella();
     }
   }
 
-  // Function to disable a user 
+  // Function to disable a user
   void disabilita_utente() {
     if (name.isEmpty) {
       launch_allert("A field is empty!", Colors.red);
     } else {
       launch_allert(mediator.DisableUser(name), Colors.orange);
-      aggiorna_tabella();
     }
   }
 
@@ -183,12 +176,11 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
 
   Future<void> carica_database() async {
     launch_allert(await mediator.LoadDatabase(), Colors.green);
-    aggiorna_tabella();
   }
 
   void aggiorna_tabella() {
     setState(() {
-      tableData = mediator.getDatabase();
+      // Update table data here
     });
   }
 
@@ -525,114 +517,6 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
                   ),
                 ],
               ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  SizedBox(
-                    height: 50,
-                    child: VerticalDivider(
-                      thickness: 2,
-                      color: Color(0x00E0E3E7),
-                    ),
-                  ),
-                  TextButton(
-                    style: ButtonStyle(
-                      foregroundColor: MaterialStateProperty.all<Color>(Colors.deepPurple),
-                    ),
-                    onPressed: () {
-                      aggiunti_utente();
-                    },
-                    child: Text('AGGIUNGI UTENTE'),
-                  ),
-                  SizedBox(
-                    height: 50,
-                    child: VerticalDivider(
-                      thickness: 2,
-                      color: Color(0x00E0E3E7),
-                    ),
-                  ),
-                  TextButton(
-                    style: ButtonStyle(
-                      foregroundColor: MaterialStateProperty.all<Color>(Colors.deepPurple),
-                    ),
-                    onPressed: () {
-                      rimuovi_utente();
-                    },
-                    child: Text('RIMUOVI UTENTE'),
-                  ),
-                  SizedBox(
-                    height: 50,
-                    child: VerticalDivider(
-                      thickness: 2,
-                      color: Color(0x00E0E3E7),
-                    ),
-                  ),
-                  TextButton(
-                    style: ButtonStyle(
-                      foregroundColor: MaterialStateProperty.all<Color>(Colors.deepPurple),
-                    ),
-                    onPressed: () {
-                      abilita_utente();
-                    },
-                    child: Text('ABILITA UTENTE'),
-                  ),
-                  SizedBox(
-                    height: 50,
-                    child: VerticalDivider(
-                      thickness: 2,
-                      color: Color(0x00E0E3E7),
-                    ),
-                  ),
-                  TextButton(
-                    style: ButtonStyle(
-                      foregroundColor: MaterialStateProperty.all<Color>(Colors.deepPurple),
-                    ),
-                    onPressed: () {
-                      disabilita_utente();
-                    },
-                    child: Text('DISABILITA UTENTE'),
-                  ),
-                  SizedBox(
-                    height: 50,
-                    child: VerticalDivider(
-                      thickness: 2,
-                      color: Color(0x00E0E3E7),
-                    ),
-                  ),
-                  TextButton(
-                    style: ButtonStyle(
-                      foregroundColor: MaterialStateProperty.all<Color>(Colors.deepPurple),
-                    ),
-                    onPressed: () {
-                      salva_database();
-                    },
-                    child: Text('SALVA DATABASE'),
-                  ),
-                  SizedBox(
-                    height: 50,
-                    child: VerticalDivider(
-                      thickness: 2,
-                      color: Color(0x00E0E3E7),
-                    ),
-                  ),
-                  TextButton(
-                    style: ButtonStyle(
-                      foregroundColor: MaterialStateProperty.all<Color>(Colors.deepPurple),
-                    ),
-                    onPressed: () {
-                      carica_database();
-                    },
-                    child: Text('CARICA DATABASE'),
-                  ),
-                  SizedBox(
-                    height: 50,
-                    child: VerticalDivider(
-                      thickness: 2,
-                      color: Color(0x00E0E3E7),
-                    ),
-                  ),
-                ],
-              ),
               Divider(
                 thickness: 2,
                 color: Color(0x00E0E3E7),
@@ -650,60 +534,6 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
               Divider(
                 thickness: 2,
                 color: Color(0x00E0E3E7),
-              ),
-              Expanded(
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.vertical,
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: DataTable(
-                      headingRowColor: MaterialStateProperty.all<Color>(Colors.lime),
-                      columns: const <DataColumn>[
-                        DataColumn(
-                          label: Expanded(
-                            child: Text(
-                              'Nome',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ),
-                        DataColumn(
-                          label: Expanded(
-                            child: Text(
-                              'Data Inizio',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ),
-                        DataColumn(
-                          label: Expanded(
-                            child: Text(
-                              'Data Fine',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ),
-                        DataColumn(
-                          label: Expanded(
-                            child: Text(
-                              'È Abilitato?',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ),
-                        DataColumn(
-                          label: Expanded(
-                            child: Text(
-                              'È Abilitato per sempre?',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ),
-                      ],
-                      rows: tableData,
-                    ),
-                  ),
-                ),
               ),
             ],
           ),
@@ -738,7 +568,7 @@ class ThreadManager {
     SendPort sendPort = args[0];
     Function aggiornaTabella = args[1];
 
-    // My field to work 
+    // My field to work
     Mediator mediator = Mediator();
 
     bool isRunning = true;
@@ -756,11 +586,13 @@ class ThreadManager {
       mediator.GetAllUsers().forEach((value){
         if(!value.isAlwaysAllowed && value.isEnabled && DateTime.now().isAfter(value.endDate))
         {
-          value.isEnabled = false; 
+          value.isEnabled = false;
         }
       });
       mediator.SaveDatabase();
+
       aggiornaTabella(); // Call aggiorna_tabella before delay
+
       await Future.delayed(Duration(seconds: 86400)); // delay for operations
     }
     print('Thread stopped.');
