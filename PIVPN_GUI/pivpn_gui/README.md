@@ -18,4 +18,4 @@ samples, guidance on mobile development, and a full API reference.
 
 ### Appunti: 
 
-- Prove d'inserimento: `2024-10-19`
+- Prove d'inserimento: `2025-10-19`
