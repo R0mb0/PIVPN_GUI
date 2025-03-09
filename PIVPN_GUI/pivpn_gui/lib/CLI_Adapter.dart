@@ -3,29 +3,18 @@ import 'package:process_run/shell.dart';
 
 class CLI_Adapter 
 {
-
-  // Fields
-  String password = "Eh volevi";
-
   //Builder
   CLI_Adapter();
 
   // Methods
   
   // Add user 
-  /*Future<String> AddUser(String name)
-  async {
-    var result = await Process.run('pivpn', ['-a', '-n', name]);
-    return result.stdout;
-  }*/
-
     Future<void> AddUser(String name) async {
     var shell = Shell();
     print(name);
 
     try {
-      //var result = await shell.run('echo ${password} | sudo pivpn -a -n ${name}'); // Example command
-      var result = await shell.run("/usr/local/bin/pivpn -c"); // Example command
+      var result = await shell.run("${Directory.current.path}/lib/addUser.sh ${name}"); // Example command
       print(result.outText);
     } catch (e) {
       print('Error: $e');
