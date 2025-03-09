@@ -9,9 +9,9 @@ class CLI_Adapter
   // Methods
   
   // Add user 
-    Future<void> AddUser(String name) async {
-    var shell = Shell();
-    print(name);
+  Future<void> AddUser(String name) async {
+  var shell = Shell();
+  print(name);
 
     try {
       var result = await shell.run("${Directory.current.path}/lib/addUser.sh ${name}"); // Example command
@@ -22,10 +22,16 @@ class CLI_Adapter
   }
 
   // Remove user
-  Future<String> RemoveUser(String name)
-  async {
-    var result = await Process.run('pivpn', ['-r', name]);
-    return result.stdout;
+  Future<void> RemoveUser(String name) async {
+  var shell = Shell();
+  print(name);
+
+    try {
+      var result = await shell.run("${Directory.current.path}/lib/removeUser.sh ${name}"); // Example command
+      print(result.outText);
+    } catch (e) {
+      print('Error: $e');
+    }
   }
 
   // Get All Users

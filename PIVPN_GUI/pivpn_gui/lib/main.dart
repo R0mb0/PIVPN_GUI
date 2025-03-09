@@ -108,6 +108,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
   // Event on close
   void _onWindowClose() {
     _stopThread();
+    //mediator.SaveDatabase();
   }
   /***********************************************************/
 
@@ -719,25 +720,29 @@ class ThreadManager {
   bool _isRunning = false;
   Isolate? _isolate;
   ReceivePort? _receivePort;
+  late StreamSubscription _subscription;
 
   void startThread(Function aggiornaTabella) {
     if (_isRunning) return;
     _isRunning = true;
     _receivePort = ReceivePort();
-    Isolate.spawn(_threadEntry, [_receivePort!.sendPort, aggiornaTabella]);
+    _subscription = _receivePort!.listen((message) {
+      if (message == 'update') {
+        aggiornaTabella();
+      }
+    });
+    Isolate.spawn(_threadEntry, _receivePort!.sendPort);
   }
 
   void stopThread() {
     if (!_isRunning) return;
     _isRunning = false;
     _isolate?.kill(priority: Isolate.immediate);
+    _subscription.cancel();
     _receivePort?.close();
   }
 
-  static void _threadEntry(List<dynamic> args) async {
-    SendPort sendPort = args[0];
-    Function aggiornaTabella = args[1];
-
+  static void _threadEntry(SendPort sendPort) async {
     // My field to work 
     Mediator mediator = Mediator();
 
@@ -760,7 +765,7 @@ class ThreadManager {
         }
       });
       mediator.SaveDatabase();
-      aggiornaTabella(); // Call aggiorna_tabella before delay
+      sendPort.send('update'); // Send update message to main isolate
       await Future.delayed(Duration(seconds: 86400)); // delay for operations
     }
     print('Thread stopped.');

@@ -16,18 +16,22 @@ class Mediator {
 
     // Add Users 
     String AddUser(var name, var startDate, var endDate, var isEnabled, var isAlwaysAllowed)
-    {
+    { 
+      String temp = this.myDatabase.AddUser(name, new User(name, startDate, endDate, isEnabled, isAlwaysAllowed));
+      if(temp != "The username has already been used!"){
         this.cli_adapter.AddUser(name);
-        return this.myDatabase.AddUser(name, new User(name, startDate, endDate, isEnabled, isAlwaysAllowed));        
+      }
+      return temp;        
     }
 
     // Remove User 
     String RemoveUser(String name)
-    {
-        return this.myDatabase.RemoveUser(name);
-
-        // Here the part where reamove user to PIVPN CLI
-        //this.cli_adapter.RemoveUser(name);
+    { 
+      String temp =this.myDatabase.RemoveUser(name);
+      if(temp != "The user doesn't exist!"){
+          this.cli_adapter.RemoveUser(name);
+      }
+      return temp;
     }
 
     // Get User

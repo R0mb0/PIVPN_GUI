@@ -10,9 +10,7 @@ fi
 
 # Use the parameter
 param=$1
-echo ${PASSWORD} | sudo -S pivpn -a -n $param
-
-gnome-terminal -- bash -c "echo $param | sudo -S pivpn -qr; exec bash"
+echo y | sudo -S pivpn -r $param
 
 # Check if the command was successful
 if [ $? -eq 0 ]; then
