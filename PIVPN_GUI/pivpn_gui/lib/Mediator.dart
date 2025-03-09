@@ -53,10 +53,9 @@ class Mediator {
       temp?.isEnabled = true as bool;
 
       this.myDatabase.AddUser(name, temp);
+      this.cli_adapter.EnableUser(name);
 
       return("User has been enabled!");
-
-        //this.cli_adapter.EnableUser(name);
     }
 
     //Disable user 
@@ -66,6 +65,7 @@ class Mediator {
       temp?.isEnabled = false as bool;
 
       this.myDatabase.AddUser(name, temp);
+      this.cli_adapter.DisableUser(name);
 
      return("User has been disabled!");
     }

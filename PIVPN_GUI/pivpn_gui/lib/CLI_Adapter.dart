@@ -11,10 +11,9 @@ class CLI_Adapter
   // Add user 
   Future<void> AddUser(String name) async {
   var shell = Shell();
-  print(name);
 
     try {
-      var result = await shell.run("${Directory.current.path}/lib/addUser.sh ${name}"); // Example command
+      var result = await shell.run("${Directory.current.path}/lib/addUser.sh ${name}");
       print(result.outText);
     } catch (e) {
       print('Error: $e');
@@ -24,10 +23,9 @@ class CLI_Adapter
   // Remove user
   Future<void> RemoveUser(String name) async {
   var shell = Shell();
-  print(name);
 
     try {
-      var result = await shell.run("${Directory.current.path}/lib/removeUser.sh ${name}"); // Example command
+      var result = await shell.run("${Directory.current.path}/lib/removeUser.sh ${name}");
       print(result.outText);
     } catch (e) {
       print('Error: $e');
@@ -35,30 +33,49 @@ class CLI_Adapter
   }
 
   // Get All Users
-  Future<String> GetAllUsers()
-  async {
-    var result = await Process.run('pivpn', ['-l']);
-    return result.stdout;
+ Future<void> GetAllUsers() async {
+  var shell = Shell();
+
+    try {
+      var result = await shell.run("${Directory.current.path}/lib/listUsers.sh");
+      print(result.outText);
+    } catch (e) {
+      print('Error: $e');
+    }
   }
 
   // Enable user 
-  Future<String> EnableUser(String name)
-  async {
-    var result = await Process.run('pivpn', ['-on', name]);
-    return result.stdout;
+  Future<void> EnableUser(String name) async {
+  var shell = Shell();
+
+    try {
+      var result = await shell.run("${Directory.current.path}/lib/enableUser.sh ${name}");
+      print(result.outText);
+    } catch (e) {
+      print('Error: $e');
+    }
   }
 
-  // Disable user 
-  Future<String> DisableUser(String name)
-  async {
-    var result = await Process.run('pivpn', ['-off', name]);
-    return result.stdout;
-  }
+ // Disable user 
+  Future<void> DisableUser(String name) async {
+  var shell = Shell();
 
+    try {
+      var result = await shell.run("${Directory.current.path}/lib/disableUser.sh ${name}");
+      print(result.outText);
+    } catch (e) {
+      print('Error: $e');
+    }
+  }
   // Update Client
-  Future<String> Update(String name)
-  async {
-    var result = await Process.run('pivpn', ['-up']);
-    return result.stdout;
+  Future<void> Update() async {
+  var shell = Shell();
+
+    try {
+      var result = await shell.run("${Directory.current.path}/lib/update.sh");
+      print(result.outText);
+    } catch (e) {
+      print('Error: $e');
+    }
   }
 }
