@@ -1,6 +1,10 @@
 Urbino`s University - Computing and digital innovation - Programming of mobile devices and user interfaces
 
 # PIVPN GUI
+
+<div align="center">
+ <img width="90%"  height="90%" src="https://github.com/R0mb0/PIVPN_GUI/blob/main/Project_infos/Logo_pivpn.png">
+</div>
  
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/1897688fc3874b3baeec1fc09a08799f)](https://app.codacy.com/gh/R0mb0/PIVPN_GUI/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
