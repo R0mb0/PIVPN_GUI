@@ -95,6 +95,8 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
     super.initState();
     WidgetsBinding.instance.addObserver(this);
     _startThread(); // Start thread to manage users
+    mediator.LoadDatabase();
+    update_table();
   }
 
   @override
@@ -107,7 +109,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
   // Event on close
   void _onWindowClose() {
     _stopThread();
-    //mediator.SaveDatabase(); //<--------------------------------------------------------------------------------------------------------------------------------
+    mediator.SaveDatabase(); //<--------------------------------------------------------------------------------------------------------------------------------
   }
   /***********************************************************/
 
