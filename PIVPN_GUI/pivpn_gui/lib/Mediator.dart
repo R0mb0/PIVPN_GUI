@@ -90,9 +90,9 @@ class Mediator {
     }
 
     // Function to geto database for the table
-    List<DataRow> getDatabase()
+    List<DataRow> GetDatabase()
     {
-      return this.myDatabase.getDatabase();
+      return this.myDatabase.GetDatabase();
     }
 
     // Save database

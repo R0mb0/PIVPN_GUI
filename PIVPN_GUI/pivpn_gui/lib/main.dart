@@ -188,7 +188,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
 
   void update_table() {
     setState(() {
-      tableData = mediator.getDatabase();
+      tableData = mediator.GetDatabase();
     });
   }
 

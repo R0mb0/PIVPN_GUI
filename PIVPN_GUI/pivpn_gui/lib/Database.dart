@@ -60,7 +60,7 @@ class Database {
   }
 
   // Fucntion to add data to table 
-  List<DataRow> getDatabase()
+  List<DataRow> GetDatabase()
   {
     int i = 0;
     this.myValue = []; // Reset last state 
