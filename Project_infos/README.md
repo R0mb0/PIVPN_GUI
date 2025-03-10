@@ -9,7 +9,7 @@ From the GUI is possible to:
 
 - Add new users and set a "time to be enabled" for their connections (for example: Marco
    can use the VPN for 20 days)
-- Retreive for every user the configuration file for the VPN
+- Retreive user vpn connection qr-code
 - Automatcly disable users with time to be enabled = 0
 - Display users status
 - Manualy remove/disable Users
@@ -89,3 +89,24 @@ User <|-- Database
     }
 
  ```
+
+## Libraries used
+- `package:flutter/material.dart` -> default
+- `dart:async` -> for thread manage
+- `dart:isolate` -> for thread manage
+- `dart:io` -> for saving to file 
+- `package:process_run/shell.dart` -> to interact with shell
+- `dart:ffi` -> for memory allocation 
+
+## Interface description  
+
+<div align="center">
+ <img width="90%"  height="90%" src="https://github.com/R0mb0/PIVPN_GUI/blob/main/Project_infos/Pivpn_gui.png">
+</div>
+<br><br>
+
+- `Name`, `Start Date`, `End Date` are "Text Fields"
+- `Is always allowed?` is a "Check Box" (false as default)
+- `ADD USER`, `REMOVE USER`, `ENABLE USER`, `DISABLE USER`, `SAVE DATABASE`, `LOAD DATABASE` are "Buttons"
+- In the center, below the "Buttons" there's the section for the application's allerts
+- In the center of the page there's a table where check all clients and client statuses
