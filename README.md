@@ -1,4 +1,4 @@
-Urbino`s University - Computing and digital innovation - Programmazione di dispositivi mobili e interfacce utente
+Urbino`s University - Computing and digital innovation - Programming of mobile devices and user interfaces
 
 # PIVPN GUI
  
