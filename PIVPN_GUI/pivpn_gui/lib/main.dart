@@ -45,7 +45,6 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
   String name = "";
   String startDate = "";
   String endDate = "";
-  bool isEnabled = false;
   bool isAlwaysAllowed = false;
 
   String errorMessage = "";
@@ -75,7 +74,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
   /***********************************************************/
   // Functions to Manage Thread
   void _startThread() {
-    _threadManager.startThread(aggiorna_tabella);
+    _threadManager.startThread(update_table);
     setState(() {
       _isThreadRunning = true;
     });
@@ -108,7 +107,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
   // Event on close
   void _onWindowClose() {
     _stopThread();
-    //mediator.SaveDatabase();
+    //mediator.SaveDatabase(); //<--------------------------------------------------------------------------------------------------------------------------------
   }
   /***********************************************************/
 
@@ -127,7 +126,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
   }
 
   // Function to add a user 
-  void aggiunti_utente() {
+  void add_user() {
     if (name.isEmpty || startDate.isEmpty || endDate.isEmpty) {
       launch_allert("A field is empty!", Colors.red);
     } else {
@@ -143,51 +142,51 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
         launch_allert("End time is not valid!", Colors.red);
         return;
       }
-      launch_allert(mediator.AddUser(name, start, end, isEnabled, isAlwaysAllowed), Colors.orange);
-      aggiorna_tabella();
+      launch_allert(mediator.AddUser(name, start, end, true, isAlwaysAllowed), Colors.orange);
+      update_table();
     }
   }
 
   // Function to remove a user
-  void rimuovi_utente() {
+  void remove_user() {
     if (name.isEmpty) {
       launch_allert("A field is empty!", Colors.red);
     } else {
       launch_allert(mediator.RemoveUser(name), Colors.orange);
-      aggiorna_tabella();
+      update_table();
     }
   }
 
   // Function to enable a user 
-  void abilita_utente() {
+  void enable_user() {
     if (name.isEmpty) {
       launch_allert("A field is empty!", Colors.red);
     } else {
       launch_allert(mediator.EnableUser(name), Colors.orange);
-      aggiorna_tabella();
+      update_table();
     }
   }
 
   // Function to disable a user 
-  void disabilita_utente() {
+  void disable_user() {
     if (name.isEmpty) {
       launch_allert("A field is empty!", Colors.red);
     } else {
       launch_allert(mediator.DisableUser(name), Colors.orange);
-      aggiorna_tabella();
+      update_table();
     }
   }
 
-  void salva_database() {
+  void save_database() {
     launch_allert(mediator.SaveDatabase(), Colors.green);
   }
 
-  Future<void> carica_database() async {
+  Future<void> load_database() async {
     launch_allert(await mediator.LoadDatabase(), Colors.green);
-    aggiorna_tabella();
+    update_table();
   }
 
-  void aggiorna_tabella() {
+  void update_table() {
     setState(() {
       tableData = mediator.getDatabase();
     });
@@ -220,7 +219,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
                   Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      Text('Nome ->'),
+                      Text('Name ->'),
                     ],
                   ),
                   SizedBox(
@@ -243,7 +242,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
                           obscureText: false,
                           decoration: InputDecoration(
                             isDense: true,
-                            hintText: 'Inserisci nome',
+                            hintText: 'Insert name',
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                 color: Color(0x00000000),
@@ -287,7 +286,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
                       color: Color(0x00E0E3E7),
                     ),
                   ),
-                  Text('Data Inizio -> '),
+                  Text('Start Date ->'),
                   SizedBox(
                     height: 50,
                     child: VerticalDivider(
@@ -352,7 +351,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
                       color: Color(0x00E0E3E7),
                     ),
                   ),
-                  Text('Data Fine ->'),
+                  Text('End Date ->'),
                   SizedBox(
                     height: 50,
                     child: VerticalDivider(
@@ -429,57 +428,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
                       color: Color(0x00E0E3E7),
                     ),
                   ),
-                  Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Text('È Abilitato? -> '),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 50,
-                    child: VerticalDivider(
-                      thickness: 2,
-                      color: Color(0x00E0E3E7),
-                    ),
-                  ),
-                  Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Theme(
-                        data: ThemeData(
-                          checkboxTheme: CheckboxThemeData(
-                            visualDensity: VisualDensity.compact,
-                            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(4),
-                            ),
-                          ),
-                          unselectedWidgetColor: Colors.white30,
-                        ),
-                        child: Checkbox(
-                          tristate: true, // Example with tristate
-                          value: this.isEnabled,
-                          onChanged: (bool? newValue) {
-                            setState(() {
-                              if (this.isEnabled) {
-                                this.isEnabled = false;
-                              } else {
-                                this.isEnabled = newValue!;
-                              }
-                            });
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 50,
-                    child: VerticalDivider(
-                      thickness: 2,
-                      color: Color(0x00E0E3E7),
-                    ),
-                  ),
-                  Text('È Abilitato Per Sempre? -> '),
+                  Text('Is always allowed? -> '),
                   SizedBox(
                     height: 50,
                     child: VerticalDivider(
@@ -541,9 +490,9 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
                       foregroundColor: MaterialStateProperty.all<Color>(Colors.deepPurple),
                     ),
                     onPressed: () {
-                      aggiunti_utente();
+                      add_user();
                     },
-                    child: Text('AGGIUNGI UTENTE'),
+                    child: Text('ADD USER'),
                   ),
                   SizedBox(
                     height: 50,
@@ -557,9 +506,9 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
                       foregroundColor: MaterialStateProperty.all<Color>(Colors.deepPurple),
                     ),
                     onPressed: () {
-                      rimuovi_utente();
+                      remove_user();
                     },
-                    child: Text('RIMUOVI UTENTE'),
+                    child: Text('REMOVE USER'),
                   ),
                   SizedBox(
                     height: 50,
@@ -573,9 +522,9 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
                       foregroundColor: MaterialStateProperty.all<Color>(Colors.deepPurple),
                     ),
                     onPressed: () {
-                      abilita_utente();
+                      enable_user();
                     },
-                    child: Text('ABILITA UTENTE'),
+                    child: Text('ENABLE USER'),
                   ),
                   SizedBox(
                     height: 50,
@@ -589,9 +538,9 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
                       foregroundColor: MaterialStateProperty.all<Color>(Colors.deepPurple),
                     ),
                     onPressed: () {
-                      disabilita_utente();
+                      disable_user();
                     },
-                    child: Text('DISABILITA UTENTE'),
+                    child: Text('DISABLE USER'),
                   ),
                   SizedBox(
                     height: 50,
@@ -605,9 +554,9 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
                       foregroundColor: MaterialStateProperty.all<Color>(Colors.deepPurple),
                     ),
                     onPressed: () {
-                      salva_database();
+                      save_database();
                     },
-                    child: Text('SALVA DATABASE'),
+                    child: Text('SAVE DATABASE'),
                   ),
                   SizedBox(
                     height: 50,
@@ -621,9 +570,9 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
                       foregroundColor: MaterialStateProperty.all<Color>(Colors.deepPurple),
                     ),
                     onPressed: () {
-                      carica_database();
+                      load_database();
                     },
-                    child: Text('CARICA DATABASE'),
+                    child: Text('LOAD DATABASE'),
                   ),
                   SizedBox(
                     height: 50,
@@ -663,7 +612,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
                         DataColumn(
                           label: Expanded(
                             child: Text(
-                              'Nome',
+                              'Name',
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                           ),
@@ -671,7 +620,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
                         DataColumn(
                           label: Expanded(
                             child: Text(
-                              'Data Inizio',
+                              'Start date',
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                           ),
@@ -679,7 +628,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
                         DataColumn(
                           label: Expanded(
                             child: Text(
-                              'Data Fine',
+                              'End date',
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                           ),
@@ -687,7 +636,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
                         DataColumn(
                           label: Expanded(
                             child: Text(
-                              'È Abilitato?',
+                              'Is enabled?',
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                           ),
@@ -695,7 +644,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
                         DataColumn(
                           label: Expanded(
                             child: Text(
-                              'È Abilitato per sempre?',
+                              'Is always enabled?',
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                           ),
@@ -722,13 +671,13 @@ class ThreadManager {
   ReceivePort? _receivePort;
   late StreamSubscription _subscription;
 
-  void startThread(Function aggiornaTabella) {
+  void startThread(Function updateTable) {
     if (_isRunning) return;
     _isRunning = true;
     _receivePort = ReceivePort();
     _subscription = _receivePort!.listen((message) {
       if (message == 'update') {
-        aggiornaTabella();
+        updateTable();
       }
     });
     Isolate.spawn(_threadEntry, _receivePort!.sendPort);

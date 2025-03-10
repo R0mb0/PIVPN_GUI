@@ -50,24 +50,43 @@ class Mediator {
     String EnableUser(String name)
     { 
       User? temp  = this.myDatabase.GetUser(name);
-      temp?.isEnabled = true as bool;
 
-      this.myDatabase.AddUser(name, temp);
-      this.cli_adapter.EnableUser(name);
+      if(temp?.isAlwaysAllowed == true){
+        return("the user is unenabled!");
+      }
 
-      return("User has been enabled!");
+      if (temp?.isEnabled == false){
+        temp?.isEnabled = true as bool;
+
+        this.myDatabase.AddUser(name, temp);
+        this.cli_adapter.EnableUser(name);
+
+        return("User has been enabled!");
+      }else{
+        return("The user is already enabled!");
+      }
     }
 
     //Disable user 
     String DisableUser(String name)
     { 
       User? temp  = this.myDatabase.GetUser(name);
-      temp?.isEnabled = false as bool;
 
-      this.myDatabase.AddUser(name, temp);
-      this.cli_adapter.DisableUser(name);
+      if(temp?.isAlwaysAllowed == true){
+        return("The user is not deactivateable!");
+      }
 
-     return("User has been disabled!");
+      if (temp?.isEnabled == true){
+        temp?.isEnabled = false as bool;
+
+        this.myDatabase.AddUser(name, temp);
+        this.cli_adapter.DisableUser(name);
+
+        return("User has been disabled!");
+      }else{
+        return("The user is already disabled!");
+      }
+      
     }
 
     // Function to geto database for the table
