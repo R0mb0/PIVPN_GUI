@@ -73,3 +73,44 @@ Urbino`s University - Computing and digital innovation - Programming of mobile d
     ```
     flutter run
     ```
+
+## Interface description  
+
+<div align="center">
+ <img width="90%"  height="90%" src="https://github.com/R0mb0/PIVPN_GUI/blob/main/Project_infos/Pivpn_gui.png">
+</div>
+<br><br>
+
+- `Name`, `Start Date`, `End Date` are "Text Fields"
+- `Is always allowed?` is a "Check Box" (false as default)
+- `ADD USER`, `REMOVE USER`, `ENABLE USER`, `DISABLE USER`, `SAVE DATABASE`, `LOAD DATABASE` are "Buttons"
+- In the center, below the "Buttons" there's the section for the application's allerts
+- In the center of the page there's a table where check all clients and client statuses
+
+## How to use 
+
+> `Name` field is used for all operations except for `SAVE DATABASE` and `LOAD DATABASE`   
+> `Start Date`, `End Date` `Is always allowed?` Fields are used only for "add new user" operation   
+
+### Add a new user 
+
+- Complete `Name`, `Start Date` and `End Date` fields, and check if the user `Is always allowed`
+- Press `ADD USER` button 
+
+### Remove an user 
+
+- write the name of the user to remove in `name` field
+- Press `REMOVE USER` button 
+
+### Enable an user 
+
+- write the name of the user to enable in `name` field
+- Press `ENABLE USER` button 
+
+### Disable an user 
+
+- write the name of the user to disable in `name` field
+- Press `DISABLE USER` button 
+
+
+
