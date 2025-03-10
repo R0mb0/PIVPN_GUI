@@ -1,19 +1,16 @@
 # Application modules UML
 
-I wanna treat the graphic part as a layer that interact with the others modules of the application,
-for this reason it will not be analyzed in this paper.
-
 At the moment the project doesn't involves to manage a lot of users, for this reason, will not be 
 used a database to archieve them.
 
-## Functionality to implement
+## Functionality implemented
 
-From the GUI I must be able to:
+From the GUI is possible to:
 
-- Add new users and set a Time-To-Live for their connections (for example: Marco
+- Add new users and set a "time to be enabled" for their connections (for example: Marco
    can use the VPN for 20 days)
 - Retreive for every user the configuration file for the VPN
-- Automatcly disable users with Time-To-Live = 0
+- Automatcly disable users with time to be enabled = 0
 - Display users status
 - Manualy remove/disable Users
 
@@ -26,50 +23,59 @@ From the GUI I must be able to:
  ---
  classDiagram
 
-GUI <|-- Mediator
-note for TimeModule "It disable users that have terminated their Time-To-Live. It could be a thread"
-GUI <|-- TimeModule
+note for Mediator "myValue is a temp varaible used to save the database state to file"
+Mediator <|-- GUI
+note for TimeModule "It disable users that have terminated their time to be enabled. It is a thread inside the main file"
+TimeModule <|-- GUI
 CLI_Adapter <|-- Mediator
 Database <|-- Mediator
 User <|-- Database
 
   class User{
         +String name
-        +String subName
         +Date startDate
         +Date endDate
-        +Boolean isDisabled
+        +Boolean isEnabled
         +Boolean isAlwaysAllowed
-        +GetInfos()
+        +User()
+        +toString()
+        +toDatabase()
+        +toFile() 
     }
 
      class Database{
-        +AddUser()
-        +RemoveUser()
-        +GetUser()
+        -Database database
+        -File myDatabaseFile
+        -List<DataRow> myValue
+        +Database._privateConstructor()
+        +AddUser(String name, User? user)
+        +RemoveUser(String name)
+        +GetUser(String name)
         +GetAllUsers()
+        +GetDatabase()
         +SaveDatabase()
         +LoadDatabase()
-        -Dictionary users
-        -Serialize()
-        -Deserialize()
     }
 
      class CLI_Adapter{
-        +AddUser()
-        +RemoveUser()
+        +CLI_Adapter()
+        +AddUser(String name)
+        +RemoveUser(String name)
         +GetAllusers()
-        +EnableUser()
-        +DisableUser()
+        +EnableUser(String name)
+        +DisableUser(String name)
+        +Update()
     }
 
     class Mediator{
-        +AddUser()
-        +RemoveUser()
-        +GetUser()
+        +Mediator()
+        +AddUser(var name, var startDate, var endDate, var isEnabled, var isAlwaysAllowed)
+        +RemoveUser(String name)
+        +GetUser(String name)
         +GetAllusers()
-        +EnableUser()
-        +DisableUser()
+        +EnableUser(String name)
+        +DisableUser(String name)
+        +GetDatabase()
         +SaveDatabase()
         +LoadDatabase()
     }
@@ -77,7 +83,6 @@ User <|-- Database
     class TimeModule{
         +Start()
         +Stop()
-        +End()
     }
 
     class GUI{
