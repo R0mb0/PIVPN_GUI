@@ -12,7 +12,9 @@ Urbino`s University - Computing and digital innovation - Programmazione di dispo
 
 ## Description 
 
-**PIVPN GUI** is a flutter application to simplify the manage of [`PIVPN`](https://github.com/pivpn/pivpn) service for most of commons users. It provide the "time to be enabled" functionality, in way to automatic disable clients that had terminated their "enabled time". For example this functionality is usefull if the vpn is used to distribute a subscription service. 
+**PIVPN GUI** is a flutter application to simplify the manage of [`PIVPN`](https://github.com/pivpn/pivpn) service for most of commons users. It provide the "time to be enabled" functionality, in way to automatic disable clients that had terminated their "enabled time". For example this functionality is usefull if the vpn is used to distribute a subscription service.  
+
+> Until the application is open, one time a day, the application will check all user statuses, disabling the users with their "time to be enabled" over. 
 
 ## How to install 
 
@@ -44,3 +46,30 @@ Urbino`s University - Computing and digital innovation - Programmazione di dispo
    ```
    cd PIVPN_GUI/PIVPN_GUI/pivpn_gui/lib
    ```
+2. Make executable `make_all_scripts_executable.sh` script
+   ```
+   chmod +x make_all_scripts_executable.sh
+   ```
+3. Run the script
+   ```
+   ./make_all_scripts_executable.sh
+   ```
+4. Create the `password.sh` file
+
+   - Create with your favorite editor `password.sh`
+     ```
+     nano password.sh
+     ```
+   - Add this code inside the file
+     ```
+     #!/bin/bash
+     PASSWORD = "your_sudo_password"
+     ```
+     Save the file
+
+     `ctrl + o`   
+     `ctrl + x`
+ 5. Run the application
+    ```
+    flutter run
+    ```
