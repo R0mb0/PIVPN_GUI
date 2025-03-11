@@ -40,18 +40,18 @@ Urbino`s University - Computing and digital innovation - Programming of mobile d
 
 ### 3. Download the application 
 
-- ```
-  https://github.com/R0mb0/PIVPN_GUI.git
+- ```bash
+  git clone https://github.com/R0mb0/PIVPN_GUI.git
   ```
 
 ## How to run 
 
 1. Enter into the working directory
-   ```
+   ```bash
    cd PIVPN_GUI/PIVPN_GUI/pivpn_gui/lib
    ```
 2. Make executable `make_all_scripts_executable.sh` script
-   ```
+   ```bash
    chmod +x make_all_scripts_executable.sh
    ```
 3. Run the script
@@ -61,11 +61,11 @@ Urbino`s University - Computing and digital innovation - Programming of mobile d
 4. Create the `password.sh` file
 
    - Create with your favorite editor `password.sh`
-     ```
+     ```bash
      nano password.sh
      ```
    - Add this code inside the file
-     ```
+     ```bash
      #!/bin/bash
      PASSWORD = "your_sudo_password"
      ```
@@ -74,7 +74,7 @@ Urbino`s University - Computing and digital innovation - Programming of mobile d
      `ctrl + o`   
      `ctrl + x`
  5. Run the application
-    ```
+    ```bash
     flutter run
     ```
 
