@@ -86,19 +86,19 @@ Urbino`s University - Computing and digital innovation - Programming of mobile d
 <br><br>
 
 - `Name`, `Start Date`, `End Date` are "Text Fields"
-- `Is always allowed?` is a "Check Box" (false as default)
-- `ADD USER`, `REMOVE USER`, `ENABLE USER`, `DISABLE USER`, `SAVE DATABASE`, `LOAD DATABASE` are "Buttons"
+- `ADD USER`, `REMOVE USER`, `ENABLE USER`, `DISABLE USER` are "Buttons"
 - In the center, below the "Buttons" there's the section for the application's allerts
 - In the center of the page there's a table where check all clients and client statuses
 
 ## How to use 
 
-> `Name` field is used for all operations except for `SAVE DATABASE` and `LOAD DATABASE`   
-> `Start Date`, `End Date` `Is always allowed?` Fields are used only for "add new user" operation   
+> `Name` field is used for all operations
+> `Start Date`, `End Date`Fields are used only for "add new user" operation
+> To create a "always allowed" user, insert a far away date as "End Date"
 
 ### Add a new user 
 
-- Complete `Name`, `Start Date` and `End Date` fields, and check if the user `Is always allowed`
+- Complete `Name`, `Start Date` and `End Date` fields
 - Press `ADD USER` button 
 
 ### Remove an user 
@@ -109,7 +109,9 @@ Urbino`s University - Computing and digital innovation - Programming of mobile d
 ### Enable an user 
 
 - write the name of the user to enable in `name` field
-- Press `ENABLE USER` button 
+- Press `ENABLE USER` button
+- **Is not possible enable a user the have his "End date" expired.**
+  To do this, remove the user and adding it with updated dates.
 
 ### Disable an user 
 
