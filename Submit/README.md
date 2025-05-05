@@ -52,7 +52,49 @@
     
   </summary>
 
-  - All'avvio dell'applicazione 
+- **Primo avvio**
+  - Dopo aver impostato l'ambiente (seguendo la guida presente nella pagina principale) si può aprire l'applicazione, a questo punto l'operatore può solo aggiungere dei nuovi utenti, per fare questa operazione deve completare i tre campi di input che sono presenti nella parte alta dell'interfaccia.
+    <details>
+      <summary>
+
+      _Guarda l'immagine_
+
+      </summary>
+
+      ![Fields](https://github.com/R0mb0/PIVPN_GUI/blob/main/Project_infos/Fields.png)
+  
+    </details>
+    Dove il nome può essere una qualsiasi stringa, mentre le date devono essere necessarimente inserite in standard americano (anno-mese-giorno).
+    ⚠️ La "data di fine" inserita deve essere sempre successiva alla data dell'inserimento dell'utente.
+
+    Una volta aver completato i campi, l'operatore deve premere sul pulsante "Add User" per aggiungere l'utente alla VPN.
+
+    <details>
+      <summary>
+
+      _Guarda l'immagine_
+
+      </summary>
+
+      ![Add_User](https://github.com/R0mb0/PIVPN_GUI/blob/main/Project_infos/Add_user.png)
+  
+    </details>
+
+    A questo punto in una finestra separata si aprirà un qr-code necessario per connettere la VPN, che l'operatore dovrà passare a chi è interessato a connettersi.
+
+    <details>
+      <summary>
+
+      _Guarda l'immagine_
+
+      </summary>
+
+      ![qr-code](https://github.com/R0mb0/PIVPN_GUI/blob/main/Project_infos/qr-code.png)
+  
+    </details>
+
+    Ogni volta che l'operatore esegue una operazione, i cambiamenti dello stato della memoria vengono salvati in automatico, anche per fare in modo che vi sia consistenza tra le informazioni di "PIVPN" e dell'interfaccia grafica.
+    Come si sarà sicuramente notato la tebella al centro dell'applicazione avrà acquisito un valore 
   
 </details>
   
