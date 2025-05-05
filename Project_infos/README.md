@@ -110,3 +110,10 @@ User <|-- Database
 - `ADD USER`, `REMOVE USER`, `ENABLE USER`, `DISABLE USER`, `SAVE DATABASE`, `LOAD DATABASE` are "Buttons"
 - In the center, below the "Buttons" there's the section for the application's allerts
 - In the center of the page there's a table where check all clients and client statuses
+
+## Last added functionality
+
+- Every user operation trigger the saving database event. 
+-  Remove "always enabled" user, because this condiction could be reached with a far away date
+  - Remove "is always enabled checkbox" and the table column
+- A user with "not time to live" could not be enabled
