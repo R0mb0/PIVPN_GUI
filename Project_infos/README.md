@@ -117,3 +117,4 @@ User <|-- Database
 -  Remove "always enabled" user, because this condiction could be reached with a far away date
   - Remove "is always enabled checkbox" and the table column
 - A user with "not time to live" could not be enabled
+- The end date must be bigger than the currrent inserting time
