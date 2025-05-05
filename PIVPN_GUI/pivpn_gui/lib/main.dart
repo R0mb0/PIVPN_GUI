@@ -45,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
   String name = "";
   String startDate = "";
   String endDate = "";
-  bool isAlwaysAllowed = false;
+  //bool isAlwaysAllowed = false;
 
   String errorMessage = "";
   Color colorMessage = Colors.red;
@@ -95,8 +95,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
     super.initState();
     WidgetsBinding.instance.addObserver(this);
     _startThread(); // Start thread to manage users
-    mediator.LoadDatabase();
-    update_table();
+    load_database();
   }
 
   @override
@@ -109,7 +108,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
   // Event on close
   void _onWindowClose() {
     _stopThread();
-    mediator.SaveDatabase(); //<--------------------------------------------------------------------------------------------------------------------------------
+    //mediator.SaveDatabase(); //<--------------------------------------------------------------------------------------------------------------------------------
   }
   /***********************************************************/
 
@@ -144,8 +143,15 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
         launch_allert("End time is not valid!", Colors.red);
         return;
       }
-      launch_allert(mediator.AddUser(name, start, end, true, isAlwaysAllowed), Colors.orange);
-      update_table();
+      if (DateTime.now().isBefore(end)){
+        //launch_allert(mediator.AddUser(name, start, end, true, isAlwaysAllowed), Colors.orange);
+        launch_allert(mediator.AddUser(name, start, end, true), Colors.orange);
+        update_table();
+        mediator.SaveDatabase();
+      }
+      else{
+        launch_allert("The current time is after the end date!", Colors.red);
+      }
     }
   }
 
@@ -156,6 +162,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
     } else {
       launch_allert(mediator.RemoveUser(name), Colors.orange);
       update_table();
+      mediator.SaveDatabase();
     }
   }
 
@@ -166,6 +173,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
     } else {
       launch_allert(mediator.EnableUser(name), Colors.orange);
       update_table();
+      mediator.SaveDatabase();
     }
   }
 
@@ -176,6 +184,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
     } else {
       launch_allert(mediator.DisableUser(name), Colors.orange);
       update_table();
+      mediator.SaveDatabase();
     }
   }
 
@@ -184,7 +193,10 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
   }
 
   Future<void> load_database() async {
-    launch_allert(await mediator.LoadDatabase(), Colors.green);
+    //launch_allert(await mediator.LoadDatabase(), Colors.green);
+    mediator.LoadDatabase();
+    // because the loading process is async and is necessary waiting
+    await Future.delayed(Duration(seconds: 1));
     update_table();
   }
 
@@ -430,44 +442,6 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
                       color: Color(0x00E0E3E7),
                     ),
                   ),
-                  Text('Is always allowed? -> '),
-                  SizedBox(
-                    height: 50,
-                    child: VerticalDivider(
-                      thickness: 2,
-                      color: Color(0x00E0E3E7),
-                    ),
-                  ),
-                  Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Theme(
-                        data: ThemeData(
-                          checkboxTheme: CheckboxThemeData(
-                            visualDensity: VisualDensity.compact,
-                            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(4),
-                            ),
-                          ),
-                          unselectedWidgetColor: Colors.white30,
-                        ),
-                        child: Checkbox(
-                          tristate: true, // Example with tristate
-                          value: this.isAlwaysAllowed,
-                          onChanged: (bool? newValue) {
-                            setState(() {
-                              if (this.isAlwaysAllowed) {
-                                this.isAlwaysAllowed = false;
-                              } else {
-                                this.isAlwaysAllowed = newValue!;
-                              }
-                            });
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
                   SizedBox(
                     height: 50,
                     child: VerticalDivider(
@@ -551,31 +525,6 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
                       color: Color(0x00E0E3E7),
                     ),
                   ),
-                  TextButton(
-                    style: ButtonStyle(
-                      foregroundColor: MaterialStateProperty.all<Color>(Colors.deepPurple),
-                    ),
-                    onPressed: () {
-                      save_database();
-                    },
-                    child: Text('SAVE DATABASE'),
-                  ),
-                  SizedBox(
-                    height: 50,
-                    child: VerticalDivider(
-                      thickness: 2,
-                      color: Color(0x00E0E3E7),
-                    ),
-                  ),
-                  TextButton(
-                    style: ButtonStyle(
-                      foregroundColor: MaterialStateProperty.all<Color>(Colors.deepPurple),
-                    ),
-                    onPressed: () {
-                      load_database();
-                    },
-                    child: Text('LOAD DATABASE'),
-                  ),
                   SizedBox(
                     height: 50,
                     child: VerticalDivider(
@@ -643,14 +592,6 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver{
                             ),
                           ),
                         ),
-                        DataColumn(
-                          label: Expanded(
-                            child: Text(
-                              'Is always enabled?',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ),
                       ],
                       rows: tableData,
                     ),
@@ -700,6 +641,7 @@ class ThreadManager {
     bool isRunning = true;
     ReceivePort receivePort = ReceivePort();
     sendPort.send(receivePort.sendPort);
+    bool isSomethingChanged = false;
 
     receivePort.listen((message) {
       if (message == 'stop') {
@@ -710,13 +652,18 @@ class ThreadManager {
 
     while (isRunning) {
       mediator.GetAllUsers().forEach((value){
-        if(!value.isAlwaysAllowed && value.isEnabled && DateTime.now().isAfter(value.endDate))
+        if(value.isEnabled && DateTime.now().isAfter(value.endDate))
         {
           value.isEnabled = false; 
+          isSomethingChanged = true;
         }
       });
-      mediator.SaveDatabase();
+      // write database only if necessary
+      if(isSomethingChanged){
+        mediator.SaveDatabase();
+      }
       sendPort.send('update'); // Send update message to main isolate
+      isSomethingChanged = false;
       await Future.delayed(Duration(seconds: 86400)); // delay for operations
     }
     print('Thread stopped.');

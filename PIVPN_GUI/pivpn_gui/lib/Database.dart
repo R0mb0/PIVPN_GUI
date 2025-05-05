@@ -65,7 +65,7 @@ class Database {
     int i = 0;
     this.myValue = []; // Reset last state 
     this.database.forEach((i, value){
-      this.myValue.add(DataRow(cells: [DataCell(Text(value!.name)), DataCell(Text(value.startDate.toString().split(" ")[0])), DataCell(Text(value.endDate.toString().split(" ")[0])), DataCell(Text(value.isEnabled.toString())), DataCell(Text(value.isAlwaysAllowed.toString()))]));
+      this.myValue.add(DataRow(cells: [DataCell(Text(value!.name)), DataCell(Text(value.startDate.toString().split(" ")[0])), DataCell(Text(value.endDate.toString().split(" ")[0])), DataCell(Text(value.isEnabled.toString()))]));
     });
     return myValue;
   }
@@ -88,7 +88,8 @@ class Database {
 
   Future.forEach(my_string_database, (value){
     final List data = value.split(" ");
-    this.database[data[0]] = new User(data[1], DateTime.parse(data[2]), DateTime.parse(data[4]), bool.parse(data[6]), bool.parse(data[7]));
+    //this.database[data[0]] = new User(data[1], DateTime.parse(data[2]), DateTime.parse(data[4]), bool.parse(data[6]), bool.parse(data[7]));
+    this.database[data[0]] = new User(data[1], DateTime.parse(data[2]), DateTime.parse(data[4]), bool.parse(data[6]));
   });
 
   return ("Loaded database!");

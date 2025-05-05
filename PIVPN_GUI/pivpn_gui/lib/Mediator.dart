@@ -15,9 +15,11 @@ class Mediator {
     // Methods 
 
     // Add Users 
-    String AddUser(var name, var startDate, var endDate, var isEnabled, var isAlwaysAllowed)
+    //String AddUser(var name, var startDate, var endDate, var isEnabled, var isAlwaysAllowed)
+    String AddUser(var name, var startDate, var endDate, var isEnabled)
     { 
-      String temp = this.myDatabase.AddUser(name, new User(name, startDate, endDate, isEnabled, isAlwaysAllowed));
+      //String temp = this.myDatabase.AddUser(name, new User(name, startDate, endDate, isEnabled, isAlwaysAllowed));
+      String temp = this.myDatabase.AddUser(name, new User(name, startDate, endDate, isEnabled));
       if(temp != "The username has already been used!"){
         this.cli_adapter.AddUser(name);
       }
@@ -51,17 +53,22 @@ class Mediator {
     { 
       User? temp  = this.myDatabase.GetUser(name);
 
-      if(temp?.isAlwaysAllowed == true){
-        return("the user is unenabled!");
-      }
+      //if(temp?.isAlwaysAllowed == true){
+      //  return("the user is unenabled!");
+      //}
 
       if (temp?.isEnabled == false){
-        temp?.isEnabled = true as bool;
 
-        this.myDatabase.AddUser(name, temp);
-        this.cli_adapter.EnableUser(name);
+        if(DateTime.now().isBefore(temp!.endDate)){
+          temp?.isEnabled = true as bool;
+
+          this.myDatabase.AddUser(name, temp);
+          this.cli_adapter.EnableUser(name);
 
         return("User has been enabled!");
+        }else{
+          return("The user could not be enabled!");
+        }
       }else{
         return("The user is already enabled!");
       }
@@ -72,9 +79,9 @@ class Mediator {
     { 
       User? temp  = this.myDatabase.GetUser(name);
 
-      if(temp?.isAlwaysAllowed == true){
-        return("The user is not deactivateable!");
-      }
+      //if(temp?.isAlwaysAllowed == true){
+      //  return("The user is not deactivateable!");
+      //}
 
       if (temp?.isEnabled == true){
         temp?.isEnabled = false as bool;
