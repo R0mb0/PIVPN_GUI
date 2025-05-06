@@ -36,7 +36,6 @@ User <|-- Database
         +Date startDate
         +Date endDate
         +Boolean isEnabled
-        +Boolean isAlwaysAllowed
         +User()
         +toString()
         +toDatabase()
@@ -69,7 +68,7 @@ User <|-- Database
 
     class Mediator{
         +Mediator()
-        +AddUser(var name, var startDate, var endDate, var isEnabled, var isAlwaysAllowed)
+        +AddUser(var name, var startDate, var endDate, var isEnabled)
         +RemoveUser(String name)
         +GetUser(String name)
         +GetAllusers()
