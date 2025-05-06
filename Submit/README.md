@@ -54,88 +54,91 @@
     
   </summary>
 
-- **Primo avvio**
-  - Dopo aver impostato l'ambiente (seguendo la guida presente nella pagina principale) si può aprire l'applicazione, a questo punto l'operatore può solo aggiungere dei nuovi utenti, per fare questa operazione deve completare i tre campi di input che sono presenti nella parte alta dell'interfaccia.
-    <details>
-      <summary>
-
-      _Guarda l'immagine_
-
-      </summary>
-
-      ![Fields](https://github.com/R0mb0/PIVPN_GUI/blob/main/Project_infos/Fields.png)
+#### Primo avvio
+ Dopo aver impostato l'ambiente (seguendo la guida presente nella pagina principale) si può aprire l'applicazione, a questo punto l'operatore può solo aggiungere dei nuovi utenti, per fare questa operazione deve completare i tre campi di input che sono presenti nella parte alta dell'interfaccia.
   
-    </details><br>
-    Dove il nome può essere una qualsiasi stringa, mentre le date devono essere necessarimente inserite in standard americano (anno-mese-giorno).<br>
-    
-    **⚠️ Avvertenze**
+  <details>
+    <summary>
 
-    - Per creare un utente sempre abilitato è sufficiente aggiungere un utente con il campo "End Date" molto remoto (Ex 2050-01-01)
-    - La "data di fine" inserita deve essere sempre successiva alla data dell'inserimento dell'utente.
-    - Non si possono aggiungere due utenti con lo stesso nome. 
+  _Guarda l'immagine_
 
-    Una volta aver completato i campi, l'operatore deve premere sul pulsante "Add User" per aggiungere l'utente alla VPN.
+  </summary>
 
-    <details>
-      <summary>
+  ![Fields](https://github.com/R0mb0/PIVPN_GUI/blob/main/Project_infos/Fields.png)
 
-      _Guarda l'immagine_
-
-      </summary>
-
-      ![Add_User](https://github.com/R0mb0/PIVPN_GUI/blob/main/Project_infos/Add_user.png)
+  </details><br>
   
-    </details>
-
-    A questo punto in una finestra separata si aprirà un qr-code necessario per connettere la VPN, che l'operatore dovrà passare a chi è interessato a connettersi.
-
-    <details>
-      <summary>
-
-      _Guarda l'immagine_
-
-      </summary>
-
-      ![qr-code](https://github.com/R0mb0/PIVPN_GUI/blob/main/Project_infos/qr-code.png)
+  Dove il nome può essere una qualsiasi stringa, mentre le date devono essere necessarimente inserite in standard americano (anno-mese-giorno).<br>
   
-    </details>
+  ##### ⚠️ Avvertenze
 
-    Ogni volta che l'operatore esegue una operazione, i cambiamenti dello stato della memoria vengono salvati in automatico, anche per fare in modo che vi sia consistenza tra le informazioni di "PIVPN" e dell'interfaccia grafica.
-    <br>
-    Come si sarà sicuramente notato la tebella al centro dell'applicazione avrà acquisito un valore.
+  - Per creare un utente sempre abilitato è sufficiente aggiungere un utente con il campo "End Date" molto remoto (Ex 2050-01-01)
+  - La "data di fine" inserita deve essere sempre successiva alla data dell'inserimento dell'utente.
+  - Non si possono aggiungere due utenti con lo stesso nome. 
 
-    <details>
-      <summary>
+  Una volta aver completato i campi, l'operatore deve premere sul pulsante "Add User" per aggiungere l'utente alla VPN.
 
-      _Guarda l'immagine_
+  <details>
+  <summary>
 
-      </summary>
+  _Guarda l'immagine_
 
-      ![Table_with_record](https://github.com/R0mb0/PIVPN_GUI/blob/main/Project_infos/Table_with_record.png)
-  
-    </details>
+  </summary>
 
-    A questo punto, l'operatore può scegliere se aggiungere un nuovo utente (seguendo le istruzioni precedenti) oppure di eseguire le ultime tre operazionni riportate dall'interfaccia.
+  ![Add_User](https://github.com/R0mb0/PIVPN_GUI/blob/main/Project_infos/Add_user.png)
 
-    <details>
-      <summary>
+  </details>
 
-      _Guarda l'immagine_
+  A questo punto in una finestra separata si aprirà un qr-code necessario per connettere la VPN, che l'operatore dovrà passare a chi è interessato a connettersi.
 
-      </summary>
+  <details>
+  <summary>
 
-      ![Buttons](https://github.com/R0mb0/PIVPN_GUI/blob/main/Project_infos/Buttons.png)
-  
-    </details>
+  _Guarda l'immagine_
+
+  </summary>
+
+  ![qr-code](https://github.com/R0mb0/PIVPN_GUI/blob/main/Project_infos/qr-code.png)
+
+  </details>
+
+  Ogni volta che l'operatore esegue una operazione, i cambiamenti dello stato della memoria vengono salvati in automatico, anche per fare in modo che vi sia consistenza tra le informazioni di "PIVPN" e dell'interfaccia grafica.
+  <br>
+  Come si sarà sicuramente notato la tebella al centro dell'applicazione avrà acquisito un valore.
+
+  <details>
+    <summary>
+
+  _Guarda l'immagine_
+
+  </summary>
+
+  ![Table_with_record](https://github.com/R0mb0/PIVPN_GUI/blob/main/Project_infos/Table_with_record.png)
+
+  </details>
+
+  A questo punto, l'operatore può scegliere se aggiungere un nuovo utente (seguendo le istruzioni precedenti) oppure di eseguire le ultime tre operazionni riportate dall'interfaccia.
+
+  <details>
+    <summary>
+
+  _Guarda l'immagine_
+
+  </summary>
+
+  ![Buttons](https://github.com/R0mb0/PIVPN_GUI/blob/main/Project_infos/Buttons.png)
+
+  </details>
 
   In questo caso, per queste ultime operazioni è necessario inserire nel campo apposito il nome dell'utente bersaglio (reperibile dalla tabella al centro) <br>
 
-  **⚠️ Avvertenze** <br>
+  ##### ⚠️ Avvertenze
   
   - Non si può abilitare un utente che è stato disabilitato perché è stata superata la propria data di fine servizio
   - Un utente per essere rigenerato dev'essere eliminato e riaggiunto con le date aggiornate
 
   Una volta che l'operatore ha terminato le operazioni,l'applicazione non deve essere chiusa in modo che il secondo thread all'interno del programma possa controllare una volta al giorno lo stato degli utenti. Nel caso in cui l'applicazione venisse chiusa, il controllo automatico non potrà essere effetuato e finchè il computer rimane acceso la VPN continuerà a funzionare. 
+
 </details>
 
 <details>
@@ -168,7 +171,52 @@
     
   </summary>
 
-  
+  Per salvare le informazioni degli utenti l'applicazione possiede una classe chiamata "database" che salva le informazioni in un "dizionario" che viene serializzato o deserializzato per il salvataggio delle informazioni sul disco. 
+
+  ##### Struttura logica del dizionario
+
+  ``` mermaid
+  ---
+ title: Logic structure of dictionary
+ ---
+ classDiagram
+
+Dictionary <|-- User
+
+class Dictionary{
+  key: Name
+  Value: User
+}
+
+class User{
+        String name
+        Date startDate
+        Date endDate
+        Boolean isEnabled 
+    }
+  ```
+
+Il parametro `name` si ripete in questa struttura siccome è una chiave ma allo stesso tempo viene tenuto in memoria dentro la classe user, il motivo di questa condizione è per facilitare la serializzazione che è stata scritta a mano.
+
+##### Processo di serializzazione
+
+La serializzaione viene fatta scrivendo su file una riga fatta in questo modo per ogni utente: 
+
+```
+_key_ _name_ _startDate_ _endDate_ _isEnabled_
+```
+
+Per distinguere i vari parametri al momento della lettura si trasforma la riga in una lista utilizzando lo spazio come carattere di divisione e a quel punto ad ogni posizione degli elementi nella lista corrisponde un valore utile. Siccome la tasformazione dei parametri `starDate` e `endDate` in stringa comporta anche la stampa dell'orario, la stringa risultante è di questo tipo: 
+
+```
+Rombo Rombo 2025-10-01 00:00:00 2025-10-21 00:00:00 true
+```
+
+I valori utili sono quindi: 
+
+```
+[0] [1] [2] [4] [6]
+```
   
 </details>
 
