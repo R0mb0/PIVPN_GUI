@@ -217,6 +217,8 @@ I valori utili sono quindi:
 ```
 [0] [1] [2] [4] [6]
 ```
+
+  L'ultimo aggiornamento all'applicazione prevede che ad ogni operazione dell'utente, lo stato del database viene scritto sul disco 
   
 </details>
 
@@ -227,7 +229,45 @@ I valori utili sono quindi:
     
   </summary>
 
-  
+Siccome "PIVPN" necessita delle riga di comando per essere amministrata, la sfida è stata quella di far in modo che l'applicazione potesse lanciare dei comandi da terminale, con il problema aggiuntivo che i comandi devono avere privilegi "sudo".
+La procedura generale (secondo la documentazione di "Dart") per ottenere questo risultato è sufficiente usare la sintassi per lanciare i comandi da terminale senza particolare privilegi, disabilitando a livello di sistema la necessità di quei comandi di eseguire come "sudo".  
+Pensando alla diffusione del software, non si è voluto intraprendere questa strada per la risoluzione del problema, ma si è preferito sviluppare la propria soluzione.  
+Il paradigma pervede che l'applicazione richiami degli script (impostati precedentemente come eseguibili) in formato ".sh" e che quest'ultimi richiamino i privilegi "sudo". 
+
+##### Sviluppo degli script 
+
+Tutto gli script per funzionare necessitano di un file `password.sh` che al momento dell'installazione dell'applicazione deve essere creato dall'utente.   
+Esempio del file: 
+
+A questo punto la guida d'installazione dell'applicazione menziona l'esecuzione di uno script che rende eseguibili tutti gli script necessari per il corretto funzionamento dell'applicazione, qui di seguito riportato per la spiegazione. 
+
+```shell
+#!/bin/bash
+
+# List of scripts to make executable
+scripts=(
+  "addUser.sh"
+  "disableUser.sh"
+  "enableUser.sh"
+  "listUsers.sh"
+  "removeUser.sh"
+  "update.sh"
+)
+
+# Loop through each script and make it executable
+for script in "${scripts[@]}"; do
+  if [ -f "$script" ]; then
+    chmod +x "$script"
+    echo "Made $script executable."
+  else
+    echo "File $script does not exist."
+  fi
+done
+```
+Lo script funziona che esegue
+
+Esempio di uno script che
+
   
 </details>
 
