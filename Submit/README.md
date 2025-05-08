@@ -239,6 +239,11 @@ Il paradigma pervede che l'applicazione richiami degli script (impostati precede
 Tutto gli script per funzionare necessitano di un file `password.sh` che al momento dell'installazione dell'applicazione deve essere creato dall'utente.   
 Esempio del file: 
 
+```shell
+#!/bin/bash
+PASSWORD = "your_sudo_password"
+```
+
 A questo punto la guida d'installazione dell'applicazione menziona l'esecuzione di uno script che rende eseguibili tutti gli script necessari per il corretto funzionamento dell'applicazione, qui di seguito riportato per la spiegazione. 
 
 ```shell
