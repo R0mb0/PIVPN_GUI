@@ -588,6 +588,8 @@ After the first launch, if the application is closed and reopened, it will resto
   
 </details>
 
+</details>
+
 -----------------------------------------------------------------------------
 
 
