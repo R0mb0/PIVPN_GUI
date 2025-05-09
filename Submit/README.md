@@ -477,10 +477,96 @@ void _onWindowClose() {
     
   </summary>
 
-  
+  #### Fisrt launch
+
+  After had setted the enviroment (following the guide in the project main page) is possible launch the application. A this point the operator can only add a new user. In way to do this operation, must be completed the three input fields at the application's top.
+
+  <details>
+<summary>
+	
+_View the image_
+
+</summary>
+
+![Fields](https://github.com/R0mb0/PIVPN_GUI/blob/main/Project_infos/Fields.png)
+
+</details><br>
+
+The name can be any string, while the dates must be in american format (year-month-day).<br>
+
+##### ⚠️ Warnings 
+
+- To create a always allowed user is necessary setting the "end-date" field as a very distant date (e.g., 2050-01-01).
+- The "end-date" field must be filled with a date always later than the current date of the user's insertion.
+- Is not possible add two users with the same name
+
+Afther the fields filling, the operator must click on "add user" button in way to add the user to the "VPN".
+
+<details>
+<summary>
+	
+_View the image_
+
+</summary>
+
+![Add_User](https://github.com/R0mb0/PIVPN_GUI/blob/main/Project_infos/Add_user.png)
+
+</details>
+
+At this point in the screen will be opened a new window with inside a Qr code that must be shared with the user who wants access to the "VPN". 
+
+<details>
+<summary>
+
+_View the image_
+
+</summary>
+
+![qr-code](https://github.com/R0mb0/PIVPN_GUI/blob/main/Project_infos/qr-code.png)
+
+</details>
   
 </details>
 
+Every times that the operator do a operation the changes will be saved in the memory, in way to garanted the application's consistency with the "VPN". 
+How could be observing, the table in the application's middle now have a new entry.
+
+<details>
+<summary>
+	
+_View the image_
+
+</summary>
+
+![Table_with_record](https://github.com/R0mb0/PIVPN_GUI/blob/main/Project_infos/Table_with_record.png)
+
+</details>
+
+Now the operator can choose to add a new user (following the last instructions) or doing the ramaining operations displayed by the interface.
+
+<details>
+<summary>
+	
+_View the image_
+
+</summary>
+
+![Buttons](https://github.com/R0mb0/PIVPN_GUI/blob/main/Project_infos/Buttons.png)
+
+</details>
+
+For this last operations, the operator can only fill the user name field (reported by the table) to doing its.
+
+##### ⚠️ Warnings 
+
+- Is not posssible enable an user that has been disabled because it's "end date" has been passed.
+- In way to restore an user, it must be delected and re-added with updated dates.
+
+When the operatos has finished his operations, the application must remain opened in way to permit at a second application's thread to check the user status day by day. If the application is closed the "VPN" will continue to work if the computer is on. 
+
+#### Subsequent launch after the first
+
+If after the first launch the application will restore the last memory state before the close, permitting to operate normally.
   
 </details>
 
