@@ -269,10 +269,37 @@ for script in "${scripts[@]}"; do
   fi
 done
 ```
-Lo script funziona che esegue
+Il funzionamento dello script è che data una lista con tutti i file da rendere eseguibili (nella stessa cartella dello script), si cicla la lista verificando l'esistenza dei file inseriti e solo dopo vengono modificate le proprietà di esecuzione 
 
-Esempio di uno script che
+Esempio di uno script eseguito dall'applicazione: 
 
+```shell
+#!/bin/bash
+
+source ./password.sh
+
+# Check if a parameter is provided
+if [ -z "$1" ]; then
+  echo "Usage: $0 <parameter>"
+  exit 1
+fi
+
+# Use the parameter
+param=$1
+echo ${PASSWORD} | sudo -S pivpn -a -n $param
+
+gnome-terminal -- bash -c "echo $param | sudo -S pivpn -qr; exec bash"
+
+# Check if the command was successful
+if [ $? -eq 0 ]; then
+  echo "Command executed successfully."
+else
+  echo "Command failed."
+  exit 1
+fi
+```
+
+Questo script ha la funzione di aggiungere un utente alla VPN, il suo funzionamento può essere spiegato facilmente dividendolo in tre parti, dove nella prima parte viene controllato se l'applicazione ha passato un argomento, se si, viene lanciato il comando per aggiungere l'utente alla VPN e viene aperto il pannello con il qr-code di collegamento con il comando immediatamente successivo. L'ultima parte controlla se ci sono stati errori e riporta il risultato lanciando un "echo" che poi verrà raccolto proprio dalla funzione di "Dart" utilizzata per lanciare i comandi del terminale.
   
 </details>
 
@@ -283,7 +310,126 @@ Esempio di uno script che
     
   </summary>
 
-  
+  Nell'applicazione viene lanciato un thred separato rispetto al thread principale, in modo che possa esistere una parte di codice che finché rimane aperta l'applicazione esegue un ciclo "While true" con una pasua di circa 24 ore, per controllare di gionro in gionro lo stato di tutti gli utenti registrati dall'operatore e nel caso in cui per qualcuno è stata superata la data di fine servizio, ques'ultimo verrà disabilitato in automatico. 
+
+  ##### La classe del thread
+
+```dart
+class ThreadManager {
+  bool _isRunning = false;
+  Isolate? _isolate;
+  ReceivePort? _receivePort;
+  late StreamSubscription _subscription;
+
+  void startThread(Function updateTable) {
+    if (_isRunning) return;
+    _isRunning = true;
+    _receivePort = ReceivePort();
+    _subscription = _receivePort!.listen((message) {
+      if (message == 'update') {
+        updateTable();
+      }
+    });
+    Isolate.spawn(_threadEntry, _receivePort!.sendPort);
+  }
+
+  void stopThread() {
+    if (!_isRunning) return;
+    _isRunning = false;
+    _isolate?.kill(priority: Isolate.immediate);
+    _subscription.cancel();
+    _receivePort?.close();
+  }
+
+  static void _threadEntry(SendPort sendPort) async {
+    // My field to work 
+    Mediator mediator = Mediator();
+
+    bool isRunning = true;
+    ReceivePort receivePort = ReceivePort();
+    sendPort.send(receivePort.sendPort);
+    bool isSomethingChanged = false;
+
+    receivePort.listen((message) {
+      if (message == 'stop') {
+        isRunning = false;
+        receivePort.close();
+      }
+    });
+
+    while (isRunning) {
+      mediator.GetAllUsers().forEach((value){
+        if(value.isEnabled && DateTime.now().isAfter(value.endDate))
+        {
+          value.isEnabled = false; 
+          isSomethingChanged = true;
+        }
+      });
+      // write database only if necessary
+      if(isSomethingChanged){
+        mediator.SaveDatabase();
+      }
+      sendPort.send('update'); // Send update message to main isolate
+      isSomethingChanged = false;
+      await Future.delayed(Duration(seconds: 86400)); // delay for operations
+    }
+    print('Thread stopped.');
+  }
+}
+```
+
+Per il controllo del thread oltre ad usare una varaibile di stato, si usa un sistema di messaggi che in questo caso vengono inviati alla "porta del thread".   
+Se il thread è stato invocato viene fatta una chiamata di sistema per metterlo in esecuzione (a questo punto il thread è già stato allocato a livello logico ma non è attivo) aggiornando successivamente lo stato dei messaggi. La medesima cosa viene fatta anche nel momento dell'interruzione del thread (che a livello logico rimarrà comunque allocato in memoria in attesa di ripartire).  
+Al momento dell'esecuzione si eseguono i comando che sono dentro la funzione `_threadEntry()`, dove una volta aver ricontrollato lo stato del thread si procede ad avviare il ciclo "While true" che controlla lo stato degli utenti e se necessario li disabilita
+
+
+  ##### Variabili del Thread
+
+  ```dart
+  // Fields to Manage Thread
+  final ThreadManager _threadManager = ThreadManager();
+  bool _isThreadRunning = false;
+  ```
+
+  ##### Funzioni per la gestione del thread
+
+  ```dart
+  void _startThread() {
+    _threadManager.startThread(update_table);
+    setState(() {
+      _isThreadRunning = true;
+    });
+  }
+
+  void _stopThread() {
+    _threadManager.stopThread();
+    setState(() {
+      _isThreadRunning = false;
+    });
+  }
+  ```
+
+Queste funzioni vengoni usate dalla classe principale "main" per controllare il thread durante il flusso dell'applicazione, dove in questo caso specifico l'applicazione esegue il trhead dopo che ha ripristinato lo stato della memoria e chiude l'esecuzione del trhed poco prima di chiudersi dopo aver ricevuto il corrispettivo comando dall'operatore.
+
+##### Dove il thread viene lanciato
+
+```dart
+void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+    _startThread(); //<------------------------------- Start thread to manage users
+    load_database();
+  }
+```
+
+##### Dove il thread viene terminato
+
+```dart
+void _onWindowClose() {
+    _stopThread();
+    //mediator.SaveDatabase(); //<--------------------------------------------------------------------------------------------------------------------------------
+  }
+```
   
 </details>
   
