@@ -198,7 +198,7 @@ class User {
 }
 ```
 
-Il parametro `name` si ripete in questa struttura poiché è sia una chiave del dizionario sia un attributo memorizzato all'interno della classe `User`. Questa scelta è stata fatta per semplificare il processo di serializzazione, che è stato implementato manualmente.
+Il parametro `name` si ripete in questa struttura poiché è sia una chiave del dizionario sia un attributo memorizzato all'interno della classe `User`. Questa scelta è stata fatta per semplificare il processo di serializzazione dato che la chiave del dizionario è anche la chiave su "PIVPN", questa soluzione permette di tenere aggregati i dati di due "dastabase".
 
 ##### Processo di serializzazione
 
@@ -305,7 +305,7 @@ fi
 
 Questo script ha la funzione di aggiungere un utente alla VPN. Il suo funzionamento può essere spiegato suddividendolo in tre parti:  
 1. **Controllo dell'argomento**: verifica se l'applicazione ha passato un argomento; in caso contrario, esce con un messaggio di errore.  
-2. **Esecuzione del comando**: se l'argomento è presente, lo script lancia il comando per aggiungere l'utente alla VPN, seguito dal comando per aprire il pannello con il QR code necessario per il collegamento.  
+2. **Esecuzione del comando**: se l'argomento è presente, lo script lancia il comando per aggiungere l'utente alla VPN, seguito dal comando per aprire la finestra con il QR code necessario per il collegamento.  
 3. **Verifica del risultato**: controlla se il comando è stato eseguito correttamente, restituendo un messaggio di successo o di errore. Il risultato viene riportato tramite un `echo`, che sarà raccolto dalla funzione di "Dart" utilizzata per eseguire i comandi da terminale.
   
 </details>
@@ -385,7 +385,7 @@ class ThreadManager {
 ```
 
 Per il controllo del thread, oltre all'utilizzo di una variabile di stato, viene usato un sistema di messaggi inviati alla "porta del thread".  
-Quando il thread viene avviato, viene effettuata una chiamata di sistema per metterlo in esecuzione (a questo punto il thread è già allocato logicamente ma non è attivo), e successivamente viene aggiornato lo stato dei messaggi. Lo stesso processo viene eseguito al momento dell'interruzione del thread (che rimane comunque allocato in memoria, in attesa di essere riavviato).  
+Quando il thread viene avviato, viene effettuata una chiamata di sistema per metterlo in esecuzione (prima di questo punto il thread è già allocato logicamente ma non è attivo), e successivamente viene aggiornato lo stato dei messaggi. Lo stesso processo viene eseguito al momento dell'interruzione del thread (che rimane comunque allocato in memoria, in attesa di essere riavviato).  
 Durante l'esecuzione, il thread segue le istruzioni contenute nella funzione `_threadEntry()`. Dopo aver verificato lo stato del thread, avvia un ciclo "while true" che controlla lo stato degli utenti e, se necessario, li disabilita.
 
 ##### Variabili del thread
@@ -618,24 +618,275 @@ After the first launch, if the application is closed and reopened, it will resto
     
   </summary>
 
-  
+To save user information, the application uses a class named "Database" that stores it in a "dictionary." The dictionary is serialized and deserialized to save and load the information from the disk.
+
+##### Dictionary structure
+
+```mermaid
+---
+title: Logical structure of the dictionary
+---
+classDiagram
+
+Dictionary <|-- User
+
+class Dictionary {
+  key: Name
+  Value: User
+}
+
+class User {
+  String name
+  Date startDate
+  Date endDate
+  Boolean isEnabled 
+}
+```
+
+The "name" parameter is duplicated in this structure to simplify the serialization process. Specifically, the "name" parameter appears inside the user information and also as the key of the dictionary. This is because the dictionary key also serves as a key for "PIVPN," allowing the information to be aggregated.
+
+##### Serialization process 
+
+The serialization process involves writing lines like the following into a file for every user:
+
+```
+_key_ _name_ _startDate_ _endDate_ _isEnabled_
+```
+
+To separate the parameters during file reading, each line is converted into a list using spaces as delimiters, so every piece of information has a fixed position in memory. The conversion of `start-date` and `end-date` to a string also includes the time, which is why the saved lines are in this format:
+
+```
+Rombo Rombo 2025-10-01 00:00:00 2025-10-21 00:00:00 true
+```
+
+The required values are located in the following positions:
+
+```
+[0] [1] [2] [4] [6]
+```
+
+The latest application update introduced a feature that ensures the memory status is saved to disk after every operator action.
   
 </details>
-  
-</details>
-
-</details>
-
------------------------------------------------------------------------------
-
 
 <details>
   <summary>
 
-  #### 
+  #### Shell interaction
+    
+  </summary>
+"PIVPN" requires the terminal to be administered, but in this case, the commands must operate with "sudo" privileges. The challenge was to find a way to send these terminal commands.   
+The "Dart" documentation suggests using the basic instructions to launch terminal commands and, if the commands require "sudo" privileges, to modify the system configuration to disable the "sudo" requirement.   
+Considering the distribution of this software, I decided to develop an alternative solution because the suggested approach in "Dart" is too complex.  
+The paradigm developed involves defining scripts for every necessary command. These scripts will be launched by the application as normal commands, and it will be the scripts themselves that execute the "PIVPN" commands with "sudo" privileges.
+
+##### Script Development
+
+To work correctly, every script requires a file called `password.sh`, which contains the sudo password. The creation of this file is explained in the application's guide on the main page.  
+Example of the file: 
+
+```shell
+#!/bin/bash
+PASSWORD="your_sudo_password"
+```
+
+After this step, the procedure requires executing a script that changes the execute permissions of all scripts inside the same directory.  
+Example of the script: 
+
+```shell
+#!/bin/bash
+
+# List of scripts to make executable
+scripts=(
+  "addUser.sh"
+  "disableUser.sh"
+  "enableUser.sh"
+  "listUsers.sh"
+  "removeUser.sh"
+  "update.sh"
+)
+
+# Loop to make the files executable
+for script in "${scripts[@]}"; do
+  if [ -f "$script" ]; then
+    chmod +x "$script"
+    echo "Made $script executable."
+  else
+    echo "The file $script does not exist."
+  fi
+done
+```
+
+In this case, given a list of scripts in the same folder, it verifies the existence of the files and changes their execute permissions.
+
+##### Example of a file actually executed by the application
+
+Example of the file:
+
+```shell
+#!/bin/bash
+
+source ./password.sh
+
+# Check if a parameter is provided
+if [ -z "$1" ]; then
+  echo "Usage: $0 <parameter>"
+  exit 1
+fi
+
+# Use the parameter
+param=$1
+echo ${PASSWORD} | sudo -S pivpn -a -n $param
+
+gnome-terminal -- bash -c "echo $param | sudo -S pivpn -qr; exec bash"
+
+# Verify if the command was executed successfully
+if [ $? -eq 0 ]; then
+  echo "Command executed successfully."
+else
+  echo "Command failed."
+  exit 1
+fi
+```
+
+This script adds a new user to the "VPN." It can be explained by dividing the code into three parts:
+1. **Argument Checking**: Verifies if the application has passed an argument; otherwise, it returns an error message.
+2. **Command Execution**: If the argument is passed, the script launches the command to add a user to the "VPN," followed by the command to open a new window with the QR code for the VPN connection.
+3. **Status Check**: Checks if the command was executed correctly and performs an "echo" of the status, which will be intercepted by the "Dart" function used to call the script.
+  
+</details>
+
+<details>
+  <summary>
+
+  #### Thread managing
     
   </summary>
 
+When the application starts, a thread (separate from the main thread) is launched to perform a "while true" loop with a 24-hour pause. As long as the application is running, the thread operates. This thread checks the status of all users daily, automatically disabling those whose service time has expired.
+
+##### The thread class
+
+```dart
+class ThreadManager {
+	bool _isRunning = false;
+	Isolate? _isolate;
+	ReceivePort? _receivePort;
+	late StreamSubscription _subscription;
+	
+	void startThread(Function updateTable) {
+		if (_isRunning) return;
+		_isRunning = true;
+		_receivePort = ReceivePort();
+		_subscription = _receivePort!.listen((message) {
+			if (message == 'update') {
+				updateTable();
+			}
+		});
+		Isolate.spawn(_threadEntry, _receivePort!.sendPort);
+	}
+	
+	void stopThread() {
+		if (!_isRunning) return;
+		_isRunning = false;
+		_isolate?.kill(priority: Isolate.immediate);
+		_subscription.cancel();
+		_receivePort?.close();
+	}
+	
+	static void _threadEntry(SendPort sendPort) async {
+		// Field for the work
+		Mediator mediator = Mediator();
+		
+		bool isRunning = true;
+		ReceivePort receivePort = ReceivePort();
+		sendPort.send(receivePort.sendPort);
+		bool isSomethingChanged = false;
+		
+		receivePort.listen((message) {
+			if (message == 'stop') {
+				isRunning = false;
+				receivePort.close();
+			}
+		});
+		
+		while (isRunning) {
+			mediator.GetAllUsers().forEach((value) {
+				if (value.isEnabled && DateTime.now().isAfter(value.endDate)) {
+					value.isEnabled = false;
+					isSomethingChanged = true;
+				}
+			});
+			// Save the database only if necessary
+			if (isSomethingChanged) {
+				mediator.SaveDatabase();
+			}
+			sendPort.send('update'); // Send an update message to the main isolate
+			isSomethingChanged = false;
+			await Future.delayed(Duration(seconds: 86400)); // 24-hour delay
+		}
+		print('Thread stopped.');
+	}
+}
+```
+
+The thread is managed using a status variable and by sending messages to the "thread port."  
+When the thread needs to start, a system call is performed to execute it (at this point, the thread is already in memory but not yet active in the system), and the message status is updated.  
+The same process is performed when the thread needs to stop (the thread will remain in memory, waiting to be restarted).  
+During its execution, the thread performs the actions inside the `_threadEntry()` function. After checking the thread's status, it starts a "while true" loop that checks the users' statuses and, if necessary, disables users whose connection time has expired.
+
+##### Thread variables 
+
+```dart
+// Variables for thread management
+final ThreadManager _threadManager = ThreadManager();
+bool _isThreadRunning = false;
+```
+
+##### Functions to manage the thread
+
+```dart
+void _startThread() {
+	_threadManager.startThread(update_table);
+	setState(() {
+		_isThreadRunning = true;
+	});
+}
+
+void _stopThread() {
+	_threadManager.stopThread();
+	setState(() {
+		_isThreadRunning = false;
+	});
+}
+```
+
+These functions are used inside the main class to manage the thread during the application's flow.  
+In this case, the thread is started during the application's launch and is terminated when the application closes.
+
+##### Where the thread is called 
+
+```dart
+void initState() {
+	super.initState();
+	WidgetsBinding.instance.addObserver(this);
+	_startThread(); //<------------------------------- Start the thread to manage users
+	load_database();
+}
+```
+
+##### Where the thread is terminated
+
+```dart
+void _onWindowClose() {
+	_stopThread();
+	//mediator.SaveDatabase(); //<--------------------------------------------------------------------------------------------------------------------------------
+}
+```
+```
   
+</details>
   
+</details>
+
 </details>
