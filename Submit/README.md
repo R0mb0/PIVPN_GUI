@@ -59,7 +59,11 @@ L'applicazione presenta al centro una tabella che consente di visualizzare tutti
 Dopo aver configurato l'ambiente (seguendo la guida presente nella pagina principale), si può aprire l'applicazione. A questo punto, l'operatore può solo aggiungere nuovi utenti. Per fare questa operazione, deve completare i tre campi di input presenti nella parte superiore dell'interfaccia.
 
 <details>
-<summary>_Guarda l'immagine_</summary>
+<summary>
+
+_Guarda l'immagine_
+
+</summary>
 
 ![Fields](https://github.com/R0mb0/PIVPN_GUI/blob/main/Project_infos/Fields.png)
 
@@ -76,7 +80,11 @@ Il nome può essere una qualsiasi stringa, mentre le date devono essere necessar
 Una volta completati i campi, l'operatore deve premere sul pulsante "Add User" per aggiungere l'utente alla VPN.
 
 <details>
-<summary>_Guarda l'immagine_</summary>
+<summary>
+
+_Guarda l'immagine_
+
+</summary>
 
 ![Add_User](https://github.com/R0mb0/PIVPN_GUI/blob/main/Project_infos/Add_user.png)
 
@@ -85,7 +93,11 @@ Una volta completati i campi, l'operatore deve premere sul pulsante "Add User" p
 A questo punto, si aprirà una finestra separata contenente un QR code necessario per connettere la VPN, che l'operatore dovrà condividere con chi desidera connettersi.
 
 <details>
-<summary>_Guarda l'immagine_</summary>
+<summary>
+
+_Guarda l'immagine_
+
+</summary>
 
 ![qr-code](https://github.com/R0mb0/PIVPN_GUI/blob/main/Project_infos/qr-code.png)
 
@@ -95,7 +107,11 @@ Ogni volta che l'operatore esegue un'operazione, i cambiamenti dello stato della
 Come si sarà sicuramente notato, la tabella al centro dell'applicazione avrà acquisito un nuovo valore.
 
 <details>
-<summary>_Guarda l'immagine_</summary>
+<summary>
+
+_Guarda l'immagine_
+
+</summary>
 
 ![Table_with_record](https://github.com/R0mb0/PIVPN_GUI/blob/main/Project_infos/Table_with_record.png)
 
@@ -104,7 +120,11 @@ Come si sarà sicuramente notato, la tabella al centro dell'applicazione avrà a
 A questo punto, l'operatore può scegliere se aggiungere un nuovo utente (seguendo le istruzioni precedenti) oppure eseguire le altre tre operazioni riportate dall'interfaccia.
 
 <details>
-<summary>_Guarda l'immagine_</summary>
+<summary>
+
+_Guarda l'immagine_
+
+</summary>
 
 ![Buttons](https://github.com/R0mb0/PIVPN_GUI/blob/main/Project_infos/Buttons.png)
 
