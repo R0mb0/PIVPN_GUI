@@ -432,6 +432,56 @@ void _onWindowClose() {
   ## 👉 In english
     
   </summary>
+
+<details>
+  <summary>
+
+  ### _A._ Name and student ID number
+    
+  </summary>
+
+  - Francesco Rombaldoni
+  - Matricola: 330130
+  
+</details>
+
+<details>
+<summary>
+
+### _B._ Project Title
+
+</summary>
+
+- The project title is: **PIVPN**
+
+</details>
+
+<details>
+  <summary>
+
+  ### _C._ Short overview of the project idea and main features of the application 
+    
+  </summary>
+
+  - The project idea is to develop a [Flutter](https://flutter.dev/) application to simplify interaction with the [PIVPN](https://www.pivpn.io/) "VPN", as currently, it can only be managed through the terminal. The application also introduces new functionalities, such as the automatic disabling of a user.
+  - The application allows interaction with [PIVPN](https://www.pivpn.io/) through a user interface, enabling the creation, deletion, enabling, and disabling of users. It also allows linking each user to a "start-date" and an "end-date," automatically disabling users whose access period has expired.
+    <br>
+    The application features a central table where the operator can view the status of all users.
+  
+</details>
+
+<details>
+  <summary>
+
+  ### _D._ User experience overview
+    
+  </summary>
+
+  
+  
+</details>
+
+  
 </details>
 
 -----------------------------------------------------------------------------
