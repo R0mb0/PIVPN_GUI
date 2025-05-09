@@ -212,7 +212,7 @@ L'ultimo aggiornamento dell'applicazione prevede che, a ogni operazione eseguita
   </summary>
 Siccome "PIVPN" richiede l'utilizzo della riga di comando per essere amministrata, la sfida è stata quella di fare in modo che l'applicazione potesse eseguire comandi da terminale, con il problema aggiuntivo che questi comandi necessitano di privilegi "sudo".  
 Secondo la documentazione di "Dart", per ottenere questo risultato sarebbe sufficiente utilizzare la sintassi per lanciare comandi da terminale senza particolari privilegi, disabilitando a livello di sistema la necessità di eseguirli come "sudo".  
-Tuttavia, considerando la diffusione del software, non si è voluto seguire questa strada. Si è preferito invece sviluppare una soluzione personalizzata.  
+Tuttavia, considerando la diffusione del software, non si è voluto seguire questa strada poiché molto macchinosa. Si è preferito invece sviluppare una soluzione personalizzata.  
 Il paradigma scelto prevede che l'applicazione richiami degli script (precedentemente impostati come eseguibili) in formato `.sh`, i quali a loro volta richiedono i privilegi "sudo".
 
 ##### Sviluppo degli script
