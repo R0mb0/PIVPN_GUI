@@ -1,5 +1,7 @@
 Urbino`s University - Computing and digital innovation - Programming of mobile devices and user interfaces
 
+- For the professor: [Submit](https://github.com/R0mb0/PIVPN_GUI/edit/main/Submit/README.md)
+
 # PIVPN GUI
 
 <div align="center">
