@@ -588,6 +588,42 @@ After the first launch, if the application is closed and reopened, it will resto
   
 </details>
 
+<details>
+  <summary>
+
+  ### _E._ Technology Discussion
+    
+  </summary>
+
+  <details>
+  <summary>
+
+  #### Libraries Used in the Project
+    
+  </summary>
+
+- `package:flutter/material.dart` -> Default library
+- `dart:async` -> Library for thread management
+- `dart:isolate` -> Library for thread management
+- `dart:io` -> Library for interacting with system files
+- `package:process_run/shell.dart` -> Library for interacting with the shell
+- `dart:ffi` -> Library for memory allocation, used to allocate the thread
+  
+</details>
+
+<details>
+  <summary>
+
+  #### The database building
+    
+  </summary>
+
+  
+  
+</details>
+  
+</details>
+
 </details>
 
 -----------------------------------------------------------------------------
@@ -596,7 +632,7 @@ After the first launch, if the application is closed and reopened, it will resto
 <details>
   <summary>
 
-  ### 
+  #### 
     
   </summary>
 
