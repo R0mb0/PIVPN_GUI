@@ -37,13 +37,13 @@
     
   </summary>
 
-  - L'idea di progetto è quella di realizzare un'applicazione in [Flutter](https://flutter.dev/) che faciliti l'interazione con la "VPN" [PIVPN](https://www.pivpn.io/) siccome quest'ultima è interagibile solo tramite "riga di comando" e d'implementare
-    delle funzionalità aggiuntive come la possibilità di disattivare un utente dopo una certa data.
-  - L'applicazione sviluppata permette tramite interfaccia grafica d'interagire con [PIVPN](https://www.pivpn.io/)  creando, eliminando, abilitando e disabilitando gli utenti, permette di associare ad ogni utente una data d'inizio e di fine disattivando in automatico gli utenti che hanno superato la propria data di utilizzo.
+  - L'idea del progetto è quella di realizzare un'applicazione in [Flutter](https://flutter.dev/) che faciliti l'interazione con la "VPN" [PIVPN](https://www.pivpn.io/), poiché quest'ultima è attualmente utilizzabile solo tramite "riga di comando". Inoltre, si intende implementare funzionalità aggiuntive, come la possibilità di disattivare un utente dopo una determinata data.
+  
+- L'applicazione sviluppata permette, tramite un'interfaccia grafica, di interagire con [PIVPN](https://www.pivpn.io/) per creare, eliminare, abilitare e disabilitare utenti. Consente, inoltre, di associare a ogni utente una data di inizio e una data di fine, disattivando automaticamente gli utenti che hanno superato il periodo di utilizzo consentito.
 
-    <br>
-    
-    L'applicazione possiede al centro una tabella dove vedere tutti gli utenti inseriti e il loro stato. 
+<br>
+
+L'applicazione presenta al centro una tabella che consente di visualizzare tutti gli utenti registrati e il loro stato.
   
 </details>
 
@@ -55,89 +55,73 @@
   </summary>
 
 #### Primo avvio
- Dopo aver impostato l'ambiente (seguendo la guida presente nella pagina principale) si può aprire l'applicazione, a questo punto l'operatore può solo aggiungere dei nuovi utenti, per fare questa operazione deve completare i tre campi di input che sono presenti nella parte alta dell'interfaccia.
-  
-  <details>
-    <summary>
 
-  _Guarda l'immagine_
+Dopo aver configurato l'ambiente (seguendo la guida presente nella pagina principale), si può aprire l'applicazione. A questo punto, l'operatore può solo aggiungere nuovi utenti. Per fare questa operazione, deve completare i tre campi di input presenti nella parte superiore dell'interfaccia.
 
-  </summary>
+<details>
+<summary>_Guarda l'immagine_</summary>
 
-  ![Fields](https://github.com/R0mb0/PIVPN_GUI/blob/main/Project_infos/Fields.png)
+![Fields](https://github.com/R0mb0/PIVPN_GUI/blob/main/Project_infos/Fields.png)
 
-  </details><br>
-  
-  Dove il nome può essere una qualsiasi stringa, mentre le date devono essere necessarimente inserite in standard americano (anno-mese-giorno).<br>
-  
-  ##### ⚠️ Avvertenze
+</details><br>
 
-  - Per creare un utente sempre abilitato è sufficiente aggiungere un utente con il campo "End Date" molto remoto (Ex 2050-01-01)
-  - La "data di fine" inserita deve essere sempre successiva alla data dell'inserimento dell'utente.
-  - Non si possono aggiungere due utenti con lo stesso nome. 
+Il nome può essere una qualsiasi stringa, mentre le date devono essere necessariamente inserite nel formato americano (anno-mese-giorno).<br>
 
-  Una volta aver completato i campi, l'operatore deve premere sul pulsante "Add User" per aggiungere l'utente alla VPN.
+##### ⚠️ Avvertenze
 
-  <details>
-  <summary>
+- Per creare un utente sempre abilitato, è sufficiente aggiungere un utente con il campo "End Date" impostato su una data molto remota (es. 2050-01-01).
+- La "data di fine" inserita deve essere sempre successiva alla data di inserimento dell'utente.
+- Non si possono aggiungere due utenti con lo stesso nome.
 
-  _Guarda l'immagine_
+Una volta completati i campi, l'operatore deve premere sul pulsante "Add User" per aggiungere l'utente alla VPN.
 
-  </summary>
+<details>
+<summary>_Guarda l'immagine_</summary>
 
-  ![Add_User](https://github.com/R0mb0/PIVPN_GUI/blob/main/Project_infos/Add_user.png)
+![Add_User](https://github.com/R0mb0/PIVPN_GUI/blob/main/Project_infos/Add_user.png)
 
-  </details>
+</details>
 
-  A questo punto in una finestra separata si aprirà un qr-code necessario per connettere la VPN, che l'operatore dovrà passare a chi è interessato a connettersi.
+A questo punto, si aprirà una finestra separata contenente un QR code necessario per connettere la VPN, che l'operatore dovrà condividere con chi desidera connettersi.
 
-  <details>
-  <summary>
+<details>
+<summary>_Guarda l'immagine_</summary>
 
-  _Guarda l'immagine_
+![qr-code](https://github.com/R0mb0/PIVPN_GUI/blob/main/Project_infos/qr-code.png)
 
-  </summary>
+</details>
 
-  ![qr-code](https://github.com/R0mb0/PIVPN_GUI/blob/main/Project_infos/qr-code.png)
+Ogni volta che l'operatore esegue un'operazione, i cambiamenti dello stato della memoria vengono salvati automaticamente, garantendo la consistenza tra le informazioni di "PIVPN" e dell'interfaccia grafica.<br>
+Come si sarà sicuramente notato, la tabella al centro dell'applicazione avrà acquisito un nuovo valore.
 
-  </details>
+<details>
+<summary>_Guarda l'immagine_</summary>
 
-  Ogni volta che l'operatore esegue una operazione, i cambiamenti dello stato della memoria vengono salvati in automatico, anche per fare in modo che vi sia consistenza tra le informazioni di "PIVPN" e dell'interfaccia grafica.
-  <br>
-  Come si sarà sicuramente notato la tebella al centro dell'applicazione avrà acquisito un valore.
+![Table_with_record](https://github.com/R0mb0/PIVPN_GUI/blob/main/Project_infos/Table_with_record.png)
 
-  <details>
-    <summary>
+</details>
 
-  _Guarda l'immagine_
+A questo punto, l'operatore può scegliere se aggiungere un nuovo utente (seguendo le istruzioni precedenti) oppure eseguire le altre tre operazioni riportate dall'interfaccia.
 
-  </summary>
+<details>
+<summary>_Guarda l'immagine_</summary>
 
-  ![Table_with_record](https://github.com/R0mb0/PIVPN_GUI/blob/main/Project_infos/Table_with_record.png)
+![Buttons](https://github.com/R0mb0/PIVPN_GUI/blob/main/Project_infos/Buttons.png)
 
-  </details>
+</details>
 
-  A questo punto, l'operatore può scegliere se aggiungere un nuovo utente (seguendo le istruzioni precedenti) oppure di eseguire le ultime tre operazionni riportate dall'interfaccia.
+Per queste ultime operazioni, è necessario inserire nel campo apposito il nome dell'utente bersaglio (reperibile dalla tabella al centro).<br>
 
-  <details>
-    <summary>
+##### ⚠️ Avvertenze
 
-  _Guarda l'immagine_
+- Non si può abilitare un utente che è stato disabilitato perché è stata superata la propria data di fine servizio.
+- Per rigenerare un utente, è necessario eliminarlo e aggiungerlo nuovamente con le date aggiornate.
 
-  </summary>
+Una volta terminate le operazioni, l'applicazione non deve essere chiusa. Questo permette al secondo thread del programma di controllare, una volta al giorno, lo stato degli utenti. Nel caso in cui l'applicazione venisse chiusa, il controllo automatico non sarà eseguito, ma finché il computer rimane acceso, la VPN continuerà a funzionare.
 
-  ![Buttons](https://github.com/R0mb0/PIVPN_GUI/blob/main/Project_infos/Buttons.png)
+##### Avvio successivo al primo
 
-  </details>
-
-  In questo caso, per queste ultime operazioni è necessario inserire nel campo apposito il nome dell'utente bersaglio (reperibile dalla tabella al centro) <br>
-
-  ##### ⚠️ Avvertenze
-  
-  - Non si può abilitare un utente che è stato disabilitato perché è stata superata la propria data di fine servizio
-  - Un utente per essere rigenerato dev'essere eliminato e riaggiunto con le date aggiornate
-
-  Una volta che l'operatore ha terminato le operazioni,l'applicazione non deve essere chiusa in modo che il secondo thread all'interno del programma possa controllare una volta al giorno lo stato degli utenti. Nel caso in cui l'applicazione venisse chiusa, il controllo automatico non potrà essere effetuato e finchè il computer rimane acceso la VPN continuerà a funzionare. 
+Se l'applicazione viene chiusa dopo il primo avvio e successivamente riaperta, l'operatore troverà lo stato dell'applicazione identico a com'era prima della chiusura, consentendo di operare normalmente.
 
 </details>
 
@@ -167,58 +151,56 @@
 <details>
   <summary>
 
-  #### La costruzione del database 
-    
-  </summary>
+#### La costruzione del database
 
-  Per salvare le informazioni degli utenti l'applicazione possiede una classe chiamata "database" che salva le informazioni in un "dizionario" che viene serializzato o deserializzato per il salvataggio delle informazioni sul disco. 
+Per salvare le informazioni degli utenti, l'applicazione utilizza una classe chiamata "Database" che salva i dati in un "dizionario". Questo dizionario viene serializzato e deserializzato per consentire il salvataggio delle informazioni sul disco.
 
-  ##### Struttura logica del dizionario
+##### Struttura logica del dizionario
 
-  ``` mermaid
-  ---
- title: Logic structure of dictionary
- ---
- classDiagram
+```mermaid
+---
+title: Logic structure of dictionary
+---
+classDiagram
 
 Dictionary <|-- User
 
-class Dictionary{
+class Dictionary {
   key: Name
   Value: User
 }
 
-class User{
-        String name
-        Date startDate
-        Date endDate
-        Boolean isEnabled 
-    }
-  ```
+class User {
+  String name
+  Date startDate
+  Date endDate
+  Boolean isEnabled 
+}
+```
 
-Il parametro `name` si ripete in questa struttura siccome è una chiave ma allo stesso tempo viene tenuto in memoria dentro la classe user, il motivo di questa condizione è per facilitare la serializzazione che è stata scritta a mano.
+Il parametro `name` si ripete in questa struttura poiché è sia una chiave del dizionario sia un attributo memorizzato all'interno della classe `User`. Questa scelta è stata fatta per semplificare il processo di serializzazione, che è stato implementato manualmente.
 
 ##### Processo di serializzazione
 
-La serializzaione viene fatta scrivendo su file una riga fatta in questo modo per ogni utente: 
+La serializzazione viene effettuata scrivendo su file una riga per ogni utente, strutturata nel seguente modo:
 
 ```
 _key_ _name_ _startDate_ _endDate_ _isEnabled_
 ```
 
-Per distinguere i vari parametri al momento della lettura si trasforma la riga in una lista utilizzando lo spazio come carattere di divisione e a quel punto ad ogni posizione degli elementi nella lista corrisponde un valore utile. Siccome la tasformazione dei parametri `starDate` e `endDate` in stringa comporta anche la stampa dell'orario, la stringa risultante è di questo tipo: 
+Per distinguere i vari parametri durante la lettura, la riga viene convertita in una lista utilizzando lo spazio come delimitatore. A ogni posizione degli elementi nella lista corrisponde un valore utile. Poiché la conversione dei parametri `startDate` e `endDate` in stringa include anche l'orario, la stringa risultante assume il seguente formato:
 
 ```
 Rombo Rombo 2025-10-01 00:00:00 2025-10-21 00:00:00 true
 ```
 
-I valori utili sono quindi: 
+I valori utili, quindi, sono indicati dalle seguenti posizioni:
 
 ```
 [0] [1] [2] [4] [6]
 ```
 
-  L'ultimo aggiornamento all'applicazione prevede che ad ogni operazione dell'utente, lo stato del database viene scritto sul disco 
+L'ultimo aggiornamento dell'applicazione prevede che, a ogni operazione eseguita dall'utente, lo stato del database venga immediatamente scritto sul disco.
   
 </details>
 
@@ -228,28 +210,27 @@ I valori utili sono quindi:
   #### Gestione della interazione con la shell
     
   </summary>
+Siccome "PIVPN" richiede l'utilizzo della riga di comando per essere amministrata, la sfida è stata quella di fare in modo che l'applicazione potesse eseguire comandi da terminale, con il problema aggiuntivo che questi comandi necessitano di privilegi "sudo".  
+Secondo la documentazione di "Dart", per ottenere questo risultato sarebbe sufficiente utilizzare la sintassi per lanciare comandi da terminale senza particolari privilegi, disabilitando a livello di sistema la necessità di eseguirli come "sudo".  
+Tuttavia, considerando la diffusione del software, non si è voluto seguire questa strada. Si è preferito invece sviluppare una soluzione personalizzata.  
+Il paradigma scelto prevede che l'applicazione richiami degli script (precedentemente impostati come eseguibili) in formato `.sh`, i quali a loro volta richiedono i privilegi "sudo".
 
-Siccome "PIVPN" necessita delle riga di comando per essere amministrata, la sfida è stata quella di far in modo che l'applicazione potesse lanciare dei comandi da terminale, con il problema aggiuntivo che i comandi devono avere privilegi "sudo".
-La procedura generale (secondo la documentazione di "Dart") per ottenere questo risultato è sufficiente usare la sintassi per lanciare i comandi da terminale senza particolare privilegi, disabilitando a livello di sistema la necessità di quei comandi di eseguire come "sudo".  
-Pensando alla diffusione del software, non si è voluto intraprendere questa strada per la risoluzione del problema, ma si è preferito sviluppare la propria soluzione.  
-Il paradigma pervede che l'applicazione richiami degli script (impostati precedentemente come eseguibili) in formato ".sh" e che quest'ultimi richiamino i privilegi "sudo". 
+##### Sviluppo degli script
 
-##### Sviluppo degli script 
-
-Tutto gli script per funzionare necessitano di un file `password.sh` che al momento dell'installazione dell'applicazione deve essere creato dall'utente.   
-Esempio del file: 
+Per funzionare correttamente, tutti gli script necessitano di un file `password.sh`, che deve essere creato dall'utente al momento dell'installazione dell'applicazione.  
+Esempio del file:
 
 ```shell
 #!/bin/bash
-PASSWORD = "your_sudo_password"
+PASSWORD="your_sudo_password"
 ```
 
-A questo punto la guida d'installazione dell'applicazione menziona l'esecuzione di uno script che rende eseguibili tutti gli script necessari per il corretto funzionamento dell'applicazione, qui di seguito riportato per la spiegazione. 
+Una volta creato il file, la guida d'installazione dell'applicazione prevede l'esecuzione di uno script che rende eseguibili tutti gli script necessari per il corretto funzionamento dell'applicazione. Di seguito è riportato un esempio dello script:
 
 ```shell
 #!/bin/bash
 
-# List of scripts to make executable
+# Elenco degli script da rendere eseguibili
 scripts=(
   "addUser.sh"
   "disableUser.sh"
@@ -259,47 +240,53 @@ scripts=(
   "update.sh"
 )
 
-# Loop through each script and make it executable
+# Ciclo per rendere eseguibili i file
 for script in "${scripts[@]}"; do
   if [ -f "$script" ]; then
     chmod +x "$script"
-    echo "Made $script executable."
+    echo "Reso $script eseguibile."
   else
-    echo "File $script does not exist."
+    echo "Il file $script non esiste."
   fi
 done
 ```
-Il funzionamento dello script è che data una lista con tutti i file da rendere eseguibili (nella stessa cartella dello script), si cicla la lista verificando l'esistenza dei file inseriti e solo dopo vengono modificate le proprietà di esecuzione 
 
-Esempio di uno script eseguito dall'applicazione: 
+Questo script, dato un elenco di file nella stessa cartella, verifica l'esistenza di ciascun file e successivamente ne modifica le proprietà per renderli eseguibili.
+
+##### Esempio di uno script eseguito dall'applicazione
+
+Ecco un esempio di script utilizzato dall'applicazione:
 
 ```shell
 #!/bin/bash
 
 source ./password.sh
 
-# Check if a parameter is provided
+# Controlla se è stato fornito un parametro
 if [ -z "$1" ]; then
-  echo "Usage: $0 <parameter>"
+  echo "Uso: $0 <parametro>"
   exit 1
 fi
 
-# Use the parameter
+# Usa il parametro
 param=$1
 echo ${PASSWORD} | sudo -S pivpn -a -n $param
 
 gnome-terminal -- bash -c "echo $param | sudo -S pivpn -qr; exec bash"
 
-# Check if the command was successful
+# Verifica se il comando è stato eseguito correttamente
 if [ $? -eq 0 ]; then
-  echo "Command executed successfully."
+  echo "Comando eseguito con successo."
 else
-  echo "Command failed."
+  echo "Comando fallito."
   exit 1
 fi
 ```
 
-Questo script ha la funzione di aggiungere un utente alla VPN, il suo funzionamento può essere spiegato facilmente dividendolo in tre parti, dove nella prima parte viene controllato se l'applicazione ha passato un argomento, se si, viene lanciato il comando per aggiungere l'utente alla VPN e viene aperto il pannello con il qr-code di collegamento con il comando immediatamente successivo. L'ultima parte controlla se ci sono stati errori e riporta il risultato lanciando un "echo" che poi verrà raccolto proprio dalla funzione di "Dart" utilizzata per lanciare i comandi del terminale.
+Questo script ha la funzione di aggiungere un utente alla VPN. Il suo funzionamento può essere spiegato suddividendolo in tre parti:  
+1. **Controllo dell'argomento**: verifica se l'applicazione ha passato un argomento; in caso contrario, esce con un messaggio di errore.  
+2. **Esecuzione del comando**: se l'argomento è presente, lo script lancia il comando per aggiungere l'utente alla VPN, seguito dal comando per aprire il pannello con il QR code necessario per il collegamento.  
+3. **Verifica del risultato**: controlla se il comando è stato eseguito correttamente, restituendo un messaggio di successo o di errore. Il risultato viene riportato tramite un `echo`, che sarà raccolto dalla funzione di "Dart" utilizzata per eseguire i comandi da terminale.
   
 </details>
 
@@ -310,125 +297,123 @@ Questo script ha la funzione di aggiungere un utente alla VPN, il suo funzioname
     
   </summary>
 
-  Nell'applicazione viene lanciato un thred separato rispetto al thread principale, in modo che possa esistere una parte di codice che finché rimane aperta l'applicazione esegue un ciclo "While true" con una pasua di circa 24 ore, per controllare di gionro in gionro lo stato di tutti gli utenti registrati dall'operatore e nel caso in cui per qualcuno è stata superata la data di fine servizio, ques'ultimo verrà disabilitato in automatico. 
+  Nell'applicazione viene lanciato un thread separato rispetto al thread principale, in modo da eseguire una parte di codice che, finché l'applicazione rimane aperta, esegue un ciclo "while true" con una pausa di circa 24 ore. Questo thread controlla giornalmente lo stato di tutti gli utenti registrati dall'operatore. Nel caso in cui per un utente sia stata superata la data di fine servizio, quest'ultimo viene automaticamente disabilitato.
 
-  ##### La classe del thread
+##### La classe del thread
 
 ```dart
 class ThreadManager {
-  bool _isRunning = false;
-  Isolate? _isolate;
-  ReceivePort? _receivePort;
-  late StreamSubscription _subscription;
-
-  void startThread(Function updateTable) {
-    if (_isRunning) return;
-    _isRunning = true;
-    _receivePort = ReceivePort();
-    _subscription = _receivePort!.listen((message) {
-      if (message == 'update') {
-        updateTable();
-      }
-    });
-    Isolate.spawn(_threadEntry, _receivePort!.sendPort);
-  }
-
-  void stopThread() {
-    if (!_isRunning) return;
-    _isRunning = false;
-    _isolate?.kill(priority: Isolate.immediate);
-    _subscription.cancel();
-    _receivePort?.close();
-  }
-
-  static void _threadEntry(SendPort sendPort) async {
-    // My field to work 
-    Mediator mediator = Mediator();
-
-    bool isRunning = true;
-    ReceivePort receivePort = ReceivePort();
-    sendPort.send(receivePort.sendPort);
-    bool isSomethingChanged = false;
-
-    receivePort.listen((message) {
-      if (message == 'stop') {
-        isRunning = false;
-        receivePort.close();
-      }
-    });
-
-    while (isRunning) {
-      mediator.GetAllUsers().forEach((value){
-        if(value.isEnabled && DateTime.now().isAfter(value.endDate))
-        {
-          value.isEnabled = false; 
-          isSomethingChanged = true;
-        }
-      });
-      // write database only if necessary
-      if(isSomethingChanged){
-        mediator.SaveDatabase();
-      }
-      sendPort.send('update'); // Send update message to main isolate
-      isSomethingChanged = false;
-      await Future.delayed(Duration(seconds: 86400)); // delay for operations
-    }
-    print('Thread stopped.');
-  }
+	bool _isRunning = false;
+	Isolate? _isolate;
+	ReceivePort? _receivePort;
+	late StreamSubscription _subscription;
+	
+	void startThread(Function updateTable) {
+		if (_isRunning) return;
+		_isRunning = true;
+		_receivePort = ReceivePort();
+		_subscription = _receivePort!.listen((message) {
+			if (message == 'update') {
+				updateTable();
+			}
+		});
+		Isolate.spawn(_threadEntry, _receivePort!.sendPort);
+	}
+	
+	void stopThread() {
+		if (!_isRunning) return;
+		_isRunning = false;
+		_isolate?.kill(priority: Isolate.immediate);
+		_subscription.cancel();
+		_receivePort?.close();
+	}
+	
+	static void _threadEntry(SendPort sendPort) async {
+		// Campo per il lavoro
+		Mediator mediator = Mediator();
+		
+		bool isRunning = true;
+		ReceivePort receivePort = ReceivePort();
+		sendPort.send(receivePort.sendPort);
+		bool isSomethingChanged = false;
+		
+		receivePort.listen((message) {
+			if (message == 'stop') {
+				isRunning = false;
+				receivePort.close();
+			}
+		});
+		
+		while (isRunning) {
+			mediator.GetAllUsers().forEach((value) {
+				if (value.isEnabled && DateTime.now().isAfter(value.endDate)) {
+					value.isEnabled = false;
+					isSomethingChanged = true;
+				}
+			});
+			// Salva il database solo se necessario
+			if (isSomethingChanged) {
+				mediator.SaveDatabase();
+			}
+			sendPort.send('update'); // Invia un messaggio di aggiornamento all'isolato principale
+			isSomethingChanged = false;
+			await Future.delayed(Duration(seconds: 86400)); // Ritardo di 24 ore
+		}
+		print('Thread fermato.');
+	}
 }
 ```
 
-Per il controllo del thread oltre ad usare una varaibile di stato, si usa un sistema di messaggi che in questo caso vengono inviati alla "porta del thread".   
-Se il thread è stato invocato viene fatta una chiamata di sistema per metterlo in esecuzione (a questo punto il thread è già stato allocato a livello logico ma non è attivo) aggiornando successivamente lo stato dei messaggi. La medesima cosa viene fatta anche nel momento dell'interruzione del thread (che a livello logico rimarrà comunque allocato in memoria in attesa di ripartire).  
-Al momento dell'esecuzione si eseguono i comando che sono dentro la funzione `_threadEntry()`, dove una volta aver ricontrollato lo stato del thread si procede ad avviare il ciclo "While true" che controlla lo stato degli utenti e se necessario li disabilita
+Per il controllo del thread, oltre all'utilizzo di una variabile di stato, viene usato un sistema di messaggi inviati alla "porta del thread".  
+Quando il thread viene avviato, viene effettuata una chiamata di sistema per metterlo in esecuzione (a questo punto il thread è già allocato logicamente ma non è attivo), e successivamente viene aggiornato lo stato dei messaggi. Lo stesso processo viene eseguito al momento dell'interruzione del thread (che rimane comunque allocato in memoria, in attesa di essere riavviato).  
+Durante l'esecuzione, il thread segue le istruzioni contenute nella funzione `_threadEntry()`. Dopo aver verificato lo stato del thread, avvia un ciclo "while true" che controlla lo stato degli utenti e, se necessario, li disabilita.
 
+##### Variabili del thread
 
-  ##### Variabili del Thread
+```dart
+// Variabili per la gestione del thread
+final ThreadManager _threadManager = ThreadManager();
+bool _isThreadRunning = false;
+```
 
-  ```dart
-  // Fields to Manage Thread
-  final ThreadManager _threadManager = ThreadManager();
-  bool _isThreadRunning = false;
-  ```
+##### Funzioni per la gestione del thread
 
-  ##### Funzioni per la gestione del thread
+```dart
+void _startThread() {
+	_threadManager.startThread(update_table);
+	setState(() {
+		_isThreadRunning = true;
+	});
+}
 
-  ```dart
-  void _startThread() {
-    _threadManager.startThread(update_table);
-    setState(() {
-      _isThreadRunning = true;
-    });
-  }
+void _stopThread() {
+	_threadManager.stopThread();
+	setState(() {
+		_isThreadRunning = false;
+	});
+}
+```
 
-  void _stopThread() {
-    _threadManager.stopThread();
-    setState(() {
-      _isThreadRunning = false;
-    });
-  }
-  ```
+Queste funzioni vengono utilizzate dalla classe principale `main` per gestire il thread durante il flusso dell'applicazione. In questo caso specifico, l'applicazione avvia il thread dopo aver ripristinato lo stato della memoria e lo interrompe poco prima di chiudersi, a seguito del comando corrispondente ricevuto dall'operatore.
 
-Queste funzioni vengoni usate dalla classe principale "main" per controllare il thread durante il flusso dell'applicazione, dove in questo caso specifico l'applicazione esegue il trhead dopo che ha ripristinato lo stato della memoria e chiude l'esecuzione del trhed poco prima di chiudersi dopo aver ricevuto il corrispettivo comando dall'operatore.
-
-##### Dove il thread viene lanciato
+##### Dove il thread viene avviato
 
 ```dart
 void initState() {
-    super.initState();
-    WidgetsBinding.instance.addObserver(this);
-    _startThread(); //<------------------------------- Start thread to manage users
-    load_database();
-  }
+	super.initState();
+	WidgetsBinding.instance.addObserver(this);
+	_startThread(); //<------------------------------- Avvia il thread per gestire gli utenti
+	load_database();
+}
 ```
 
 ##### Dove il thread viene terminato
 
 ```dart
 void _onWindowClose() {
-    _stopThread();
-    //mediator.SaveDatabase(); //<--------------------------------------------------------------------------------------------------------------------------------
-  }
+	_stopThread();
+	//mediator.SaveDatabase(); //<--------------------------------------------------------------------------------------------------------------------------------
+}
 ```
   
 </details>
