@@ -497,11 +497,11 @@ void _onWindowClose() {
     
   </summary>
 
-  #### Fisrt launch
+#### First Launch
 
-  After had setted the enviroment (following the guide in the project main page) is possible launch the application. A this point the operator can only add a new user. In way to do this operation, must be completed the three input fields at the application's top.
+After setting the environment (following the guide on the project's main page), it is possible to launch the application. At this point, the operator can only add a new user. To perform this operation, the three input fields at the top of the application must be completed.
 
-  <details>
+<details>
 <summary>
 	
 _View the image_
@@ -512,15 +512,15 @@ _View the image_
 
 </details><br>
 
-The name can be any string, while the dates must be in american format (year-month-day).<br>
+The name can be any string, while the dates must be in American format (year-month-day).<br>
 
 ##### ⚠️ Warnings 
 
-- To create a always allowed user is necessary setting the "end-date" field as a very distant date (e.g., 2050-01-01).
-- The "end-date" field must be filled with a date always later than the current date of the user's insertion.
-- Is not possible add two users with the same name
+- To create an always-enabled user, it is necessary to set the "end-date" field to a very distant date (e.g., 2050-01-01).
+- The "end-date" field must contain a date that is always later than the current date of the user's insertion.
+- It is not possible to add two users with the same name.
 
-Afther the fields filling, the operator must click on "add user" button in way to add the user to the "VPN".
+After filling in the fields, the operator must click on the "Add User" button to add the user to the "VPN."
 
 <details>
 <summary>
@@ -533,7 +533,7 @@ _View the image_
 
 </details>
 
-At this point in the screen will be opened a new window with inside a Qr code that must be shared with the user who wants access to the "VPN". 
+At this point, a new window will open on the screen containing a QR code that must be shared with the user who wants to access the "VPN."
 
 <details>
 <summary>
@@ -545,11 +545,9 @@ _View the image_
 ![qr-code](https://github.com/R0mb0/PIVPN_GUI/blob/main/Project_infos/qr-code.png)
 
 </details>
-  
-</details>
 
-Every times that the operator do a operation the changes will be saved in the memory, in way to garanted the application's consistency with the "VPN". 
-How could be observing, the table in the application's middle now have a new entry.
+Every time the operator performs an operation, the changes will be saved in memory to ensure consistency between the application and the "VPN."  
+As can be observed, the table in the middle of the application now has a new entry.
 
 <details>
 <summary>
@@ -562,7 +560,7 @@ _View the image_
 
 </details>
 
-Now the operator can choose to add a new user (following the last instructions) or doing the ramaining operations displayed by the interface.
+Now the operator can choose to add a new user (following the instructions above) or perform the remaining operations displayed by the interface.
 
 <details>
 <summary>
@@ -575,18 +573,18 @@ _View the image_
 
 </details>
 
-For this last operations, the operator can only fill the user name field (reported by the table) to doing its.
+For these last operations, the operator must fill in the user name field (as shown in the table) to proceed.
 
 ##### ⚠️ Warnings 
 
-- Is not posssible enable an user that has been disabled because it's "end date" has been passed.
-- In way to restore an user, it must be delected and re-added with updated dates.
+- It is not possible to enable a user that has been disabled because their "end-date" has passed.
+- To restore a user, they must be deleted and re-added with updated dates.
 
-When the operatos has finished his operations, the application must remain opened in way to permit at a second application's thread to check the user status day by day. If the application is closed the "VPN" will continue to work if the computer is on. 
+When the operator has finished their operations, the application must remain open to allow a second thread within the application to check the user status daily. If the application is closed, the "VPN" will continue to work as long as the computer remains on.
 
-#### Subsequent launch after the first
+#### Subsequent Launch After the First
 
-If after the first launch the application will restore the last memory state before the close, permitting to operate normally.
+After the first launch, if the application is closed and reopened, it will restore the last memory state before closing, allowing normal operation.
   
 </details>
 
