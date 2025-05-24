@@ -21,12 +21,17 @@ class Database {
   // Add a user into database
   String AddUser(String name, User? user)
   { 
-    if(this.database.containsKey(name))
+    if(name.contains(RegExp(r"\s")))
     {
-      return "The username has already been used!";
+        return "Invalid name, it containing spaces!";
     }else{
-      this.database[name] = user;
-      return "User added!";
+      if(this.database.containsKey(name))
+      {
+        return "The username has already been used!";
+      }else{
+        this.database[name] = user;
+        return "User added!";
+      }
     }
   }
 

@@ -20,7 +20,7 @@ class Mediator {
     { 
       //String temp = this.myDatabase.AddUser(name, new User(name, startDate, endDate, isEnabled, isAlwaysAllowed));
       String temp = this.myDatabase.AddUser(name, new User(name, startDate, endDate, isEnabled));
-      if(temp != "The username has already been used!"){
+      if(temp == "User added!"){
         this.cli_adapter.AddUser(name);
       }
       return temp;        
