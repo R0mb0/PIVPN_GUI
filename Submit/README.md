@@ -781,6 +781,147 @@ After the first launch, if the application is closed and reopened, it will resto
 
 <details>
   <summary>
+	  
+  #### Relevant widgets used
+  
+  </summary>
+
+<details>
+<summary>
+
+##### `main.dart`
+
+</summary>
+
+- **MaterialApp**  
+  **Description:**  
+  A widget that wraps the entire application and provides the basic configuration for Material Design, including theme, routing, and localization.
+
+- **Scaffold**  
+  **Description:**  
+  Provides a basic layout structure for Material Design apps. Includes areas for AppBar, Drawer, Body, FloatingActionButton, BottomNavigationBar, etc.
+
+- **SafeArea**  
+  **Description:**  
+  Inserts its child into a safe area of the display, avoiding notification areas, notches, or curved device edges.
+
+- **Column**  
+  **Description:**  
+  Arranges child widgets in a vertical column.
+
+- **Row**  
+  **Description:**  
+  Arranges child widgets in a horizontal row.
+
+- **SizedBox**  
+  **Description:**  
+  A widget with specified fixed dimensions, useful for spacing or to enforce a certain size.
+
+- **VerticalDivider**  
+  **Description:**  
+  Draws a vertical line, typically used to visually separate content in a Row.
+
+- **Text**  
+  **Description:**  
+  Displays a single-style string of text.
+
+- **Container**  
+  **Description:**  
+  A versatile widget for layout, decoration, padding, margins, and size constraints.
+
+- **TextFormField**  
+  **Description:**  
+  A text input field that integrates validation and form management.
+
+- **InputDecoration**, **OutlineInputBorder**, **BorderSide**  
+  **Description:**  
+  Configuration widgets for customizing the appearance of input fields, such as borders, colors, hints, etc.
+
+- **TextButton**  
+  **Description:**  
+  A text button that triggers a function when pressed.
+
+- **ButtonStyle**, **MaterialStateProperty**  
+  **Description:**  
+  Allow you to define the style and behavior of buttons based on their states (pressed, hovered, etc.).
+
+- **Divider**  
+  **Description:**  
+  Draws a horizontal line, useful for visually separating vertical sections.
+
+- **Expanded**  
+  **Description:**  
+  A widget that expands a child of a Row, Column, or Flex to fill the available space.
+
+- **SingleChildScrollView**  
+  **Description:**  
+  Allows its child to scroll if there is insufficient space, supporting both vertical and horizontal scroll.
+
+- **DataTable**  
+  **Description:**  
+  Displays data in a table with rows and columns, supporting sorting and scrolling.
+
+- **DataColumn**, **DataRow**  
+  **Description:**  
+  Represent the columns and rows of a DataTable.
+
+- **GestureDetector**  
+  **Description:**  
+  Captures and handles user gestures (tap, drag, etc.) on the child widget.
+
+</details>
+
+<details>
+<summary>
+
+##### `Database.dart`
+ 
+</summary>
+
+- **DataRow**  
+  **Description:**  
+  Represents a single row within a DataTable, composed of a series of cells (DataCell).
+
+- **DataCell**  
+  **Description:**  
+  A cell that contains a widget (typically a Text) to display in a row of the DataTable.
+
+- **Text**  
+  **Description:**  
+  Displays a single-style string of text.
+
+</details>
+
+<details>
+<summary>
+
+##### `Mediator.dart`
+
+</summary>
+
+- **DataRow**  
+  **Description:**  
+  Represents a single row within a `DataTable`. Each `DataRow` contains a list of cells (`DataCell`) that display tabular data. Used to structure information in tabular format, such as lists of users, products, or results.
+
+</details>
+  
+</details>
+
+<details>
+<summary>
+
+#### State management 
+ 
+</summary>
+
+##### Use of `Provider` and `Riverpod` libraries
+
+The project does not have enough complexity to justify the use of the Provider and Riverpod libraries at the user interface level, since the only (stateless) elements present are: labels, buttons, text fields, and, in the center, a table.
+
+</details>
+
+<details>
+  <summary>
 
   #### The database building
     
