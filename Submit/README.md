@@ -69,7 +69,7 @@ _Guarda l'immagine_
 
 </details><br>
 
-Il nome può essere una qualsiasi stringa, mentre le date devono essere necessariamente inserite nel formato americano (anno-mese-giorno).<br>
+Il nome può essere una qualsiasi stringa senza spazi, mentre le date devono essere necessariamente inserite nel formato standard ISO (anno-mese-giorno).<br>
 
 ##### ⚠️ Avvertenze
 
@@ -159,12 +159,44 @@ Se l'applicazione viene chiusa dopo il primo avvio e successivamente riaperta, l
     
   </summary>
 
-- `package:flutter/material.dart` -> Libreria di default
-- `dart:async` -> Libreria per la gestione dei thread
-- `dart:isolate` -> Libreria per la gestione dei thread
-- `dart:io` -> Libreria per interagire con i file di sistema
-- `package:process_run/shell.dart` -> Libreria per interagire con la shell
-- `dart:ffi` -> Libreria per allocare la memoria, utilizzata per allocare il thread
+- `package:flutter/material.dart` -> Libreria di default, **Non necessita di commento**
+- `dart:async` -> Libreria per la gestione dei thread, **Non necessita di commento**
+- `dart:isolate` -> Libreria per la gestione dei thread, **Non necessita di commento**
+- `dart:io` -> Libreria per interagire con i file di sistema, **Non necessita di commento**
+- `package:process_run/shell.dart` -> Libreria per interagire con la shell <br> <details> <summary> **Commento** </summary>
+
+	##### Librerie disponibili (in alternatova)
+
+	- `dart:io` con i comandi:
+ 		- Process.start
+   		- Process.run <br><br>
+        **Esempio** <br>
+	
+        ```dart
+        import 'dart:io';
+
+		void main() async {
+		  var result = await Process.run('ls', ['-l']);
+		  print(result.stdout);
+		}
+        ```
+        - `package:process_runner/process_runner.dart` <br><br>
+	**Esempio** <br>
+ 	```dart
+  	import 'package:process_runner/process_runner.dart';
+
+	Future<void> main() async {
+	  ProcessRunner processRunner = ProcessRunner();
+	  ProcessRunnerResult result = await processRunner.runProcess(['ls']);
+	
+	  print('stdout: ${result.stdout}');
+	  print('stderr: ${result.stderr}');
+	}
+  	```
+	Tra le tre alternative possibili, è stata scelta la libreria `shell.dart` poichè è la libreria più stabile per linux per lanciare i comandi da terminale
+
+  </details>
+- `dart:ffi` -> Libreria per allocare la memoria, utilizzata per allocare il thread, **Non necessita di commento**
   
 </details>
 
