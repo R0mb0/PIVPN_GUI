@@ -770,12 +770,46 @@ After the first launch, if the application is closed and reopened, it will resto
     
   </summary>
 
-- `package:flutter/material.dart` -> Default library
-- `dart:async` -> Library for thread management
-- `dart:isolate` -> Library for thread management
-- `dart:io` -> Library for interacting with system files
-- `package:process_run/shell.dart` -> Library for interacting with the shell
-- `dart:ffi` -> Library for memory allocation, used to allocate the thread
+- `package:flutter/material.dart` -> Default library, **No comment required**
+- `dart:async` -> Library for thread management, **No comment required**
+- `dart:isolate` -> Library for thread management, **No comment required**
+- `dart:io` -> Library for interacting with system files, **No comment required**
+- `package:process_run/shell.dart` -> Library for interacting with the shell <br> <details> <summary> **Commento** </summary>
+
+  ##### Available Libraries (alternatives)
+
+  - `dart:io` with the commands:
+      - Process.start
+      - Process.run <br><br>
+        **Example** <br>
+      
+        ```dart
+        import 'dart:io';
+
+        void main() async {
+	  var result = await Process.run('ls', ['-l']);
+	  print(result.stdout);
+        }
+        ```
+  - `package:process_runner/process_runner.dart` <br><br>
+    **Example** <br>
+    ```dart
+    import 'package:process_runner/process_runner.dart';
+
+    Future<void> main() async {
+      ProcessRunner processRunner = ProcessRunner();
+      ProcessRunnerResult result = await processRunner.runProcess(['ls']);
+
+      print('stdout: ${result.stdout}');
+      print('stderr: ${result.stderr}');
+    }
+  ```
+  
+  Among the three possible alternatives, the `shell.dart` library was chosen because it is the most stable library on Linux for executing terminal commands.
+
+</details>
+  
+- `dart:ffi` -> Library for memory allocation, used to allocate the thread, **No comment required**
   
 </details>
 
