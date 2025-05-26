@@ -199,7 +199,6 @@ Se l'applicazione viene chiusa dopo il primo avvio e successivamente riaperta, l
 - `dart:ffi` -> Libreria per allocare la memoria, utilizzata per allocare il thread, **Non necessita di commento**
   
 </details>
-
 <details>
   <summary>
 	  
@@ -216,11 +215,11 @@ Se l'applicazione viene chiusa dopo il primo avvio e successivamente riaperta, l
 
 - **MaterialApp**  
   **Descrizione:**  
-  Un widget che avvolge l’intera applicazione e fornisce configurazione base per il Material Design, inclusi tema, routing e localizzazione.
+  Un widget che avvolge l’intera applicazione e fornisce la configurazione di base per il Material Design, inclusi tema, routing e localizzazione.
 
 - **Scaffold**  
   **Descrizione:**  
-  Fornisce una struttura base di layout per le app Material Design. Include zone per AppBar, Drawer, Body, FloatingActionButton, BottomNavigationBar, ecc.
+  Fornisce una struttura base di layout per le app Material Design. Include aree per AppBar, Drawer, Body, FloatingActionButton, BottomNavigationBar, ecc.
 
 - **SafeArea**  
   **Descrizione:**  
@@ -228,15 +227,15 @@ Se l'applicazione viene chiusa dopo il primo avvio e successivamente riaperta, l
 
 - **Column**  
   **Descrizione:**  
-  Disposiziona i widget figli in una colonna verticale.
+  Dispone i widget figli in una colonna verticale.
 
 - **Row**  
   **Descrizione:**  
-  Disposiziona i widget figli in una riga orizzontale.
+  Dispone i widget figli in una riga orizzontale.
 
 - **SizedBox**  
   **Descrizione:**  
-  Un widget con dimensioni fisse specificate, utile per spaziature o per forzare una dimensione.
+  Un widget con dimensioni fisse specificate, utile per spaziature o per forzare una certa dimensione.
 
 - **VerticalDivider**  
   **Descrizione:**  
@@ -244,7 +243,7 @@ Se l'applicazione viene chiusa dopo il primo avvio e successivamente riaperta, l
 
 - **Text**  
   **Descrizione:**  
-  Visualizza una stringa di testo single-style.
+  Visualizza una stringa di testo con uno stile singolo.
 
 - **Container**  
   **Descrizione:**  
@@ -256,7 +255,7 @@ Se l'applicazione viene chiusa dopo il primo avvio e successivamente riaperta, l
 
 - **InputDecoration**, **OutlineInputBorder**, **BorderSide**  
   **Descrizione:**  
-  Widget di configurazione per la personalizzazione dell’aspetto dei campi input, come bordi, colori, hint, ecc.
+  Widget di configurazione per la personalizzazione dell’aspetto dei campi di input, come bordi, colori, hint ecc.
 
 - **TextButton**  
   **Descrizione:**  
@@ -276,7 +275,7 @@ Se l'applicazione viene chiusa dopo il primo avvio e successivamente riaperta, l
 
 - **SingleChildScrollView**  
   **Descrizione:**  
-  Permette lo scrolling del suo child se lo spazio è insufficiente, supportando scroll verticale e orizzontale.
+  Permette lo scrolling del suo child se lo spazio è insufficiente, supportando sia lo scroll verticale che orizzontale.
 
 - **DataTable**  
   **Descrizione:**  
@@ -288,7 +287,7 @@ Se l'applicazione viene chiusa dopo il primo avvio e successivamente riaperta, l
 
 - **GestureDetector**  
   **Descrizione:**  
-  Cattura e gestisce gesti dell’utente (tap, drag, ecc.) su widget child.
+  Cattura e gestisce i gesti dell’utente (tap, drag, ecc.) sul widget child.
 
 </details>
 
@@ -309,7 +308,7 @@ Se l'applicazione viene chiusa dopo il primo avvio e successivamente riaperta, l
 
 - **Text**  
   **Descrizione:**  
-  Visualizza una stringa di testo single-style.
+  Visualizza una stringa di testo con uno stile singolo.
 
 </details>
 
@@ -322,10 +321,23 @@ Se l'applicazione viene chiusa dopo il primo avvio e successivamente riaperta, l
 
 - **DataRow**  
   **Descrizione:**  
-  Rappresenta una singola riga all’interno di una `DataTable`. Ogni `DataRow` contiene una lista di celle (`DataCell`) che visualizzano dati tabellari. Utilizzato per strutturare informazioni in formato tabellare, come ad esempio elenchi di utenti, prodotti o risultati.
+  Rappresenta una singola riga all’interno di una `DataTable`. Ogni `DataRow` contiene una lista di celle (`DataCell`) che visualizzano dati tabellari. È utilizzato per strutturare informazioni in formato tabellare, come ad esempio elenchi di utenti, prodotti o risultati.
 
 </details>
   
+</details>
+
+<details>
+<summary>
+
+#### Gestione dello stato 
+ 
+</summary>
+
+##### Utilizzo delle librerie `Provider` e `Riverpod`
+
+Il progetto non possiede una complessità tale da giustificare l'uso delle librerie Provider e Riverpod a livello di interfaccia grafica, dal momento che gli unici elementi (stateless) presenti sono: scritte, pulsanti, campi di testo e, al centro, una tabella.
+
 </details>
 
 <details>
