@@ -20,7 +20,18 @@ Urbino`s University - Computing and digital innovation - Programming of mobile d
 
 **PIVPN GUI** is a flutter application to simplify the manage of [`PIVPN`](https://github.com/pivpn/pivpn) service for most of commons users. It provide the "time to be enabled" functionality, in way to automatic disable clients that had terminated their "enabled time". For example this functionality is usefull if the vpn is used to distribute a subscription service.  
 
-> Until the application is open, one time a day, the application will check all user statuses, disabling the users with their "time to be enabled" over. 
+> Until the application is open, one time a day, the application will check all user statuses, disabling the users with their "time to be enabled" over.
+
+<div align="center">
+  <a href="http://paypal.me/R0mb0">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://github.com/R0mb0/Support_the_dev_badge/blob/main/Badge/SVG/Support_the_dev_badge_Dark.svg">
+      <source media="(prefers-color-scheme: light)" srcset="https://github.com/R0mb0/Support_the_dev_badge/blob/main/Badge/SVG/Support_the_dev_badge_Light.svg">
+      <img alt="Saved you time? Support the dev" src="https://github.com/R0mb0/Support_the_dev_badge/blob/main/Badge/SVG/Support_the_dev_badge_Default.svg">
+    </picture>
+  </a>
+</div>
+
 
 ## How to install 
 
